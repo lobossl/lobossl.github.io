@@ -1,5 +1,5 @@
 /*
-    Lobo 2023
+    https://github.com/lobossl
 */
 let main = document.getElementById("main");
 let newBTN = document.getElementById("new");
@@ -21,6 +21,7 @@ function getDatabase()
         return get;
     }
 }
+
 function setDatabase(objString)
 {
     let get = JSON.parse(localStorage.getItem(databaseName));
@@ -34,10 +35,9 @@ function setDatabase(objString)
         get.push(objString);
 
         localStorage.setItem(databaseName,JSON.stringify(get));
-
-        location.reload();
     }
 }
+
 function spliceDatabase(target)
 {
     let get = JSON.parse(localStorage.getItem(databaseName));
@@ -53,6 +53,7 @@ function spliceDatabase(target)
         localStorage.setItem(databaseName,JSON.stringify(get));
     }
 }
+
 function editDatabase(obj)
 {
     let get = JSON.parse(localStorage.getItem(databaseName));
@@ -76,6 +77,7 @@ function editDatabase(obj)
         localStorage.setItem(databaseName,JSON.stringify(get));
     }
 }
+
 function getTime()
 {
     let Time = new Date();
@@ -88,6 +90,7 @@ function getTime()
 
     return createTime;
 }
+
 newBTN.addEventListener("click",() =>
 {   
     setDatabase({
@@ -95,53 +98,72 @@ newBTN.addEventListener("click",() =>
         title: "Example title",
         text: "Example text"
     });
+
+    var child = main.lastElementChild;
+
+    while(child)
+    {
+        main.removeChild(child);
+        child = main.lastElementChild;
+    }
+
+    loadDivs();
 });
-window.addEventListener("load",() =>
+
+function loadDivs()
 {
     getDatabase().forEach((list,index) =>
     {
         let mainDiv = document.createElement("div");
         mainDiv.className = "mainDiv";
 
-        let elementTITLE = document.createElement("p");
+        let elementTITLE = document.createElement("div");
         elementTITLE.id = index;
         elementTITLE.innerText = list.title;
         elementTITLE.className = "elementTITLE";
         elementTITLE.contentEditable = "true";
 
-        let elementTEXT = document.createElement("p");
+        let elementTEXT = document.createElement("div");
         elementTEXT.id = index;
         elementTEXT.innerText = list.text;
         elementTEXT.className = "elementTEXT";
         elementTEXT.contentEditable = "true";
 
-        let elementDELETE = document.createElement("span");
+        let elementDELETE = document.createElement("img");
         elementDELETE.id = index;
+        elementDELETE.src = "img/delete.png";
         elementDELETE.innerText = "Delete";
-        elementDELETE.className = "button";
+        elementDELETE.className = "delete";
 
-        let elementTIME = document.createElement("p");
+        let elementTIME = document.createElement("div");
         elementTIME.id = index;
         elementTIME.innerText = list.time;
         elementTIME.className = "elementTIME";
 
         main.appendChild(mainDiv);
 
-        mainDiv.appendChild(elementDELETE);
         mainDiv.appendChild(elementTIME);
+        mainDiv.appendChild(elementDELETE);
         mainDiv.appendChild(elementTITLE);
         mainDiv.appendChild(elementTEXT);
 
         elementDELETE.addEventListener("click",(e) =>
         {
-            console.log("delete clicked");
+            var child = main.lastElementChild;
 
+            while(child)
+            {
+                main.removeChild(child);
+                child = main.lastElementChild;
+            }
+    
             spliceDatabase(e.target.id);
 
-            location.reload();
+            loadDivs();
         });
     });
-});
+};
+
 document.addEventListener("click",() =>
 {
     document.addEventListener("keyup",(key) =>
@@ -175,10 +197,9 @@ document.addEventListener("click",() =>
         });
     });
 });
+
 backupBTN.addEventListener("click",() =>
 {
-    console.log("backup clicked");
-
     const dataJson = JSON.stringify(getDatabase());
     const blob = new Blob([dataJson], { type: "application/json" });
 
@@ -189,10 +210,9 @@ backupBTN.addEventListener("click",() =>
     a.click();
     URL.revokeObjectURL(url);
 });
+
 restoreBTN.addEventListener("change",() =>
 {
-    console.log("restore clicked");
-
 	let file = restore.files[0];
 
     if(file)
@@ -216,4 +236,8 @@ restoreBTN.addEventListener("change",() =>
         
         reader.readAsText(file);
     }
+
+    location.reload();
 });
+
+loadDivs();
