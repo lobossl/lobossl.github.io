@@ -5,77 +5,39 @@ let main = document.getElementById("main");
 let newBTN = document.getElementById("new");
 let backupBTN = document.getElementById("backup");
 let restoreBTN = document.getElementById("restore");
+let searchINPUT = document.getElementById("search");
 
 let databaseName = "test";
 
-function getDatabase()
-{
-    let get = JSON.parse(localStorage.getItem(databaseName));
-
-    if(get == null)
-    {
-        localStorage.setItem(databaseName,JSON.stringify([]));
-    }
-    else
-    {
-        return get;
-    }
-}
+let getDB = localStorage.getItem(databaseName) ? JSON.parse(localStorage.getItem(databaseName)) : []
 
 function setDatabase(objString)
 {
-    let get = JSON.parse(localStorage.getItem(databaseName));
+    getDB.push(objString);
 
-    if(get == null)
-    {
-        localStorage.setItem(databaseName,JSON.stringify([]));
-    }
-    else
-    {
-        get.push(objString);
-
-        localStorage.setItem(databaseName,JSON.stringify(get));
-    }
+    localStorage.setItem(databaseName,JSON.stringify(getDB));
 }
 
 function spliceDatabase(target)
 {
-    let get = JSON.parse(localStorage.getItem(databaseName));
+    getDB.splice(target,1);
 
-    if(get == null)
-    {
-        localStorage.setItem(databaseName,JSON.stringify([]));
-    }
-    else
-    {
-        get.splice(target,1);
-
-        localStorage.setItem(databaseName,JSON.stringify(get));
-    }
+    localStorage.setItem(databaseName,JSON.stringify(getDB));
 }
 
 function editDatabase(obj)
 {
-    let get = JSON.parse(localStorage.getItem(databaseName));
-
-    if(get == null)
+    getDB.forEach((x,index) =>
     {
-        localStorage.setItem(databaseName,JSON.stringify([]));
-    }
-    else
-    {
-        get.forEach((x,index) =>
+        if(obj.id == index)
         {
-            if(obj.id == index)
-            {
-                x.title = obj.title;
-                x.time = getTime();
-                x.text = obj.text;
-            }
-        });
+            x.title = obj.title;
+            x.time = getTime();
+            x.text = obj.text;
+        }
+    });
 
-        localStorage.setItem(databaseName,JSON.stringify(get));
-    }
+    localStorage.setItem(databaseName,JSON.stringify(getDB));
 }
 
 function getTime()
@@ -91,6 +53,20 @@ function getTime()
     return createTime;
 }
 
+searchINPUT.addEventListener("keyup",(e) =>
+{
+    if(e.target.value)
+    {
+        removeChilds();
+        loadDivs(e.target.value.toLowerCase());
+    }
+    else
+    {
+        removeChilds();
+        loadDivs(false);
+    }
+});
+
 newBTN.addEventListener("click",() =>
 {   
     setDatabase({
@@ -99,108 +75,104 @@ newBTN.addEventListener("click",() =>
         text: "Example text"
     });
 
-    var child = main.lastElementChild;
+    removeChilds();
+    loadDivs();
+});
+
+function removeChilds()
+{
+    let child = main.lastElementChild;
 
     while(child)
     {
         main.removeChild(child);
         child = main.lastElementChild;
     }
+}
 
-    loadDivs();
-});
-
-function loadDivs()
+function loadDivs(test)
 {
-    getDatabase().forEach((list,index) =>
+    getDB.forEach((list,index) =>
     {
-        let mainDiv = document.createElement("div");
-        mainDiv.className = "mainDiv";
-
-        let elementTITLE = document.createElement("div");
-        elementTITLE.id = index;
-        elementTITLE.innerText = list.title;
-        elementTITLE.className = "elementTITLE";
-        elementTITLE.contentEditable = "true";
-
-        let elementTEXT = document.createElement("div");
-        elementTEXT.id = index;
-        elementTEXT.innerText = list.text;
-        elementTEXT.className = "elementTEXT";
-        elementTEXT.contentEditable = "true";
-
-        let elementDELETE = document.createElement("img");
-        elementDELETE.id = index;
-        elementDELETE.src = "img/delete.png";
-        elementDELETE.innerText = "Delete";
-        elementDELETE.className = "delete";
-
-        let elementTIME = document.createElement("div");
-        elementTIME.id = index;
-        elementTIME.innerText = list.time;
-        elementTIME.className = "elementTIME";
-
-        main.appendChild(mainDiv);
-
-        mainDiv.appendChild(elementTIME);
-        mainDiv.appendChild(elementDELETE);
-        mainDiv.appendChild(elementTITLE);
-        mainDiv.appendChild(elementTEXT);
-
-        elementDELETE.addEventListener("click",(e) =>
+        if(list.title.toLowerCase().includes(test) || test == undefined || test == false)
         {
-            var child = main.lastElementChild;
+            let mainDiv = document.createElement("div");
+            mainDiv.className = "mainDiv";
 
-            while(child)
+            let elementTITLE = document.createElement("div");
+            elementTITLE.id = index;
+            elementTITLE.innerText = list.title;
+            elementTITLE.className = "elementTITLE";
+            elementTITLE.contentEditable = "true";
+
+            let elementTEXT = document.createElement("pre");
+            elementTEXT.id = index;
+            elementTEXT.innerText = list.text;
+            elementTEXT.className = "elementTEXT";
+            elementTEXT.contentEditable = "true";
+
+            let elementDELETE = document.createElement("img");
+            elementDELETE.id = index;
+            elementDELETE.src = "img/delete.png";
+            elementDELETE.innerText = "Delete";
+            elementDELETE.className = "delete";
+
+            let elementTIME = document.createElement("div");
+            elementTIME.id = index;
+            elementTIME.innerText = list.time;
+            elementTIME.className = "elementTIME";
+
+            main.appendChild(mainDiv);
+
+            mainDiv.appendChild(elementTIME);
+            mainDiv.appendChild(elementDELETE);
+            mainDiv.appendChild(elementTITLE);
+            mainDiv.appendChild(elementTEXT);
+
+            elementDELETE.addEventListener("click",(e) =>
             {
-                main.removeChild(child);
-                child = main.lastElementChild;
-            }
-    
-            spliceDatabase(e.target.id);
-
-            loadDivs();
-        });
+                spliceDatabase(e.target.id);
+                removeChilds();
+                loadDivs();
+            });
+        }
     });
 };
 
-document.addEventListener("click",() =>
+document.addEventListener("keyup",(key) =>
 {
-    document.addEventListener("keyup",(key) =>
+    let getTitle = null;
+    let getText = null;
+
+    getDB.forEach((event,index) =>
     {
-        let getTitle;
-        let getText;
-
-        getDatabase().forEach((event,index) =>
+        if(key.target.id == index)
         {
-            if(key.target.id == index)
-            {
-                getTitle = event.title;
-                getText = event.text;
-            }
-        });
-
-        if(key.target.className == "elementTITLE")
-        {
-            getTitle = key.target.innerText;
+            getTitle = event.title;
+            getText = event.text;
         }
+    });
 
-        if(key.target.className == "elementTEXT")
-        {
-            getText = key.target.innerText;
-        }
+    if(key.target.className == "elementTITLE")
+    {
+        getTitle = key.target.innerText;
+    }
 
-        editDatabase({
-            id: key.target.id,
-            title: getTitle,
-            text: getText
-        });
+    if(key.target.className == "elementTEXT")
+    {
+        getText = key.target.innerText;
+    }
+
+    editDatabase({
+        id: key.target.id,
+        title: getTitle,
+        text: getText
     });
 });
 
 backupBTN.addEventListener("click",() =>
 {
-    const dataJson = JSON.stringify(getDatabase());
+    const dataJson = JSON.stringify(getDB);
     const blob = new Blob([dataJson], { type: "application/json" });
 
     const url = URL.createObjectURL(blob);

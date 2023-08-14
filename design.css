@@ -33,6 +33,9 @@ body
     text-align:left;
     border:none;
     margin:15px;
+
+    white-space: pre-wrap;
+    word-wrap: break-word;
 }
 
 .elementDELETE
@@ -82,13 +85,20 @@ body
     background-color:#fff;
 }
 
+.search
+{
+    outline:none;
+    border:1px solid #ccc;
+    background-color:#fff;
+    padding:5px;
+}
+
 .top
 {
     background-color:#eee;
     color:#fff;
     border:none;
     border-bottom:1px dashed #999;
-    display:flex;
     margin:1px;
 }
 .top > p
