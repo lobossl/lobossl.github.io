@@ -19,7 +19,7 @@ body
 {
     display: flex;
     flex-wrap: wrap;
-    flex:1 75%;
+    flex:1 100%;
     display: inline-block;
 }
 
@@ -27,7 +27,7 @@ body
 {
     display: flex;
     flex-wrap: wrap;
-    flex:1 25%;
+    flex:0 auto;
     display: inline-block;
 }
 
