@@ -81,7 +81,7 @@ function loadItems()
             label.style.fontSize = "16px"
             label.style.color = "green"
             label.for = "checkbox"
-            label.innerHTML = "Recyle &#9851;" //recycle
+            label.innerHTML = "&#9851;" //recycle
 
             hr.style.border = "1px solid #c025ff"
 
