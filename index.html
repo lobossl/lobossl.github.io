@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Private Notes</title>
-        <link rel="stylesheet" href="design.css?v=1.11">
+        <title>THE TO-DO-LIST</title>
+        <link rel="stylesheet" href="design.css?v=1.35">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <div class="top" id="top">
-            <p><img id="new" class="new" src="img/newfile.png" /></p>
-            <p><input type="text" id="search" class="search" placeholder="search.." /></p>
+        <div class="top">
+            <p>THE TO-DO-LIST</p>
+            <button id="add" class="btn"></button>
+            <button id="remove" class="btn"></button>
         </div>
-        <div class="dropdown">
-            <div class="dots">...</div>
-            <div class="dropdown-content">
-                <p></p><input type="file" id="restore" class="button"></p>
-                <p></p><div id="backup" class="button">Backup</div></div></p>
-            </div>
+        <div id="father" class="father">
+            <div id="todo" class="todo"></div>
+            <div id="done" class="done"></div>
         </div>
-        <div id="main" class="main"></div>
-        <script src="app.js?v=1.11" type="text/javascript"></script>
+        <script src="app.js?v=1.35" type="text/javascript"></script>
     </body>
 </html>

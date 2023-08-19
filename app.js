@@ -1,215 +1,153 @@
 /*
-    https://github.com/lobossl
+    https://github.com/lobossl/todo
 */
-let main = document.getElementById("main");
-let newBTN = document.getElementById("new");
-let backupBTN = document.getElementById("backup");
-let restoreBTN = document.getElementById("restore");
-let searchINPUT = document.getElementById("search");
 
-let databaseName = "test";
+let ldbName = "todo"
 
-let getDB = localStorage.getItem(databaseName) ? JSON.parse(localStorage.getItem(databaseName)) : []
+let todo = document.getElementById("todo")
+let done = document.getElementById("done")
+let add = document.getElementById("add")
+let remove = document.getElementById("remove")
 
-function setDatabase(objString)
+let test = JSON.parse(localStorage.getItem(ldbName)) || []
+
+function setItems(e)
 {
-    getDB.push(objString);
-
-    localStorage.setItem(databaseName,JSON.stringify(getDB));
-}
-
-function spliceDatabase(target)
-{
-    getDB.splice(target,1);
-
-    localStorage.setItem(databaseName,JSON.stringify(getDB));
-}
-
-function editDatabase(obj)
-{
-    getDB.forEach((x,index) =>
+    if(test === null)
     {
-        if(obj.id == index)
-        {
-            x.title = obj.title;
-            x.time = getTime();
-            x.text = obj.text;
-        }
-    });
+        test = []
 
-    localStorage.setItem(databaseName,JSON.stringify(getDB));
-}
+        test.push(e)
 
-function getTime()
-{
-    let Time = new Date();
-
-    let Year = Time.getFullYear();
-    let Month = Time.getMonth() + 1;
-    let Day = Time.getDate();
-
-    let createTime = Day + "." + Month + "." + Year;
-
-    return createTime;
-}
-
-searchINPUT.addEventListener("keyup",(e) =>
-{
-    if(e.target.value)
-    {
-        removeChilds();
-        loadDivs(e.target.value.toLowerCase());
+        localStorage.setItem(ldbName,JSON.stringify(test))
     }
     else
     {
-        removeChilds();
-        loadDivs(false);
-    }
-});
+        test.push(e)
 
-newBTN.addEventListener("click",() =>
-{   
-    setDatabase({
-        time: getTime(),
-        title: "Example title",
-        text: "Example text"
-    });
-
-    removeChilds();
-    loadDivs();
-});
-
-function removeChilds()
-{
-    let child = main.lastElementChild;
-
-    while(child)
-    {
-        main.removeChild(child);
-        child = main.lastElementChild;
+        localStorage.setItem(ldbName,JSON.stringify(test))
     }
 }
 
-function loadDivs(test)
+function loadItems()
 {
-    getDB.forEach((list,index) =>
+    todo.innerText = ""
+    done.innerText = ""
+
+    let setID = 0
+
+    test.forEach((e) =>
     {
-        if(list.title.toLowerCase().includes(test) || test == undefined || test == false)
+        let frame = document.createElement("p")
+        frame.className = "frame"
+
+        let hr = document.createElement("hr")
+        let checkBox = document.createElement("INPUT")
+        let text = document.createElement("p")
+        let label = document.createElement("label")
+
+        if(e.checked == true)
         {
-            let mainDiv = document.createElement("div");
-            mainDiv.className = "mainDiv";
+            text.id = "text"
+            text.className = "text"
+            text.contentEditable = "false"
+            text.innerText = e.text
+            text.count = setID
+            text.style.textDecorationLine = "line-through"
+            text.style.color = "#CCCCCC"
 
-            let elementTITLE = document.createElement("div");
-            elementTITLE.id = index;
-            elementTITLE.innerText = list.title;
-            elementTITLE.className = "elementTITLE";
-            elementTITLE.contentEditable = "true";
-
-            let elementTEXT = document.createElement("pre");
-            elementTEXT.id = index;
-            elementTEXT.innerText = list.text;
-            elementTEXT.className = "elementTEXT";
-            elementTEXT.contentEditable = "true";
-
-            let elementDELETE = document.createElement("img");
-            elementDELETE.id = index;
-            elementDELETE.src = "img/delete.png";
-            elementDELETE.innerText = "Delete";
-            elementDELETE.className = "delete";
-
-            let elementTIME = document.createElement("div");
-            elementTIME.id = index;
-            elementTIME.innerText = list.time;
-            elementTIME.className = "elementTIME";
-
-            main.appendChild(mainDiv);
-
-            mainDiv.appendChild(elementTIME);
-            mainDiv.appendChild(elementDELETE);
-            mainDiv.appendChild(elementTITLE);
-            mainDiv.appendChild(elementTEXT);
-
-            elementDELETE.addEventListener("click",(e) =>
-            {
-                spliceDatabase(e.target.id);
-                removeChilds();
-                loadDivs();
-            });
+            frame.append(text)
+            done.append(frame)
         }
-    });
-};
-
-document.addEventListener("keyup",(key) =>
-{
-    let getTitle = null;
-    let getText = null;
-
-    getDB.forEach((event,index) =>
-    {
-        if(key.target.id == index)
+        else if(e.checked == false)
         {
-            getTitle = event.title;
-            getText = event.text;
+            checkBox.type = "checkbox"
+            checkBox.id = "checkbox"
+            checkBox.name = "checkbox"
+            checkBox.className = "checkbox"
+            checkBox.value = "test"
+            checkBox.count = setID
+
+            text.id = "text"
+            text.className = "text"
+            text.contentEditable = "true"
+            text.spellcheck = "false"
+            text.innerText = e.text
+            text.type = "text"
+            text.style.borderLeft = "2px dotted #ccc"
+            text.style.borderRight = "2px dotted #ccc"
+            text.count = setID
+
+            label.style.fontSize = "16px"
+            label.style.color = "green"
+            label.for = "checkbox"
+            label.innerHTML = "Recyle &#9851;" //recycle
+
+            hr.style.border = "1px solid #c025ff"
+
+            frame.append(checkBox)
+            frame.append(label)
+            frame.append(hr)
+            frame.append(text)
+            todo.append(frame)
         }
-    });
 
-    if(key.target.className == "elementTITLE")
-    {
-        getTitle = key.target.innerText;
-    }
+        setID += 1
+    })
+}
 
-    if(key.target.className == "elementTEXT")
-    {
-        getText = key.target.innerText;
-    }
-
-    editDatabase({
-        id: key.target.id,
-        title: getTitle,
-        text: getText
-    });
-});
-
-backupBTN.addEventListener("click",() =>
+document.addEventListener("keyup",(e) =>
 {
-    const dataJson = JSON.stringify(getDB);
-    const blob = new Blob([dataJson], { type: "application/json" });
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = "backup.json";
-    a.click();
-    URL.revokeObjectURL(url);
-});
-
-restoreBTN.addEventListener("change",() =>
-{
-	let file = restore.files[0];
-
-    if(file)
+    if(e.target.id == "text")
     {
-        let reader = new FileReader();
-        
-        reader.addEventListener("load",(e) =>
+        test[e.target.count].text = e.target.innerText
+
+        localStorage.setItem(ldbName,JSON.stringify(test))
+    }
+})
+
+document.addEventListener("click",(e) =>
+{
+    if(e.target.id == "checkbox")
+    {
+        if(e.target.checked)
         {
-            try
+            test[e.target.count].checked = true
+
+            localStorage.setItem(ldbName,JSON.stringify(test))
+
+            setTimeout(() =>
             {
-                JSON.parse(e.target.result).forEach((event) =>
-                {
-                    setDatabase(event);
-                });
-            }
-            catch(error)
-            {
-                console.log("Error loading JSON file.");
-            }
-        });
-        
-        reader.readAsText(file);
+                loadItems()
+            },100)
+        }
+    }
+})
+
+add.addEventListener("click",(e) =>
+{
+    let obj = {
+        text: "Example..",
+        checked: false
     }
 
-    location.reload();
-});
+    setItems(obj)
 
-loadDivs();
+    loadItems()
+
+    window.scrollTo(0, document.body.scrollHeight);
+})
+
+remove.addEventListener("click",(e) =>
+{
+    test.filter(x => x.checked === true).forEach(x => test.splice(test.indexOf(x), 1))
+
+    localStorage.setItem(ldbName,JSON.stringify(test))
+
+    loadItems()
+})
+
+window.addEventListener("load",() =>
+{
+    loadItems()
+})

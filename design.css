@@ -1,151 +1,137 @@
 /*
-    https://github.com/lobossl
+    https://github.com/lobossl/todo
 */
 body
 {
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    margin:0 auto;
-    padding:0;
-    background-color:#eee;
-    text-align:center;
-}
-
-.elementTITLE
-{
-    font-weight:900;
-    text-align:center;
-    outline:none;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin:0;
+    padding:0px;
     border:none;
-    padding:15px;
-    background-color:#238636;
-    font-size:19px;
-    font-weight:900;
-    margin:15px;
-    color:#fff;
-    border-radius:10px;
+    text-align: center;
 }
 
-.elementTEXT
+.father
 {
-    outline:none;
-    color:#777;
-    padding:15px;
-    text-align:left;
-    border:none;
-    margin:15px;
-
-    white-space: pre-wrap;
-    word-wrap: break-word;
+    display: flex;
 }
 
-.elementDELETE
-{
-    border:none;
-}
-
-.elementTIME
-{
-    color:#ccc;
-    border-bottom:1px solid #eee;
-}
-
-.button:hover
-{
-    background-color:#49a85c;
-}
-.button
-{
-    cursor: pointer;
-    display:inline-block;
-    flex-wrap:wrap;
-    border:none;
-    background-color: #238636;
-    color:#fff;
-    padding:12px;
-    border-radius:6px;
-    margin:12px;
-    outline:none;
-}
-
-/*
-    FLEX
-*/
-#main
+.todo
 {
     display: flex;
     flex-wrap: wrap;
-    padding:0;
-}
-.mainDiv
-{
-    word-break:break-word;
-    border:1px solid #ccc;
-    margin:5px;
-    flex-grow:1;
-    background-color:#fff;
+    flex:1 75%;
+    display: inline-block;
 }
 
-.search
+.done
+{
+    display: flex;
+    flex-wrap: wrap;
+    flex:1 25%;
+    display: inline-block;
+}
+
+.frame
+{
+    border:none;
+    margin:15px;
+    outline:none;
+    padding:15px;
+    background-color: #fff;
+    border-top-right-radius: 10px;
+    text-align:right;
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to top,#c025ff,#3064ff) 1 1%;
+    min-width:100px;
+}
+
+.checkbox:hover
+{
+    cursor: pointer;
+}
+.checkbox
+{
+    padding:15px;
+    margin:15px;
+    outline:none;
+    border-bottom:1px solid #eee;
+}
+
+.text
+{
+    padding:5px;
+    margin:5px;
+    outline:none;
+    word-break:break-word;
+    background-color: #fff;
+    color:#888;
+    text-align: left;
+}
+
+.btn
 {
     outline:none;
-    border:1px solid #ccc;
-    background-color:#fff;
-    padding:5px;
+    border:none;
+    background-color: #fff;
 }
 
 .top
 {
-    background-color:#eee;
-    color:#fff;
     border:none;
-    border-bottom:1px dashed #999;
-    margin:1px;
-}
-.top > p
-{
-    flex:50%;
+    background-color: #fff;
+    border-bottom: 1px solid #c025ff;
+    padding:15px;
+    color:#ccc;
+    font-size:32px;
 }
 
-input
+#add
 {
-    width:150px;
-}
-
-img
-{
-    border:none;
-    padding:5px;
+    background-image: url("icons/add.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 90px;
+    height:90px;
+    margin:15px;
     outline:none;
-    cursor:pointer;
-    opacity:0.4;
+    border:1px solid #eee;
+    border-radius:50%;
+    display: inline-block;
 }
 
-.dropdown 
+#remove
 {
-    position:absolute;
-    top:0px;
-    left:5px;
+    background-image: url("icons/remove.png");
+    background-repeat: no-repeat;
+    background-position: center; 
+    width: 90px;
+    height:90px;
+    margin:15px;
+    outline:none;
+    border:1px solid #eee;
+    border-radius:50%;
+    display: inline-block;
 }
 
-.dropdown-content
+#remove:hover
 {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    padding: 12px 16px;
-    z-index: 1;
-}
-
-.dropdown:hover .dropdown-content
-{
-    display: block;
-}
-
-.dots
-{
-    font-size:22px;
-    color:#999;
     cursor: pointer;
+    border:1px solid orange;
+}
+#add:hover
+{
+    cursor: pointer;
+    border:1px solid greenyellow;
+}
+
+.bottom
+{
+    text-align: left;
+    padding:15px;
+    background-color:#ff0000;
+    color:#fff;
+    margin:0px;
+    border:none;
+    font-weight: bold;
 }
