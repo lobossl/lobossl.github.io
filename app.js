@@ -8,6 +8,7 @@ let todo = document.getElementById("todo")
 let done = document.getElementById("done")
 let add = document.getElementById("add")
 let remove = document.getElementById("remove")
+let download = document.getElementById("download")
 
 let test = JSON.parse(localStorage.getItem(ldbName)) || []
 
@@ -28,6 +29,18 @@ function setItems(e)
         localStorage.setItem(ldbName,JSON.stringify(test))
     }
 }
+
+download.addEventListener("click",() =>
+{
+    let blob = new Blob([JSON.stringify(test)], { type: 'application/json' })
+
+    let link = document.createElement('a')
+
+    link.href = URL.createObjectURL(blob)
+    link.download = "backup.json"
+
+    link.click();
+})
 
 function loadItems()
 {
