@@ -10,9 +10,6 @@ body
     text-align: center;
 }
 
-/*
-    Knapper
-*/
 #download
 {
     background-image: url("icons/download.png");
@@ -73,13 +70,19 @@ body
     border:1px solid greenyellow;
 }
 
-/*
-    Design
-*/
 #frame
 {
-    border:1px solid #ccc;
     padding:15px;
+}
+
+#insideBox
+{
+    display: flex;
+}
+
+#checkbox
+{
+    flex:0 auto;
 }
 
 #text
@@ -89,30 +92,29 @@ body
     text-align: left;
     font-size:100%;
     color:#555;
+    flex:1 90%;
 }
 
-#title
+#container
 {
-    padding:15px;
-    word-break:break-word;
-    text-align: center;
-    border-bottom:1px solid #eee;
-    font-size:150%;
-    color:#ccc;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 #todo
 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    border:1px solid #eee;
+    flex: 1 auto;
+    margin:15px;
 }
 
 #done
 {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    border:1px solid #eee;
+    flex: 1 auto;
+    margin:15px;
 }
 
 #todo > p
@@ -132,4 +134,12 @@ body
 @media only screen and (max-width: 800px)
 {
     /* Disabled for now */
+}
+
+h3
+{
+    background-color: #556677;
+    color:#fff;
+    margin:auto;
+    padding:15px;
 }

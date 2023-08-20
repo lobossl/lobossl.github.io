@@ -10,29 +10,29 @@ let add = document.getElementById("add")
 let remove = document.getElementById("remove")
 let download = document.getElementById("download")
 
-let test = JSON.parse(localStorage.getItem(ldbName)) || []
+let getOBJ = JSON.parse(localStorage.getItem(ldbName)) || []
 
 function setItems(e)
 {
-    if(test === null)
+    if(getOBJ === null)
     {
-        test = []
+        getOBJ = []
 
-        test.push(e)
+        getOBJ.push(e)
 
-        localStorage.setItem(ldbName,JSON.stringify(test))
+        localStorage.setItem(ldbName,JSON.stringify(getOBJ))
     }
     else
     {
-        test.push(e)
+        getOBJ.push(e)
 
-        localStorage.setItem(ldbName,JSON.stringify(test))
+        localStorage.setItem(ldbName,JSON.stringify(getOBJ))
     }
 }
 
 download.addEventListener("click",() =>
 {
-    let blob = new Blob([JSON.stringify(test)], { type: 'application/json' })
+    let blob = new Blob([JSON.stringify(getOBJ)], { type: 'application/json' })
 
     let link = document.createElement('a')
 
@@ -44,12 +44,12 @@ download.addEventListener("click",() =>
 
 function loadItems()
 {
-    todo.innerText = ""
-    done.innerText = ""
+    todo.innerHTML = "<h3>TODO</h3>"
+    done.innerHTML = "<h3>DONE</h3>"
 
     let setID = 0
 
-    test.forEach((e) =>
+    getOBJ.forEach((e) =>
     {
         let frame = document.createElement("p")
         frame.className = "frame"
@@ -57,8 +57,7 @@ function loadItems()
 
         let checkBox = document.createElement("INPUT")
         let text = document.createElement("p")
-        let title = document.createElement("p")
-        let label = document.createElement("label")
+        let insideBox = document.createElement("div")
 
         if(e.checked == true)
         {
@@ -70,13 +69,6 @@ function loadItems()
             text.style.textDecorationLine = "line-through"
             text.style.color = "#CCCCCC"
 
-            title.id = "title"
-            title.className = "title"
-            title.innerText = e.title
-            title.contentEditable = "false"
-            title.count = setID
-
-            frame.append(title)
             frame.append(text)
             done.append(frame)
         }
@@ -86,7 +78,6 @@ function loadItems()
             checkBox.id = "checkbox"
             checkBox.name = "checkbox"
             checkBox.className = "checkbox"
-            checkBox.value = "test"
             checkBox.count = setID
 
             text.id = "text"
@@ -98,21 +89,14 @@ function loadItems()
             text.style.borderLeft = "2px dotted #ccc"
             text.count = setID
 
-            
-            title.id = "title"
-            title.className = "title"
-            title.innerText = e.title
-            title.contentEditable = "true"
-            title.count = setID
+            insideBox.id = "insideBox"
+            insideBox.className = "insideBox"
 
-            label.style.fontSize = "16px"
-            label.style.color = "green"
-            label.for = "checkbox"
+            insideBox.append(text)
+            insideBox.append(checkBox)
 
-            frame.append(checkBox)
-            frame.append(label)
-            frame.append(title)
-            frame.append(text)
+            frame.append(insideBox)
+
             todo.append(frame)
         }
 
@@ -124,17 +108,9 @@ document.addEventListener("keyup",(e) =>
 {
     if(e.target.id == "text")
     {
-        test[e.target.count].text = e.target.innerText
+        getOBJ[e.target.count].text = e.target.innerText
 
-        localStorage.setItem(ldbName,JSON.stringify(test))
-    }
-
-    if(e.target.id == "title")
-    {
-        console.log(e)
-        test[e.target.count].title = e.target.innerText
-
-        localStorage.setItem(ldbName,JSON.stringify(test))
+        localStorage.setItem(ldbName,JSON.stringify(getOBJ))
     }
 })
 
@@ -144,9 +120,9 @@ document.addEventListener("click",(e) =>
     {
         if(e.target.checked)
         {
-            test[e.target.count].checked = true
+            getOBJ[e.target.count].checked = true
 
-            localStorage.setItem(ldbName,JSON.stringify(test))
+            localStorage.setItem(ldbName,JSON.stringify(getOBJ))
 
             setTimeout(() =>
             {
@@ -159,7 +135,6 @@ document.addEventListener("click",(e) =>
 add.addEventListener("click",(e) =>
 {
     let obj = {
-        title: "Title..",
         text: "Text..",
         checked: false
     }
@@ -173,9 +148,9 @@ add.addEventListener("click",(e) =>
 
 remove.addEventListener("click",(e) =>
 {
-    test.filter(x => x.checked === true).forEach(x => test.splice(test.indexOf(x), 1))
+    getOBJ.filter(x => x.checked === true).forEach(x => getOBJ.splice(getOBJ.indexOf(x), 1))
 
-    localStorage.setItem(ldbName,JSON.stringify(test))
+    localStorage.setItem(ldbName,JSON.stringify(getOBJ))
 
     loadItems()
 })
