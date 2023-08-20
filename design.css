@@ -4,93 +4,21 @@
 body
 {
     font-family: Georgia, 'Times New Roman', Times, serif;
-    margin:0;
-    padding:0px;
-    border:none;
+    margin: 0;
+    padding: 15px;
+    border: none;
     text-align: center;
 }
 
-.father
-{
-    display: flex;
-}
-
-.todo
-{
-    display: flex;
-    flex-wrap: wrap;
-    flex:1 100%;
-    display: inline-block;
-}
-
-.done
-{
-    display: flex;
-    flex-wrap: wrap;
-    flex:0 auto;
-    display: inline-block;
-}
-
-.frame
-{
-    border:none;
-    margin:15px;
-    outline:none;
-    padding:15px;
-    background-color: #fff;
-    border-top-right-radius: 10px;
-    text-align:right;
-    border-width: 1px;
-    border-style: solid;
-    border-image: linear-gradient(to top,#c025ff,#3064ff) 1 1%;
-    min-width:100px;
-}
-
-.checkbox:hover
-{
-    cursor: pointer;
-}
-.checkbox
-{
-    padding:15px;
-    margin:15px;
-    outline:none;
-    border-bottom:1px solid #eee;
-}
-
-.text
-{
-    padding:5px;
-    margin:5px;
-    outline:none;
-    word-break:break-word;
-    background-color: #fff;
-    color:#888;
-    text-align: left;
-}
-
-.btn
-{
-    outline:none;
-    border:none;
-    background-color: #fff;
-}
-
-.top
-{
-    border:none;
-    background-color: #fff;
-    border-bottom: 1px solid #c025ff;
-    padding:15px;
-    color:#ccc;
-    font-size:32px;
-}
-
+/*
+    Knapper
+*/
 #download
 {
     background-image: url("icons/download.png");
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
+    background-color: #fff;
     width: 90px;
     height:90px;
     margin:15px;
@@ -103,7 +31,8 @@ body
 {
     background-image: url("icons/add.png");
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
+    background-color: #fff;
     width: 90px;
     height:90px;
     margin:15px;
@@ -117,7 +46,8 @@ body
 {
     background-image: url("icons/remove.png");
     background-repeat: no-repeat;
-    background-position: center; 
+    background-position: center;
+    background-color: #fff;
     width: 90px;
     height:90px;
     margin:15px;
@@ -143,13 +73,63 @@ body
     border:1px solid greenyellow;
 }
 
-.bottom
+/*
+    Design
+*/
+#frame
 {
-    text-align: left;
+    border:1px solid #ccc;
     padding:15px;
-    background-color:#ff0000;
-    color:#fff;
-    margin:0px;
-    border:none;
-    font-weight: bold;
+}
+
+#text
+{
+    padding:15px;
+    word-break:break-word;
+    text-align: left;
+    font-size:100%;
+    color:#555;
+}
+
+#title
+{
+    padding:15px;
+    word-break:break-word;
+    text-align: center;
+    border-bottom:1px solid #eee;
+    font-size:150%;
+    color:#ccc;
+}
+
+#todo
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#done
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#todo > p
+{
+    margin:15px;
+    min-width:200px;
+}
+
+#done > p
+{
+    margin:15px;
+    min-width:200px;
+}
+
+
+/* Mobile if mindre enn 800 px do this */
+@media only screen and (max-width: 800px)
+{
+    /* Disabled for now */
 }
