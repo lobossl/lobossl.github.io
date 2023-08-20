@@ -1,6 +1,3 @@
-/*
-    https://github.com/lobossl/todo
-*/
 body
 {
     font-family: Georgia, 'Times New Roman', Times, serif;
@@ -106,14 +103,14 @@ body
 #todo
 {
     border:1px solid #eee;
-    flex: 1 auto;
+    flex:1%;
     margin:15px;
 }
 
 #done
 {
     border:1px solid #eee;
-    flex: 1 auto;
+    flex:1;
     margin:15px;
 }
 

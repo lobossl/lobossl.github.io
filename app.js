@@ -1,7 +1,3 @@
-/*
-    https://github.com/lobossl/todo
-*/
-
 let ldbName = "todo"
 
 let todo = document.getElementById("todo")
