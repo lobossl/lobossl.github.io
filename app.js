@@ -5,6 +5,7 @@ let done = document.getElementById("done")
 let add = document.getElementById("add")
 let remove = document.getElementById("remove")
 let download = document.getElementById("download")
+let restore = document.getElementById("restore")
 
 let getOBJ = JSON.parse(localStorage.getItem(ldbName)) || []
 
@@ -99,6 +100,35 @@ function loadItems()
         setID += 1
     })
 }
+
+document.getElementById('restore').addEventListener('click', function() 
+{
+    const input = document.createElement('input')
+    input.type = 'file'
+
+    input.addEventListener('change', function(event)
+    {
+        const file = event.target.files[0]
+
+        if(file)
+        {
+            const reader = new FileReader()
+
+            reader.onload = function(event)
+            {
+                const jsonContent = event.target.result
+
+                localStorage.setItem(ldbName,jsonContent)
+
+                location.reload()
+            };
+
+            reader.readAsText(file)
+        }
+    })
+
+    input.click()
+})
 
 document.addEventListener("keyup",(e) =>
 {

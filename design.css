@@ -7,6 +7,20 @@ body
     text-align: center;
 }
 
+#restore
+{
+    background-image: url("icons/restore.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: #fff;
+    width: 90px;
+    height:90px;
+    margin:15px;
+    outline:none;
+    border:1px solid #eee;
+    border-radius:50%;
+    display: inline-block;
+}
 #download
 {
     background-image: url("icons/download.png");
@@ -49,22 +63,6 @@ body
     border:1px solid #eee;
     border-radius:50%;
     display: inline-block;
-}
-
-#download:hover
-{
-    cursor: pointer;
-    border:1px solid greenyellow;
-}
-#remove:hover
-{
-    cursor: pointer;
-    border:1px solid orange;
-}
-#add:hover
-{
-    cursor: pointer;
-    border:1px solid greenyellow;
 }
 
 #frame
