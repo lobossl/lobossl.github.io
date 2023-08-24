@@ -1,0 +1,49 @@
+body
+{
+    font-family: monospace;
+    background-color: #556677;
+    margin:0 auto;
+    text-align:center;
+    padding:0;
+}
+
+
+#container
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    background-color: #999;
+    grid-column: 1fr 1fr 1fr;
+}
+#a
+{
+    display: grid;
+    background-color: #fff;
+    height:90vh;
+
+}
+#b
+{
+    height:90vh;
+}
+
+textarea
+{
+    grid-column: 1fr 1fr 1fr;
+
+    word-break:break-word;
+    border: 1px solid #fff;
+    grid-row: auto;
+    resize:none;
+    overflow:auto;
+    outline:none;
+    text-align:left;
+    background-color:#000;
+    color:greenyellow;
+}
+
+pre
+{
+    color:#fff;
+}

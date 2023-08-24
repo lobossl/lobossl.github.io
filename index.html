@@ -1,23 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
     <head>
-        <title>THE TO-DO-LIST</title>
-        <link rel="stylesheet" href="design.css?v=2.4">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>myIDE</title>
+        <link rel="stylesheet" type="text/css" href="styles.css" />
     </head>
     <body>
-        <div class="top">
-            <p>THE TO-DO-LIST</p>
-            <button id="add" class="btn"></button>
-            <button id="remove" class="btn"></button>
-            <button id="download" class="btn"></button>
-            <button id="restore" class="btn"></button>
-
+        <div id="container">
+            <div id="a">
+                <textarea id="html" onkeyup="run()" placeholder="#html"></textarea>
+                <textarea id="css" onkeyup="run()" placeholder="#css"></textarea>
+                <textarea id="js" onkeyup="run()" placeholder="#js"></textarea>
+            </div>
+            <div id="b">
+                <iframe style="width:100%; height:100%; border: none; background-color: #fff; color:#000;" id="output"></iframe>
+            </div>
         </div>
-        <div id="container" class="container">
-            <div id="todo" class="todo"></div>
-            <div id="done" class="done"></div>
-        </div>
-        <script src="app.js?v=2.4" type="text/javascript"></script>
+        <pre>Coded by LoboSSL</pre>
+        <script src="app.js"></script>
     </body>
 </html>
