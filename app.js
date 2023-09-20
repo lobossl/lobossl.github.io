@@ -39,8 +39,11 @@ class database{
 	}
 }
 
+let setColor = "#556677"
+
 let db = new database("test")
 
+let color = document.getElementById("color")
 let read = document.getElementById("read")
 let submit = document.getElementById("submit")
 let text = document.getElementById("text")
@@ -64,11 +67,16 @@ function load(){
 		createDiv.ident = index
 
 		createDiv.style.backgroundColor = e.color
-		createDiv.style.color = "#fff"
+		createDiv.style.color = "#eeeeee"
 
 		read.append(createDiv)
 	})
 }
+
+color.addEventListener("change",(e) =>
+{
+	setColor = e.target.value
+})
 
 document.addEventListener("dblclick",(e) =>
 {
@@ -84,14 +92,10 @@ submit.addEventListener("click",(e) =>
 {
 	if(text.value.length > 0)
 	{
-		let min = 111
-		let max = 777
-		let test = "#" + (Math.floor(Math.random() * (max - min + 1)) + min)
-
 		db.save({
 			text: text.value,
 			date: setDate(),
-			color: test.toString()
+			color: setColor
 		})
 
 		load()
