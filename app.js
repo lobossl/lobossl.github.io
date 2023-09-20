@@ -1,6 +1,10 @@
 /*
 	https://github.com/lobossl/
 */
+if(location.protocol == "http:")
+{
+	location.href = location.href.replace("http://", "https://");
+}
 
 class database{
 	constructor(dbname){
