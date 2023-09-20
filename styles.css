@@ -1,49 +1,163 @@
-body
-{
-    font-family: monospace;
-    background-color: #556677;
-    margin:0 auto;
-    text-align:center;
-    padding:0;
+/*
+	https://github.com/lobossl/
+*/
+a{
+	color:#fff;
+	text-decoration: none;
 }
 
-
-#container
-{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-
-    background-color: #999;
-    grid-column: 1fr 1fr 1fr;
-}
-#a
-{
-    display: grid;
-    background-color: #fff;
-    height:90vh;
-
-}
-#b
-{
-    height:90vh;
+body{
+	font-family:sans-serif;
+	margin:0;
+	border:none;
+	padding:0;
+	background-color: #fff;
+	color:#000;
 }
 
-textarea
-{
-    grid-column: 1fr 1fr 1fr;
-
-    word-break:break-word;
-    border: 1px solid #fff;
-    grid-row: auto;
-    resize:none;
-    overflow:auto;
-    outline:none;
-    text-align:left;
-    background-color:#000;
-    color:greenyellow;
+header{
+	background-color: #333;
+	color:#eee;
 }
 
-pre
-{
-    color:#fff;
+main{
+	background-color: #eee;
+}
+
+footer{
+	background-color: #333;
+	color:#eee;
+}
+
+.flex-wrap{
+	flex-wrap: wrap;
+}
+
+.flex-col-center{
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+.flex-row-center{
+	justify-content: center;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+}
+.flex-center{
+	justify-content: center;
+}
+
+.flex-max{
+	display: flex;
+	height:100vh;
+	width:100vw;
+}
+
+.flex-def{
+	display: flex;
+}
+
+.flex-row{
+	flex-direction: row;
+}
+
+.flex-col{
+	flex-direction: column;
+}
+
+.flex-size-1{
+	flex:1;
+}
+
+.flex-size-2{
+	flex:2;
+}
+
+.flex-size-3{
+	flex:3;
+}
+
+.flex-size-4{
+	flex:4;
+}
+
+.flex-size-5{
+	flex:5;
+}
+
+.flex-size-6{
+	flex:6;
+}
+
+.flex-gap{
+	gap:1em;
+}
+
+.align-def{
+	text-align: center;
+}
+.align-left{
+	text-align: left;
+}
+.align-right{
+	text-align: right;
+}
+
+.padding-def{
+	padding:15px;
+}
+.padding-0{
+	padding:0;
+}
+
+.margin-def{
+	margin:15px;
+}
+.margin-0{
+	margin:0;
+}
+
+.radius-def{
+	border-radius:9px;
+}
+
+.border-def{
+	border:1px solid #ccc;
+}
+.border-0{
+	border:none;
+}
+.border-debug{
+	border:6px solid red;
+}
+
+.wrap{
+	word-wrap: break-word;
+}
+
+.input-def{
+	width:50%;
+	outline:none;
+	padding:15px;
+	border:1px solid #ccc;
+	background-color: #fff;
+	margin:15px;
+	color:#999;
+}
+
+.btn-def{
+	outline:none;
+	padding:15px;
+	border:none;
+	margin:15px;
+	border:1px solid #ccc;
+	background-color: #fff;
+	color:#999;
+	cursor: pointer;
+}
+
+.cursor{
+	cursor: pointer;
 }
