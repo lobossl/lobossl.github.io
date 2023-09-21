@@ -2,60 +2,34 @@
 	https://github.com/lobossl/todo/
 */
 a{
-	color:#fff;
 	text-decoration: none;
+	color:#FFFFFF;
 }
 
 body{
-	font-family:Verdana, Geneva, Tahoma, sans-serif;
+	font-family: "Courier New", Courier, monospace;
 	font-size: 1em;
-	margin:0;
+	line-height: 1.5;
+	margin:0 auto;
 	border:none;
 	padding:0;
-	background-color: #fff;
-	color:#000;
-}
-
-header{
-	background-color: #fff;
-	color:silver;
-}
-
-main{
-	background-color: #334455;
-}
-
-footer{
-	background-color: #222;
-	color:#eee;
 }
 
 .flex-wrap{
 	flex-wrap: wrap;
 }
 
-.flex-col-center{
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-}
-.flex-row-center{
-	justify-content: center;
-	align-items: center;
-	display: flex;
-	flex-direction: column;
-}
 .flex-center{
-	justify-content: center;
+	align-items: center;
+    justify-content: center;
 }
 
-.flex-max{
+.flex-def-100{
 	display: flex;
-	height:100vh;
-	width:100vw;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
 }
-
 .flex-def{
 	display: flex;
 }
@@ -80,24 +54,29 @@ footer{
 	flex:3;
 }
 
-.flex-size-4{
-	flex:4;
-}
-
-.flex-size-5{
-	flex:5;
-}
-
-.flex-size-6{
-	flex:6;
-}
-
 .flex-gap{
 	gap:1em;
 }
 
+.flex-justify-center{
+	justify-content: center;
+}
+
+.user-select-0{
+	user-select: none;
+}
+
+.word-break{
+	word-break:break-word;
+}
+
 .align-def{
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }
 .align-left{
 	text-align: left;
@@ -106,8 +85,11 @@ footer{
 	text-align: right;
 }
 
+.padding-big{
+	padding:20px;
+}
 .padding-def{
-	padding:15px;
+	padding:10px;
 }
 .padding-0{
 	padding:0;
@@ -121,14 +103,14 @@ footer{
 }
 
 .margin-def{
-	margin:15px;
+	margin:10px;
 }
 .margin-0{
 	margin:0;
 }
 
 .radius-def{
-	border-radius:6px;
+	border-radius:20px;
 }
 
 .border-def{
@@ -138,28 +120,34 @@ footer{
 	border:none;
 }
 .border-debug{
-	border:6px solid red;
+	border:2px solid red;
 }
 
 .wrap{
 	word-wrap: break-word;
 }
 
-.input-def::placeholder
-{
-	color:#eee;
-}
-.input-def{
-	background-color:#fff;
-	outline:none;
-	color:#eee;
+.width-max{
+	width:100%;
 }
 
-.btn-def{
-	background-color:#667788;
+.input-def::placeholder
+{
+	color:#999;
+}
+.input-def{
 	outline:none;
-	cursor: pointer;
-	color:#eee;
+	border:none;
+	background-color: #fff;
+	border-radius:4px;
+}
+
+.button-def{
+	outline:none;
+	border:none;
+	cursor:pointer;
+	background-color: #fff;
+	border-radius:10px;
 }
 
 .cursor{

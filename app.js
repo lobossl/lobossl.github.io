@@ -43,10 +43,7 @@ class database{
 
 let db = new database("test")
 
-let setColorBox = "grey"
-
 //elements by id
-let color = document.getElementById("color")
 let read = document.getElementById("read")
 let submit = document.getElementById("submit")
 let text = document.getElementById("text")
@@ -59,6 +56,18 @@ function setDate(){
 	return dato
 }
 
+//my colors
+function createColor()
+{
+	let array = ["#0d94bd","#0d1cbd","#770dbd","#bd0da3","#bd0d0d","#0db4bd","#0dbd8b","#0dbd27","#36bd0d","#a0bd0d","#bdb70d","#bd8e0d","#383828"]
+
+	let randomIndex = Math.floor(Math.random() * array.length)
+
+	let randomColor = array[randomIndex]
+
+	return randomColor
+}
+
 //load div boxes
 function load(){
 	read.innerText = ""
@@ -67,30 +76,15 @@ function load(){
 		let createDiv = document.createElement("div")
 
 		createDiv.id = "colorBoxes"
-		createDiv.className = "padding-def wrap align-left radius-def border-0 cursor"
+		createDiv.className = "padding-big radius-def cursor word-break"
 		createDiv.innerText = e.text
 		createDiv.ident = index
 
 		createDiv.style.backgroundColor = e.color
-		createDiv.style.color = "#fff"
 
 		read.append(createDiv)
 	})
 }
-
-//on color change set new color
-color.addEventListener("click",(e) =>{
-	setColorBox = e.target.innerText
-	text.style.backgroundColor = setColorBox
-	text.style.color = "#fff"
-	submit.style.backgroundColor = setColorBox
-	submit.style.color = "#fff"
-})
-
-text.style.backgroundColor = setColorBox
-text.style.color = "#fff"
-submit.style.backgroundColor = setColorBox
-submit.style.color = "#fff"
 
 //on double click on box, delete
 document.addEventListener("dblclick",(e) =>{
@@ -107,7 +101,7 @@ submit.addEventListener("click",(e) =>{
 		db.save({
 			text: text.value,
 			date: setDate(),
-			color: setColorBox
+			color: createColor()
 		})
 
 		load()
@@ -116,12 +110,16 @@ submit.addEventListener("click",(e) =>{
 	}
 })
 
+//TODO: add json restore and backup ;)
+
+/*
 //clear database
 deleteAll.addEventListener("click",(e) =>{
 	db.clearAll()
 
 	location.reload()
 })
+*/
 
 console.log("https://github.com/lobossl/")
 
