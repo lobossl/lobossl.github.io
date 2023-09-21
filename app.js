@@ -84,6 +84,11 @@ function load(){
 
 		read.append(createDiv)
 	})
+
+	if(db.load().length == 0)
+	{
+		read.innerText = "Nothing added yet.."
+	}
 }
 
 //on double click on box, delete
