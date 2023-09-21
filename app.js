@@ -1,11 +1,13 @@
 /*
-	https://github.com/lobossl/
+	https://github.com/lobossl/todo/
 */
-if(location.protocol == "http:")
-{
+
+//if http change, force https
+if(location.protocol == "http:"){
 	location.href = location.href.replace("http://", "https://");
 }
 
+//localStorage database class
 class database{
 	constructor(dbname){
         	this.dbname = dbname;
@@ -39,26 +41,29 @@ class database{
 	}
 }
 
-let setColor = "#556677"
-
 let db = new database("test")
 
+//elements by id
 let color = document.getElementById("color")
 let read = document.getElementById("read")
 let submit = document.getElementById("submit")
 let text = document.getElementById("text")
 let deleteAll = document.getElementById("deleteAll")
 
+let setColor = color.value
+
+//get Date
 function setDate(){
 	const dato = Date.now()
 
 	return dato
 }
 
+//load div boxes
 function load(){
 	read.innerText = ""
 
-	db.load().forEach((e,index) => {
+	db.load().forEach((e,index) =>{
 		let createDiv = document.createElement("div")
 
 		createDiv.id = "colorBoxes"
@@ -73,25 +78,23 @@ function load(){
 	})
 }
 
-color.addEventListener("change",(e) =>
-{
+//on color change set new color
+color.addEventListener("change",(e) =>{
 	setColor = e.target.value
 })
 
-document.addEventListener("dblclick",(e) =>
-{
-	if(e.target.id == "colorBoxes")
-	{
+//on double click on box, delete
+document.addEventListener("dblclick",(e) =>{
+	if(e.target.id == "colorBoxes"){
 		db.load().splice(e.target.ident,1)
 		db.saveAll()
 		load()
 	}
 })
 
-submit.addEventListener("click",(e) =>
-{
-	if(text.value.length > 0)
-	{
+//on submit click button, save to database
+submit.addEventListener("click",(e) =>{
+	if(text.value.length > 0){
 		db.save({
 			text: text.value,
 			date: setDate(),
@@ -104,8 +107,8 @@ submit.addEventListener("click",(e) =>
 	}
 })
 
-deleteAll.addEventListener("click",(e) =>
-{
+//clear database
+deleteAll.addEventListener("click",(e) =>{
 	db.clearAll()
 
 	location.reload()

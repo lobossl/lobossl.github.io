@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>TheTodoList</title>
-        <link rel="stylesheet" href="styles.css?v=1.04">
+        <link rel="stylesheet" href="styles.css?v=1.05">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body class="flex-max flex-col">
@@ -14,17 +14,22 @@
         </header>
     	<main class="padding-def align-def flex-size-5">
             <div class="flex-size-1 padding-def">
-                <p>Choose box color:</p>
-                <p><input type="color" value="#445566" name="favcolor" id="color"></p>
-                <p><input type="text" id="text" class="input-def" placeholder="What to do?"></p>
-                <p><button class="btn-def" id="submit">Submit</button></p>
+                <p>
+                    <input type="color" value="#775544" name="color" id="color" class="radius-def padding-def border-0">
+                </p>
+                <p>
+                    <input type="text" id="text" class="input-def" placeholder="Enter your next task">
+                </p>
+                <p>
+                    <button class="btn-def" id="submit">Submit</button>
+                </p>
             </div>
             <div class="flex-size-6 flex-def flex-gap flex-wrap flex-center" id="read"></div>
         </main>
         <footer class="padding-def align-def flex-size-1 flex-col-center">
-            <p><a href="https://github.com/lobossl/">Lobo Design</a></p>
+            <p><a href="https://github.com/lobossl/todo/">Github/lobossl</a></p>
             <p id="deleteAll" class="cursor">Delete All</p>
         </footer>
-        <script src="./app.js?v=1.04"></script>
+        <script src="./app.js?v=1.05"></script>
     </body>
 </html>
