@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>TheTodoList</title>
-        <link rel="stylesheet" href="styles.css?v=1.05">
+        <link rel="stylesheet" href="styles.css?v=1.06">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body class="flex-max flex-col">
@@ -12,24 +12,25 @@
                 <h1>TheTodoList</h1>
             </div>
         </header>
-    	<main class="padding-def align-def flex-size-5">
-            <div class="flex-size-1 padding-def">
-                <p>
-                    <input type="color" value="#775544" name="color" id="color" class="radius-def padding-def border-0">
-                </p>
-                <p>
-                    <input type="text" id="text" class="input-def" placeholder="Enter your next task">
-                </p>
-                <p>
-                    <button class="btn-def" id="submit">Submit</button>
-                </p>
+    	<main class="align-def flex-size-1 border-0">
+            <div class="flex-size-1">
+                <div id="color" class="flex-def" style="border-top:7px solid #eee;">
+                    <div class="flex-size-1 cursor font-size-med padding-def" style="background-color:red; color:#fff;">red</div>
+                    <div class="flex-size-1 cursor font-size-med padding-def" style="background-color:blue; color:#fff;">blue</div>
+                    <div class="flex-size-1 cursor font-size-med padding-def" style="background-color:green; color:#fff;">green</div>
+                    <div class="flex-size-1 cursor font-size-med padding-def" style="background-color:orange; color:#fff;">orange</div>
+                </div>
+                <p><input type="text" id="text" class="input-def radius-def border-0 padding-def font-size-med" placeholder="Enter your next task"></p>
+                <p><button class="font-size-med btn-def radius-def border-0 padding-def margin-def" id="submit">Submit</button></p>
             </div>
-            <div class="flex-size-6 flex-def flex-gap flex-wrap flex-center" id="read"></div>
+            <div class="padding-def">
+                <div class="flex-size-1 flex-def flex-gap flex-wrap flex-center" id="read"></div>
+            </div>
         </main>
-        <footer class="padding-def align-def flex-size-1 flex-col-center">
-            <p><a href="https://github.com/lobossl/todo/">Github/lobossl</a></p>
+        <footer class="padding-def align-def flex-size-2 flex-col-center">
+            <p><a href="https://github.com/lobossl/todo/">github.com/lobossl</a></p>
             <p id="deleteAll" class="cursor">Delete All</p>
         </footer>
-        <script src="./app.js?v=1.05"></script>
+        <script src="./app.js?v=1.06"></script>
     </body>
 </html>

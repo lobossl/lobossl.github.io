@@ -43,14 +43,14 @@ class database{
 
 let db = new database("test")
 
+let setColorBox = "grey"
+
 //elements by id
 let color = document.getElementById("color")
 let read = document.getElementById("read")
 let submit = document.getElementById("submit")
 let text = document.getElementById("text")
 let deleteAll = document.getElementById("deleteAll")
-
-let setColor = color.value
 
 //get Date
 function setDate(){
@@ -72,16 +72,25 @@ function load(){
 		createDiv.ident = index
 
 		createDiv.style.backgroundColor = e.color
-		createDiv.style.color = "#eeeeee"
+		createDiv.style.color = "#fff"
 
 		read.append(createDiv)
 	})
 }
 
 //on color change set new color
-color.addEventListener("change",(e) =>{
-	setColor = e.target.value
+color.addEventListener("click",(e) =>{
+	setColorBox = e.target.innerText
+	text.style.backgroundColor = setColorBox
+	text.style.color = "#fff"
+	submit.style.backgroundColor = setColorBox
+	submit.style.color = "#fff"
 })
+
+text.style.backgroundColor = setColorBox
+text.style.color = "#fff"
+submit.style.backgroundColor = setColorBox
+submit.style.color = "#fff"
 
 //on double click on box, delete
 document.addEventListener("dblclick",(e) =>{
@@ -98,7 +107,7 @@ submit.addEventListener("click",(e) =>{
 		db.save({
 			text: text.value,
 			date: setDate(),
-			color: setColor
+			color: setColorBox
 		})
 
 		load()
