@@ -58,6 +58,10 @@ body{
 	gap:1em;
 }
 
+.outline-0{
+	outline:none;
+}
+
 .flex-justify-center{
 	justify-content: center;
 }
