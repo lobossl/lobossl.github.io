@@ -1,6 +1,10 @@
 /*
 	https://github.com/lobossl/todo/
 */
+::placeholder{
+	color:#eee;
+}
+
 a{
 	text-decoration: none;
 	color:#FFFFFF;
@@ -138,12 +142,6 @@ body{
 .input-def::placeholder
 {
 	color:#999;
-}
-.input-def{
-	outline:none;
-	border:none;
-	background-color: #fff;
-	border-radius:4px;
 }
 
 .button-def{
