@@ -3,20 +3,25 @@
     <head>
         <meta charset="UTF-8">
         <title>TheToDoList</title>
-        <link rel="stylesheet" href="styles.css?v=2.03">
+        <link rel="stylesheet" href="styles.css?v=2.04">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body style="background-color: #222;" class="user-select-0">
         <div class="padding-big" style="background-color: #FF4081; color:#fff;">
-            <center><input type="text" id="text" style="background-color: #fff;" class="font-size-med padding-def border-0 outline-0" placeholder="Insert text here"><button id="submit" class="font-size-med padding-def border-0 outline-0" style="background-color: #fff;">+</button></center>
+            <div class="align-def"><input type="text" id="text" style="background-color: #fff;" class="font-size-med padding-def border-0 outline-0" placeholder="Add a task."></div>
         </div>
         <div class="padding-big" style="background-color: #445566 ; color:#fff;">
             <div id="read" class="flex-def flex-justify-center flex-wrap flex-gap" style="margin-top: 15px; margin-bottom:15px;"></div>
         </div>
         <pre class="align-def padding-big">
+            <details id="details">
+        		<summary class="font-size-med" style="color:#ccc;">Menu</summary>
+        	    <p id="deleteAll" style="color:#ccc;" class="padding-0">Delete database</p>
+                <p id="backup" style="color:#ccc;" class="padding-0">Backup</p>
+                <p id="restore"  style="color:#ccc;" class="padding-0">Restore</p>
+        	</details>
             <p><a href="https://github.com/lobossl/todo">Coded by Github.com/lobossl</a></p>
-            <p><a href="https://thetodolist.eu">TheToDoList.eu</a></p>
         </pre>
-    <script src="app.js?v=2.03"></script>
+    <script src="app.js?v=2.04"></script>
     </body>
 </html>

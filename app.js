@@ -47,7 +47,6 @@ let db = new database("test")
 let read = document.getElementById("read")
 let submit = document.getElementById("submit")
 let text = document.getElementById("text")
-let deleteAll = document.getElementById("deleteAll")
 
 //get Date
 function setDate(){
@@ -100,31 +99,39 @@ document.addEventListener("dblclick",(e) =>{
 	}
 })
 
-//on submit click button, save to database
-submit.addEventListener("click",(e) =>{
-	if(text.value.length > 0){
-		db.save({
-			text: text.value,
-			date: setDate(),
-			color: createColor()
-		})
-
-		load()
-
-		text.value = ""
+//on press Enter key save message..
+text.addEventListener("keyup",(e) =>
+{
+	if(e.key == "Enter")
+	{
+		if(text.value.length > 0){
+			db.save({
+				text: text.value,
+				date: setDate(),
+				color: createColor()
+			})
+	
+			load()
+	
+			text.value = ""
+		}
 	}
 })
 
-//TODO: add json restore and backup ;)
-
-/*
-//clear database
-deleteAll.addEventListener("click",(e) =>{
+//delete all database
+document.getElementById("deleteAll").addEventListener("click",(e) =>{
 	db.clearAll()
-
 	location.reload()
 })
-*/
+//restore all database
+document.getElementById("restore").addEventListener("click",(e) =>{
+	console.log("restore not added yet, please try again later.")
+})
+//backup all database
+document.getElementById("backup").addEventListener("click",(e) =>{
+	console.log("backup not added yet, please try again later.")
+})
+
 
 console.log("https://github.com/lobossl/")
 
