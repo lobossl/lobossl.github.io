@@ -55,33 +55,23 @@ function setDate(){
 	return dato
 }
 
-//my colors
-function createColor()
-{
-	let array = ["#0d94bd","#0d1cbd","#770dbd","#bd0da3","#bd0d0d","#0db4bd","#0dbd8b","#0dbd27","#36bd0d","#a0bd0d","#bdb70d","#bd8e0d","#383828"]
-
-	let randomIndex = Math.floor(Math.random() * array.length)
-
-	let randomColor = array[randomIndex]
-
-	return randomColor
-}
-
 //load div boxes
 function load(){
 	read.innerText = ""
 
 	db.load().forEach((e,index) =>{
-		let createDiv = document.createElement("div")
+		let createEditBox = document.createElement("p")
 
-		createDiv.id = "colorBoxes"
-		createDiv.className = "padding-big radius-def cursor word-break"
-		createDiv.innerText = e.text
-		createDiv.ident = index
+		createEditBox.id = "createEditBox"
+		createEditBox.className = "padding-big radius-def cursor word-break border-1 outline-0"
+		createEditBox.innerText = e.text
+		createEditBox.contentEditable = "true"
+		createEditBox.ident = index
+		createEditBox.style.backgroundColor = "#eee"
+		createEditBox.style.color = "#222"
+		createEditBox.style.minWidth = "150px"
 
-		createDiv.style.backgroundColor = e.color
-
-		read.append(createDiv)
+		read.append(createEditBox)
 	})
 
 	if(db.load().length == 0)
@@ -92,30 +82,36 @@ function load(){
 
 //on double click on box, delete
 document.addEventListener("dblclick",(e) =>{
-	if(e.target.id == "colorBoxes"){
+	if(e.target.id == "createEditBox"){
 		db.load().splice(e.target.ident,1)
 		db.saveAll()
 		load()
 	}
 })
 
-//on press Enter key save message..
-text.addEventListener("keyup",(e) =>
-{
-	if(e.key == "Enter")
-	{
-		if(text.value.length > 0){
-			db.save({
-				text: text.value,
-				date: setDate(),
-				color: createColor()
-			})
-	
-			load()
-	
-			text.value = ""
-		}
+//on key inside box
+document.addEventListener("keyup",(e) =>{
+	if(e.target.id == "createEditBox"){
+		db.load().forEach((get,index) =>{
+			if(index == e.target.ident)
+			{
+				get.text = e.target.innerText
+			}
+		})
+		db.saveAll()
 	}
+})
+
+//on press Enter key save message..
+document.getElementById("add").addEventListener("click",(e) =>
+{
+	db.save({
+		ident: db.load().length,
+		text: "",
+		date: setDate()
+	})
+
+	load()
 })
 
 //delete all database
