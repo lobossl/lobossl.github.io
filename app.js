@@ -70,6 +70,7 @@ function load(){
 		createEditBox.style.backgroundColor = "#eee"
 		createEditBox.style.color = "#222"
 		createEditBox.style.minWidth = "150px"
+		createEditBox.style.flex = "1 auto"
 
 		read.append(createEditBox)
 	})
