@@ -60,30 +60,44 @@ function load(){
 	read.innerText = ""
 
 	db.load().forEach((e,index) =>{
+		let boxOut = document.createElement("div")
+		let deleteBox = document.createElement("IMG")
 		let createEditBox = document.createElement("p")
 
+		boxOut.className = "padding-big radius-def word-break border-0 outline-0 align-def"
+		boxOut.style.backgroundColor = "#eee"
+		boxOut.style.color = "#000"
+		boxOut.style.minWidth = "100px"
+		boxOut.ident = index
+		boxOut.style.flex = "1 auto"
+
+		deleteBox.src = "icons/icons8-delete-50.png"
+		deleteBox.className = "cursor"
+		deleteBox.ident = index
+		deleteBox.alt = index
+		deleteBox.id = "deleteBox"
+
 		createEditBox.id = "createEditBox"
-		createEditBox.className = "padding-big radius-def cursor word-break border-1 outline-0"
 		createEditBox.innerText = e.text
 		createEditBox.contentEditable = "true"
 		createEditBox.ident = index
-		createEditBox.style.backgroundColor = "#eee"
-		createEditBox.style.color = "#222"
-		createEditBox.style.minWidth = "150px"
-		createEditBox.style.flex = "1 auto"
+		createEditBox.className = "border-0 padding-def width-max outline-0 align-left"
+		createEditBox.style.borderLeft = "1px dotted #333"
 
-		read.append(createEditBox)
+		read.append(boxOut)
+		boxOut.append(deleteBox)
+		boxOut.append(createEditBox)
 	})
 
 	if(db.load().length == 0)
 	{
-		read.innerText = "Nothing added yet.."
+		read.innerText = "Database emty.."
 	}
 }
 
 //on double click on box, delete
-document.addEventListener("dblclick",(e) =>{
-	if(e.target.id == "createEditBox"){
+document.addEventListener("click",(e) =>{
+	if(e.target.id == "deleteBox"){
 		db.load().splice(e.target.ident,1)
 		db.saveAll()
 		load()

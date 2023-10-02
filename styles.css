@@ -139,19 +139,6 @@ body{
 	width:100%;
 }
 
-.input-def::placeholder
-{
-	color:#999;
-}
-
-.button-def{
-	outline:none;
-	border:none;
-	cursor:pointer;
-	background-color: #fff;
-	border-radius:10px;
-}
-
 .cursor{
 	cursor: pointer;
 }
