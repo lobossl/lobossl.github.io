@@ -71,7 +71,7 @@ function load(){
 		boxOut.ident = index
 		boxOut.style.flex = "1 auto"
 
-		deleteBox.src = "icons/icons8-delete-50.png"
+		deleteBox.src = "icons/icons8-delete-50.small.png"
 		deleteBox.className = "cursor"
 		deleteBox.ident = index
 		deleteBox.alt = index
