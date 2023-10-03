@@ -65,11 +65,12 @@ function load(){
 		let createEditBox = document.createElement("p")
 
 		boxOut.className = "padding-big radius-def word-break border-0 outline-0 align-def"
-		boxOut.style.backgroundColor = "#eee"
+		boxOut.style.backgroundColor = "#fff"
 		boxOut.style.color = "#000"
 		boxOut.style.minWidth = "100px"
 		boxOut.ident = index
 		boxOut.style.flex = "1 auto"
+		boxOut.style.border = "1px solid #ccc"
 
 		deleteBox.src = "icons/delete-25.png"
 		deleteBox.className = "cursor"
@@ -82,7 +83,7 @@ function load(){
 		createEditBox.contentEditable = "true"
 		createEditBox.ident = index
 		createEditBox.className = "border-0 padding-def width-max outline-0 align-left"
-		createEditBox.style.borderLeft = "1px dotted #333"
+		createEditBox.style.borderLeft = "2px dotted #ccc"
 
 		read.append(boxOut)
 		boxOut.append(deleteBox)
