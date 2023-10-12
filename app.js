@@ -84,7 +84,7 @@ function load(){
 		deleteBox.id = "deleteBox"
 
 		createEditBox.id = "createEditBox"
-		createEditBox.innerText = e.text
+		createEditBox.innerText = e.text.toLowerCase()
 		createEditBox.contentEditable = "true"
 		createEditBox.ident = index
 		createEditBox.className = "border-0 padding-def width-max outline-0 align-left"
@@ -115,7 +115,7 @@ function loadSearch(src){
 			deleteBox = document.createElement("IMG")
 			createEditBox = document.createElement("p")
 
-			boxOut.className = "padding-big radius-def word-break border-0 outline-0 align-def"
+			boxOut.className = "padding-big radius-def word-break border-0 outline-0"
 			boxOut.style.backgroundColor = "#fff"
 			boxOut.style.color = "#000"
 			boxOut.style.minWidth = "100px"
@@ -130,7 +130,7 @@ function loadSearch(src){
 			deleteBox.id = "deleteBox"
 
 			createEditBox.id = "createEditBox"
-			createEditBox.innerText = e.text
+			createEditBox.innerText = e.text.toLowerCase()
 			createEditBox.contentEditable = "true"
 			createEditBox.ident = index
 			createEditBox.className = "border-0 padding-def width-max outline-0 align-left"
