@@ -112,10 +112,9 @@ document.addEventListener("keyup",(e) =>{
 			if(index == e.target.ident)
 			{
 				get.text = e.target.innerText
-				get.date = setDate()
+				db.saveAll()
 			}
 		})
-		db.saveAll()
 	}
 })
 
