@@ -1,5 +1,8 @@
 /*
 	https://github.com/lobossl/todo/
+
+	FOUND BUG:
+	margin left on search function
 */
 
 //if http change, force https
@@ -114,28 +117,28 @@ function loadSearch(src){
 			boxOut = document.createElement("div")
 			deleteBox = document.createElement("IMG")
 			createEditBox = document.createElement("p")
-
-			boxOut.className = "padding-big radius-def word-break border-0 outline-0"
+	
+			boxOut.className = "padding-big radius-def word-break border-0 outline-0 align-def"
 			boxOut.style.backgroundColor = "#fff"
 			boxOut.style.color = "#000"
 			boxOut.style.minWidth = "100px"
 			boxOut.ident = index
 			boxOut.style.flex = "1 auto"
 			boxOut.style.border = "1px solid #ccc"
-
+	
 			deleteBox.src = "icons/delete-25.png"
 			deleteBox.className = "cursor"
 			deleteBox.ident = index
 			deleteBox.alt = index
 			deleteBox.id = "deleteBox"
-
+	
 			createEditBox.id = "createEditBox"
 			createEditBox.innerText = e.text.toLowerCase()
 			createEditBox.contentEditable = "true"
 			createEditBox.ident = index
 			createEditBox.className = "border-0 padding-def width-max outline-0 align-left"
 			createEditBox.style.borderLeft = "2px dotted #ccc"
-
+	
 			read.append(boxOut)
 			boxOut.append(deleteBox)
 			boxOut.append(createEditBox)
