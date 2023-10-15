@@ -1,30 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- https://github.com/lobossl/todo -->
     <head>
         <meta charset="UTF-8">
-        <title>The ToDo List - TheToDoList.eu - Simple and free to-do list</title>
+        <title>The To-Do List - thetodolist.eu - Simple and free to-do list</title>
         <meta name="description" content="Simple and free to-do list. Keep track of all your tasks with this easy to use to-do list, no login required with local storage.">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="styles.css?v=2.19">
+        <link rel="stylesheet" href="styles.css?v=3.00">
     </head>
-    <body style="background-color: #222;" class="user-select-0">
-        <div class="padding-big" style="background-color: #445566; color:#fff;">
-            <div class="align-def"><button id="add" class="cursor radius-def padding-big font-size-med outline-0 border-0">Add a task</button></div>
-            <div class="align-def"><input type="text" id="search" class="margin-def padding-big border-def outline-0 radius-def" style="background-color: #999;" placeholder="search"></div>
+    <body style="background-color: #333; color:orangered;" class="user-select-0">
+        <div class="padding-big" style="background-color: #eee; border-bottom:6px solid orangered;">
+            <div class="align-def">
+                <p><input type="text" id="title" placeholder="Title:" class="outline-0 padding-def border-def"></p>
+                <p><button id="create" class="outline-0 padding-def border-def">Add a task</button></p>
+                <details>
+                    <summary>MENU</summary>
+                    <p id="deleteLocalStorage" class="cursor">Delete localStorage</p>
+                  </details> 
+            </div>
         </div>
-        <div class="padding-big" style="background-color: #eee ; color:#fff;">
-            <div id="read" class="flex-def flex-justify-center flex-wrap flex-gap" style="color:#333; align-items: flex-start; margin-top: 15px; margin-bottom:15px; justify-content: space-around;"></div>
-        </div>
-        <div class="align-def padding-big">
-            <details id="details">
-        		<summary class="font-size-med" style="color:#ccc;">Menu</summary>
-        	    <p id="deleteAll" style="color:#ccc;" class="padding-0">Delete database</p>
-                <p id="backup" style="color:#ccc;" class="padding-0">Backup</p>
-                <p id="restore"  style="color:#ccc;" class="padding-0">Restore</p>
-        	</details>
-            <p>TheToDoList.eu</p>
-        </div>
-    <script src="app.js?v=2.19"></script>
+        <div id="read" class="flex-def flex-gap flex-wrap flex-center padding-def"></div>
+    <script src="app.js?v=3.00"></script>
     </body>
 </html>
