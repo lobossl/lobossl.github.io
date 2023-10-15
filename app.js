@@ -60,7 +60,7 @@ function setDate(){
 }
 
 //load div boxes
-function load(){
+function load(str){
 	read.innerText = ""
 
 	let boxOut = false
