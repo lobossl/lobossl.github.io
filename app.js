@@ -97,7 +97,8 @@ function load(){
 		createText.style.backgroundColor = "#fff"
 		createText.style.color = "#000"
 		createText.style.fontSize = "1em"
-		createText.style.width = "100%"
+		createText.style.minWidth = "50%"
+		createText.style.padding = "5px"
 
 		//append
 		read.append(createBox)
