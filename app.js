@@ -1,11 +1,11 @@
 /*
-	Copyrights by Lobo 2023
+	Copyrights by Lobo
 */
 
-//set localStorage database name..
+//set localStorage database name!
 let localStorageDataBaseName = "lobo"
 
-//if http change, force https
+//if http force to https
 if(location.protocol == "http:"){
 	location.href = location.href.replace("http://", "https://");
 }
@@ -78,7 +78,7 @@ function load(){
 
 		//title
 		createTitle.style.color = "#666"
-		createTitle.style.fontSize = "1.2em"
+		createTitle.style.fontSize = "1.5em"
 		createTitle.className = "wrap align-def word-break"
 		createTitle.innerText = e.title || "no title found"
 
@@ -96,8 +96,9 @@ function load(){
 		createText.contentEditable = true
 		createText.style.backgroundColor = "#fff"
 		createText.style.color = "#000"
-		createText.style.fontSize = "1em"
-		createText.style.minWidth = "50%"
+		createText.style.fontSize = "1.2em"
+		createText.style.width = "100%"
+		createText.style.height = "100%"
 		createText.style.padding = "5px"
 
 		//append
