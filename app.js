@@ -1,6 +1,6 @@
 /*
 	Copyrights by Lobo
-	version: 3.06
+	version: 3.07
 */
 
 //set localStorage database name!
@@ -72,6 +72,8 @@ function load(){
 		let deleteButton = document.createElement("p")
 		let createText = document.createElement("p")
 		let endOfBox = document.createElement("p")
+		let bytesOfText = document.createElement("p")
+		let getDate = document.createElement("p")
 
 		//the box
 		//createBox.style.width = "100%"
@@ -80,8 +82,7 @@ function load(){
 		createBox.className = "align-def padding-def radius-def"
 		
 		//delete button
-		deleteButton.innerText = "[Delete #" + index + "]"
-		deleteButton.style.color = "red"
+		deleteButton.innerText = "Delete #" + index
 		deleteButton.ident = index
 		deleteButton.id = "deleteButton"
 
@@ -103,13 +104,26 @@ function load(){
 		createText.style.borderLeft = "2px dotted #999"
 		createText.style.paddingLeft = "5px"
 
+		//bytes
+		bytesOfText.innerText = "Bytes:" + e.text.length
+
+		//date
+		let d = new Date(e.date)
+		let Month = d.getMonth() + 1
+		let Year = d.getFullYear()
+		let Day = d.getDate()
+
+		getDate.innerText = "Created:" + Day + "." + Month + "." + Year
+
 		//append
 		read.append(createBox)
 		createBox.append(DETAILS)
 		DETAILS.appendChild(SUMMARY)
 		DETAILS.appendChild(createText)
 		createBox.append(endOfBox)
+		endOfBox.append(bytesOfText)
 		endOfBox.append(deleteButton)
+		endOfBox.append(getDate)
 
 		deleteButton.className = "cursor margin-def"
 	})
