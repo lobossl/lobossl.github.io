@@ -1,6 +1,6 @@
 /*
 	Copyrights by Lobo
-	version: 3.05
+	version: 3.06
 */
 
 //set localStorage database name!
@@ -74,7 +74,7 @@ function load(){
 		let endOfBox = document.createElement("p")
 
 		//the box
-		createBox.style.width = "100%"
+		//createBox.style.width = "100%"
 		createBox.style.border = "1px solid #777"
 		createBox.style.backgroundColor = "#444"
 		createBox.className = "align-def padding-def radius-def"
@@ -102,7 +102,6 @@ function load(){
 		createText.style.margin = "0 auto"
 		createText.style.borderLeft = "2px dotted #999"
 		createText.style.paddingLeft = "5px"
-		//createText.style.backgroundColor = "#333"
 
 		//append
 		read.append(createBox)
