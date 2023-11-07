@@ -1,6 +1,6 @@
 /*
 	Copyrights by Lobo
-	version: 3.07
+	version: 3.08
 */
 
 //set localStorage database name!
@@ -82,9 +82,10 @@ function load(){
 		createBox.className = "align-def padding-def radius-def"
 		
 		//delete button
-		deleteButton.innerText = "Delete #" + index
+		deleteButton.innerText = "Delete(#" + index + ")"
 		deleteButton.ident = index
 		deleteButton.id = "deleteButton"
+		deleteButton.style.color = "green"
 
 		//SUMMARY settings
 		SUMMARY.innerText = e.title || "Emty Title.."
@@ -122,8 +123,8 @@ function load(){
 		DETAILS.appendChild(createText)
 		createBox.append(endOfBox)
 		endOfBox.append(bytesOfText)
-		endOfBox.append(deleteButton)
 		endOfBox.append(getDate)
+		endOfBox.append(deleteButton)
 
 		deleteButton.className = "cursor margin-def"
 	})
