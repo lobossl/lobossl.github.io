@@ -66,51 +66,53 @@ function load(){
 
 	db.load().forEach((e,index) =>{
 		let createBox = document.createElement("div")
-		let createTitle = document.createElement("p")
+		let DETAILS = document.createElement("DETAILS")
+		let SUMMARY = document.createElement("SUMMARY")
 		let deleteButton = document.createElement("IMG")
 		let createText = document.createElement("p")
 
-		//box
-		createBox.style.minWidth = "150px"
-		createBox.style.width = "1fr"
+		//the box
+		createBox.style.width = "100%"
 		createBox.style.backgroundColor = "#eee"
 		createBox.className = "border-0 align-def padding-def radius-def"
-
-		//title
-		createTitle.style.color = "#666"
-		createTitle.style.fontSize = "1.5em"
-		createTitle.className = "wrap align-def word-break"
-		createTitle.innerText = e.title || "no title found"
-
+		
 		//delete button
 		deleteButton.src = "icons/delete-25.png"
 		deleteButton.className = "cursor"
 		deleteButton.ident = index
 		deleteButton.id = "deleteButton"
 
+		//SUMMARY settings
+		SUMMARY.innerText = e.title || "Emty Title.."
+		SUMMARY.style.fontSize = "1.5em"
+
 		//text
 		createText.id = "editText"
 		createText.ident = index
-		createText.innerText = e.text
-		createText.className = "wrap word-break outline-0 border-def align-left"
+		createText.innerText = e.text || "Emty Text.."
+		createText.className = "wrap word-break outline-0 border-0 align-left"
 		createText.contentEditable = true
-		createText.style.backgroundColor = "#fff"
 		createText.style.color = "#000"
-		createText.style.fontSize = "1.2em"
+		createText.style.fontSize = "1em"
 		createText.style.width = "100%"
 		createText.style.height = "100%"
-		createText.style.padding = "5px"
+		createText.style.margin = "0 auto"
+		createText.style.borderLeft = "2px dotted #999"
+		createText.style.paddingLeft = "5px"
 
 		//append
 		read.append(createBox)
-		createBox.append(createTitle)
 		createBox.append(deleteButton)
-		createBox.append(createText)
+		createBox.append(DETAILS)
+		DETAILS.appendChild(SUMMARY)
+		DETAILS.appendChild(createText)
+
+		deleteButton.className = "cursor margin-def"
 	})
 
 	if(db.load().length == 0)
 	{
-		read.innerText = "localStorage is emty, add new task.."
+		read.innerText = "localStorage is emty.."
 	}
 }
 
