@@ -1,5 +1,6 @@
 /*
 	Copyrights by Lobo
+	version: 3.05
 */
 
 //set localStorage database name!
@@ -68,17 +69,19 @@ function load(){
 		let createBox = document.createElement("div")
 		let DETAILS = document.createElement("DETAILS")
 		let SUMMARY = document.createElement("SUMMARY")
-		let deleteButton = document.createElement("IMG")
+		let deleteButton = document.createElement("p")
 		let createText = document.createElement("p")
+		let endOfBox = document.createElement("p")
 
 		//the box
 		createBox.style.width = "100%"
-		createBox.style.backgroundColor = "#eee"
-		createBox.className = "border-0 align-def padding-def radius-def"
+		createBox.style.border = "1px solid #777"
+		createBox.style.backgroundColor = "#444"
+		createBox.className = "align-def padding-def radius-def"
 		
 		//delete button
-		deleteButton.src = "icons/delete-25.png"
-		deleteButton.className = "cursor"
+		deleteButton.innerText = "[Delete #" + index + "]"
+		deleteButton.style.color = "red"
 		deleteButton.ident = index
 		deleteButton.id = "deleteButton"
 
@@ -89,23 +92,25 @@ function load(){
 		//text
 		createText.id = "editText"
 		createText.ident = index
-		createText.innerText = e.text || "Emty Text.."
+		createText.innerText = e.text
 		createText.className = "wrap word-break outline-0 border-0 align-left"
 		createText.contentEditable = true
-		createText.style.color = "#000"
+		createText.style.color = "#fff"
 		createText.style.fontSize = "1em"
 		createText.style.width = "100%"
 		createText.style.height = "100%"
 		createText.style.margin = "0 auto"
 		createText.style.borderLeft = "2px dotted #999"
 		createText.style.paddingLeft = "5px"
+		//createText.style.backgroundColor = "#333"
 
 		//append
 		read.append(createBox)
-		createBox.append(deleteButton)
 		createBox.append(DETAILS)
 		DETAILS.appendChild(SUMMARY)
 		DETAILS.appendChild(createText)
+		createBox.append(endOfBox)
+		endOfBox.append(deleteButton)
 
 		deleteButton.className = "cursor margin-def"
 	})
