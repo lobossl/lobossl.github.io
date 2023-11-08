@@ -1,6 +1,6 @@
 /*
 	Copyrights by Lobo
-	version: 3.08
+	version: 3.09
 */
 
 //set localStorage database name!
@@ -10,6 +10,8 @@ let localStorageDataBaseName = "lobo"
 if(location.protocol == "http:"){
 	location.href = location.href.replace("http://", "https://");
 }
+
+let confirmActive = false
 
 //localStorage database class
 class database{
@@ -82,7 +84,7 @@ function load(){
 		createBox.className = "align-def padding-def radius-def"
 		
 		//delete button
-		deleteButton.innerText = "Delete(#" + index + ")"
+		deleteButton.innerText = "Delete"
 		deleteButton.ident = index
 		deleteButton.id = "deleteButton"
 		deleteButton.style.color = "green"
@@ -135,12 +137,56 @@ function load(){
 	}
 }
 
-//on click on box, delete
-document.addEventListener("click",(e) =>{
+function Confirm(e){
 	if(e.target.id == "deleteButton"){
 		db.load().splice(e.target.ident,1)
 		db.saveAll()
 		load()
+	}
+}
+
+//on click on box, delete with added Confirm()
+document.addEventListener("click",(e) =>{
+	if(e.target.id == "deleteButton"){
+		if(confirmActive == false)
+		{
+			confirmActive = true
+
+			let confirmBox = document.createElement("div")
+			let YES = document.createElement("button")
+			let NO = document.createElement("button")
+
+			confirmBox.innerText = "Delete? "
+			YES.innerText = "YES"
+			NO.innerText = "NO"
+
+			confirmBox.style.position = "absolute"
+			confirmBox.style.left = "calc(50vw - (/* width */140px / 2))"
+			confirmBox.style.top = "calc(50vh - (/* height */100px / 2))"
+			confirmBox.style.backgroundColor = "orange"
+			confirmBox.style.color = "#fff"
+			confirmBox.className = "padding-big border-debug"
+
+			read.append(confirmBox)
+
+			confirmBox.append(YES)
+			confirmBox.append(NO)
+
+			YES.addEventListener("click",(yes) =>{
+				Confirm(e)
+				confirmActive = false
+			})
+			NO.addEventListener("click",(no) =>{
+				NO.style.display = "none"
+				YES.style.display = "none"
+				confirmBox.style.display = "none"
+				confirmActive = false
+			})
+		}
+		else
+		{
+			confirmActive = true
+		}
 	}
 })
 
