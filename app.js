@@ -1,6 +1,6 @@
 /*
 	Copyrights by Lobo
-	version: 3.10
+	version: 3.11
 */
 
 //set localStorage database name!
@@ -197,7 +197,6 @@ document.addEventListener("keyup",(e) =>{
 			if(index == e.target.ident)
 			{
 				get.text = e.target.innerText.toLowerCase()
-				get.date = setDate()
 				db.saveAll()
 			}
 		})
