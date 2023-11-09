@@ -5,20 +5,12 @@
         <title>The To-Do List - thetodolist.eu - Simple and free to-do list</title>
         <meta name="description" content="Simple and free to-do list. Keep track of all your tasks with this easy to use to-do list, no login required with local storage.">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="styles.css?v=3.11">
+        <link rel="stylesheet" href="styles.css?v=2.0">
     </head>
-    <body style="background-color: #333; color:orangered;" class="user-select-0">
-        <div class="padding-big" style="background-color: #eee; border-bottom:15px solid orangered;">
-            <div class="align-def">
-                <p><input type="text" id="title" placeholder="Title:" class="outline-0 padding-def border-def"></p>
-                <p><button id="create" class="outline-0 padding-def border-def">+</button></p>
-                <details>
-                    <summary>MENU</summary>
-                    <p id="deleteLocalStorage" class="cursor">[!] Reset localStorage</p>
-                  </details> 
-            </div>
-        </div>
-        <div id="read" class="flex-def flex-gap flex-wrap flex-center padding-def"></div>
-    <script src="app.js?v=3.11"></script>
+    <body class="user-select-0 align-def" style="background-color: #EEEEEE; font-family:Verdana, Geneva, Tahoma, sans-serif;">
+        <button id="addButton" class="padding-def margin-def">Add</button>
+        <div id="boxes"></div>
+        <pre>Copyrights TheToDoList.eu</pre>
+    <script src="app.js?v=2.0"></script>
     </body>
 </html>

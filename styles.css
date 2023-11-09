@@ -1,6 +1,6 @@
 /*
-	https://github.com/lobossl/todo/
-	version: 3.11
+	[Copyrights by Lobo]
+	version: 2.0
 */
 ::placeholder{
 	color:#333;
@@ -81,11 +81,6 @@ body{
 
 .align-def{
 	text-align: center;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: 100%;
 }
 .align-left{
 	text-align: left;
