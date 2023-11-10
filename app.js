@@ -1,6 +1,6 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.0
+	version: 2.1
 */
 
 let localStorageDataBaseName = "lobo"
@@ -44,7 +44,6 @@ class database {
 
 let db = new database(localStorageDataBaseName)
 
-
 function loadResult()
 {
 	document.getElementById("boxes").innerText = ""
@@ -56,20 +55,27 @@ function loadResult()
 		let text = document.createElement("p")
 		let DETAILS = document.createElement("DETAILS")
 		let SUMMARY = document.createElement("SUMMARY")
+		let deleteBtn = document.createElement("p")
+
+		deleteBtn.style.color = "red"
+		deleteBtn.ident = index
+		deleteBtn.id = "deleteBtn"
+		deleteBtn.innerText = "[Delete]"
+		deleteBtn.className = "cursor"
 
 		box.ident = index
 		box.id = "currentBox"
-		box.className = "border-0 padding-0 margin-0"
+		box.className = "border-0 padding-def margin-0"
 		box.style.backgroundColor = "#FFFFFF"
 
 		title.contentEditable = true
 		title.innerText = e.title
 		title.id = "title"
 		title.ident = index
-		title.className = "wrap font-size-med align-def padding-def"
+		title.className = "wrap font-size-med align-def padding-0"
 		title.style.outline = "none"
 		title.style.fontWeight = "bold"
-		title.style.borderBottom = "1px dashed #CCCCCC"
+		title.style.borderBottom = "2px dotted #999"
 
 		text.contentEditable = true
 		text.innerText = e.text
@@ -77,7 +83,7 @@ function loadResult()
 		text.ident = index
 		text.className = "wrap font-size-def align-left padding-def"
 		text.style.outline = "none"
-		text.style.borderLeft = "1px dashed #CCCCCC"
+		text.style.borderLeft = "2px dotted #999"
 		text.style.marginLeft = "15px"
 
 		boxes.append(box)
@@ -85,6 +91,7 @@ function loadResult()
 		box.append(DETAILS)
 		DETAILS.append(SUMMARY)
 		DETAILS.append(text)
+		box.append(deleteBtn)
 	})
 }
 
@@ -112,6 +119,14 @@ document.addEventListener("keyup",(e) => {
 	}
 })
 
+document.addEventListener("click",(e) => {
+	if(e.target.id == "deleteBtn")
+	{
+		db.load().splice(e.target.ident, 1)
+		db.saveAll()
+		loadResult()
+	}
+})
 document.getElementById("addButton").addEventListener("click",() => {
 	db.save({
 		ident: db.load().length,
