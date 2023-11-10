@@ -1,10 +1,7 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.1
+	version: 2.2
 */
-::placeholder{
-	color:#333;
-}
 
 a{
 	text-decoration: none;
@@ -137,16 +134,8 @@ body{
 	word-wrap: break-word;
 }
 
-.width-max{
-	width:100%;
-}
-
 .cursor{
 	cursor: pointer;
-}
-
-.list-style-type-0{
-	list-style-type: none;
 }
 
 .font-size-def{
@@ -161,4 +150,14 @@ body{
 
 .opacity-def{
 	opacity: 0.5;
+}
+.opacity-0{
+	opacity: 1;
+}
+
+.bold-def{
+	font-weight: bold;
+}
+.bold-0{
+	font-weight: bold;
 }
