@@ -1,6 +1,6 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.2
+	version: 2.3
 */
 
 let localStorageDataBaseName = "lobo"
@@ -57,29 +57,29 @@ function loadResult()
 		let SUMMARY = document.createElement("SUMMARY")
 		let deleteBtn = document.createElement("p")
 
-		SUMMARY.style.fontSize = "2em"
-		SUMMARY.style.color = "#ccc"
+		SUMMARY.style.fontSize = "1.2em"
+		SUMMARY.style.color = "#333"
 
-		deleteBtn.style.color = "red"
+		deleteBtn.style.color = "#999"
 		deleteBtn.ident = index
 		deleteBtn.id = "deleteBtn"
-		deleteBtn.innerText = "Permanently Delete \n(" + e.title + ")"
+		deleteBtn.innerText = "Delete"
 		deleteBtn.className = "cursor"
 
 		box.ident = index
 		box.id = "currentBox"
-		box.className = "border-0 padding-def margin-0"
+		box.className = "border-def padding-def margin-def radius-def"
 		box.style.backgroundColor = "#FFFFFF"
 
 		title.contentEditable = true
 		title.innerText = e.title
 		title.id = "title"
 		title.ident = index
-		title.className = "wrap font-size-big align-def padding-0"
+		title.className = "wrap font-size-def align-def padding-0"
 		title.style.outline = "none"
 		title.style.fontWeight = "bold"
 		title.style.borderBottom = "2px dashed #ccc"
-		title.style.color = "#ccc"
+		title.style.color = "#333"
 
 		text.contentEditable = true
 		text.innerText = e.text
@@ -90,7 +90,7 @@ function loadResult()
 		text.style.borderLeft = "2px dotted #ccc"
 		text.style.marginLeft = "5px"
 		text.style.paddingLeft = "5px"
-		text.style.color = "#333"
+		text.style.color = "#000"
 
 		boxes.append(box)
 		box.append(title)
