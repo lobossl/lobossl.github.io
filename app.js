@@ -1,6 +1,6 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.3
+	version: 2.4
 */
 
 let localStorageDataBaseName = "lobo"
@@ -55,7 +55,7 @@ function loadResult()
 		let text = document.createElement("p")
 		let DETAILS = document.createElement("DETAILS")
 		let SUMMARY = document.createElement("SUMMARY")
-		let deleteBtn = document.createElement("p")
+		let deleteBtn = document.createElement("span")
 
 		SUMMARY.style.fontSize = "1.2em"
 		SUMMARY.style.color = "#333"
@@ -87,7 +87,7 @@ function loadResult()
 		text.ident = index
 		text.className = "wrap font-size-def align-left padding-0"
 		text.style.outline = "none"
-		text.style.borderLeft = "2px dotted #ccc"
+		text.style.borderLeft = "3px dotted #ccc"
 		text.style.marginLeft = "5px"
 		text.style.paddingLeft = "5px"
 		text.style.color = "#000"
