@@ -1,6 +1,6 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.4
+	version: 2.5
 */
 
 let localStorageDataBaseName = "lobo"
@@ -25,12 +25,12 @@ class database {
 		localStorage.setItem(this.dbname, JSON.stringify(this.read))
 	}
 
-	saveAll() {
-		localStorage.setItem(this.dbname, JSON.stringify(this.read))
+	clear() {
+		this.read = []
 	}
 
-	clearAll() {
-		localStorage.clear()
+	saveAll() {
+		localStorage.setItem(this.dbname, JSON.stringify(this.read))
 	}
 
 	restore(obj) {
@@ -116,6 +116,7 @@ document.addEventListener("keyup",(e) => {
 			if(e.target.ident == index)
 			{
 				get.text = e.target.innerText.toLowerCase()
+
 				db.saveAll()
 			}
 		})
@@ -130,12 +131,26 @@ document.addEventListener("click",(e) => {
 	{
 		db.load().splice(e.target.ident, 1)
 		db.saveAll()
+
 		loadResult()
 	}
 })
+
+document.getElementById("clearButton").addEventListener("click",() => {
+	let conFirm = confirm("Are you sure?")
+
+	if(conFirm)
+	{
+		db.clear()
+		db.saveAll()
+
+		loadResult()
+	}
+})
+
 document.getElementById("addButton").addEventListener("click",() => {
 	db.save({
-		ident: db.load().length,
+		ident: null,
 		title: "title",
 		text: "add text"
 	})
@@ -143,6 +158,6 @@ document.getElementById("addButton").addEventListener("click",() => {
 	loadResult()
 })
 
-window.onload = (event) => {
+window.onload = () => {
 	loadResult()
 }
