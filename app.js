@@ -1,6 +1,6 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.5
+	version: 2.6
 */
 
 let localStorageDataBaseName = "lobo"
@@ -100,6 +100,18 @@ function loadResult()
 		DETAILS.append(deleteBtn)
 	})
 }
+
+document.addEventListener("paste",(e) => {
+	if(e.target.id == "title") {
+		db.load().forEach((get,index) => {
+			if(e.target.ident == index)
+			{
+				get.title = e.target.innerText.toLowerCase()
+				db.saveAll()
+			}
+		})
+	}
+})
 
 document.addEventListener("keyup",(e) => {
 	if(e.target.id == "title") {
