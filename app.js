@@ -1,6 +1,6 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.6
+	version: 2.7
 */
 
 let localStorageDataBaseName = "lobo"
@@ -16,8 +16,8 @@ class database {
 	}
 
 	load() {
-		let test = this.read.sort((a, b) => b.date - a.date)
-		return test
+		let getArray = this.read
+		return getArray
 	}
 
 	save(obj) {
@@ -75,10 +75,9 @@ function loadResult()
 		title.innerText = e.title
 		title.id = "title"
 		title.ident = index
-		title.className = "wrap font-size-def align-def padding-0"
+		title.className = "wrap font-size-med align-def padding-0"
 		title.style.outline = "none"
 		title.style.fontWeight = "bold"
-		title.style.borderBottom = "2px dashed #ccc"
 		title.style.color = "#333"
 
 		text.contentEditable = true
@@ -163,8 +162,8 @@ document.getElementById("clearButton").addEventListener("click",() => {
 document.getElementById("addButton").addEventListener("click",() => {
 	db.save({
 		ident: null,
-		title: "title",
-		text: "add text"
+		title: "Edit Title..",
+		text: "Edit Text.."
 	})
 
 	loadResult()
