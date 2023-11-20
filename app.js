@@ -1,6 +1,6 @@
 /*
 	[Copyrights by Lobo]
-	version: 2.7
+	version: 10.1.0
 */
 
 let localStorageDataBaseName = "lobo"
@@ -106,9 +106,23 @@ document.addEventListener("paste",(e) => {
 			if(e.target.ident == index)
 			{
 				get.title = e.target.innerText.toLowerCase()
+
 				db.saveAll()
 			}
 		})
+	}
+	else if(e.target.id == "text") {
+		db.load().forEach((get,index) => {
+			if(e.target.ident == index)
+			{
+				get.text = e.target.innerText
+
+				db.saveAll()
+			}
+		})
+	}
+	else {
+		return null
 	}
 })
 
@@ -118,6 +132,7 @@ document.addEventListener("keyup",(e) => {
 			if(e.target.ident == index)
 			{
 				get.title = e.target.innerText.toLowerCase()
+
 				db.saveAll()
 			}
 		})
@@ -126,7 +141,7 @@ document.addEventListener("keyup",(e) => {
 		db.load().forEach((get,index) => {
 			if(e.target.ident == index)
 			{
-				get.text = e.target.innerText.toLowerCase()
+				get.text = e.target.innerText
 
 				db.saveAll()
 			}
