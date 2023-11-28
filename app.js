@@ -1,8 +1,3 @@
-/*
-	[Copyrights by Lobo]
-	version: 10.1.0
-*/
-
 let localStorageDataBaseName = "lobo"
 
 if(location.protocol == "http:") {
@@ -153,9 +148,9 @@ document.addEventListener("keyup",(e) => {
 })
 
 document.addEventListener("click",(e) => {
-	if(e.target.id == "deleteBtn")
-	{
+	if(e.target.id == "deleteBtn") {
 		db.load().splice(e.target.ident, 1)
+
 		db.saveAll()
 
 		loadResult()
@@ -165,9 +160,9 @@ document.addEventListener("click",(e) => {
 document.getElementById("clearButton").addEventListener("click",() => {
 	let conFirm = confirm("Are you sure?")
 
-	if(conFirm)
-	{
+	if(conFirm) {
 		db.clear()
+
 		db.saveAll()
 
 		loadResult()
