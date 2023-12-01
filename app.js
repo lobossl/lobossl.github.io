@@ -1,3 +1,4 @@
+//11.1.1
 let localStorageDataBaseName = "lobo"
 
 if(location.protocol == "http:") {
