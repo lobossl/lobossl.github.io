@@ -1,4 +1,4 @@
-//11.1.2
+//11.1.3
 let localStorageDataBaseName = "lobo"
 
 if(location.protocol == "http:") {
@@ -74,7 +74,14 @@ function loadResult()
 		}
 
 		createRadio.addEventListener("click",(x) =>{
-			db.load()[x.target.ident].underline = true
+			if(db.load()[x.target.ident].underline === false)
+			{
+				db.load()[x.target.ident].underline = true
+			}
+			else{
+				db.load()[x.target.ident].underline = false
+			}
+
 			db.saveAll()
 			loadResult()
 		})
