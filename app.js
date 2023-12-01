@@ -1,4 +1,4 @@
-//11.1.1
+//11.1.2
 let localStorageDataBaseName = "lobo"
 
 if(location.protocol == "http:") {
@@ -81,7 +81,6 @@ function loadResult()
 	})
 }
 
-document.getElementById("delete").className = "cursor"
 document.getElementById("delete").addEventListener("click",() =>
 {
 	let myDatabase = db.load()
