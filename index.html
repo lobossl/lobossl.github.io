@@ -5,13 +5,18 @@
         <title>The To-Do List - Simple and free to-do list</title>
         <meta name="description" content="Simple and free to-do list. Keep track of all your tasks with this easy to use to-do list, no login required.">
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="styles.css?v=10.1.1">
+        <link rel="stylesheet" href="styles.css?v=11.1.0">
     </head>
-    <body class="user-select-0 align-def" style="background-color: #EEEEEE; font-family:Verdana, Geneva, Tahoma, sans-serif;">
-        <button id="addButton" class="padding-def margin-def font-size-med radius-def border-def bold-def">New</button>
-        <button id="clearButton" class="padding-def margin-def font-size-med radius-def border-def bold-def" style="color: red;">Delete All</button>
-        <div id="boxes"></div>
-        <pre>Copyrights TheToDoList.eu (LoboSSL)</pre>
-    <script src="app.js?v=10.1.1"></script>
+    <body class="user-select-0 align-def" style="background: rgb(2,0,36); background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(0,212,255,1) 100%); font-family:Verdana, Geneva, Tahoma, sans-serif;">
+        <div class="padding-def align-left margin-def radius-def" style="background-color: #FFFFFF;">
+            <p class="font-size-big" style="color:rgb(16, 16, 87);">TheToDo List</p>
+            <p class="font-size-def" style="color:orangered;" id="delete">[Delete]</p>
+            <div id="inputArea" class="flex-def border-0 margin-0 padding-0" style="background-color: #cfcfcf; border-radius:40px;">
+                <input type="inputText" id="inputText" class="font-size-med flex-size-3 padding-def outline-0 border-0" style="color:#fff; background: transparent;">
+                <button id="addButton" class="border-0 padding-def outline-0 cursor font-size-med" style="padding:16px 50px; border-radius: 40px; color:#fff; background-color: orangered;">Add</button>
+            </div>
+            <div id="boxes"></div>
+        </div>
+    <script src="app.js?v=11.1.0"></script>
     </body>
 </html>

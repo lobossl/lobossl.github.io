@@ -44,139 +44,68 @@ function loadResult()
 	document.getElementById("boxes").innerText = ""
 
 	db.load().forEach((e,index) => {
+		e.ident = index
+
 		let boxes = document.getElementById("boxes")
-		let box = document.createElement("div")
-		let title = document.createElement("p")
-		let text = document.createElement("p")
-		let DETAILS = document.createElement("DETAILS")
-		let SUMMARY = document.createElement("SUMMARY")
-		let deleteBtn = document.createElement("span")
+		let createNewBox = document.createElement("div")
+		let createRadio = document.createElement("input")
+		let createLabel = document.createElement("label")
 
-		SUMMARY.style.fontSize = "1.2em"
-		SUMMARY.style.color = "#333"
+		createRadio.className = "margin-def"
+		createRadio.id = "radio"
+		createRadio.type = "radio"
+		createRadio.value = e.text
+		createRadio.innerText = e.text
+		createRadio.ident = index
 
-		deleteBtn.style.color = "#999"
-		deleteBtn.ident = index
-		deleteBtn.id = "deleteBtn"
-		deleteBtn.innerText = "Delete"
-		deleteBtn.className = "cursor"
+		createLabel.className = ""
+		createLabel.id = "label"
+		createLabel.innerText = e.text
 
-		box.ident = index
-		box.id = "currentBox"
-		box.className = "border-def padding-def margin-def radius-def"
-		box.style.backgroundColor = "#FFFFFF"
+		boxes.append(createNewBox)
+		createNewBox.append(createRadio)
+		createNewBox.append(createLabel)
 
-		title.contentEditable = true
-		title.innerText = e.title
-		title.id = "title"
-		title.ident = index
-		title.className = "wrap font-size-med align-def padding-0"
-		title.style.outline = "none"
-		title.style.fontWeight = "bold"
-		title.style.color = "#333"
+		if(e.underline)
+		{
+			createNewBox.style.textDecoration = "line-through"
+			createNewBox.style.color = "red"
+		}
 
-		text.contentEditable = true
-		text.innerText = e.text
-		text.id = "text"
-		text.ident = index
-		text.className = "wrap font-size-def align-left padding-0"
-		text.style.outline = "none"
-		text.style.borderLeft = "3px dotted #ccc"
-		text.style.marginLeft = "5px"
-		text.style.paddingLeft = "5px"
-		text.style.color = "#000"
-
-		boxes.append(box)
-		box.append(title)
-		box.append(DETAILS)
-		DETAILS.append(SUMMARY)
-		DETAILS.append(text)
-		DETAILS.append(deleteBtn)
+		createRadio.addEventListener("click",(x) =>{
+			db.load()[x.target.ident].underline = true
+			db.saveAll()
+			loadResult()
+		})
 	})
 }
 
-document.addEventListener("paste",(e) => {
-	if(e.target.id == "title") {
-		db.load().forEach((get,index) => {
-			if(e.target.ident == index)
-			{
-				get.title = e.target.innerText.toLowerCase()
+document.getElementById("delete").className = "cursor"
+document.getElementById("delete").addEventListener("click",() =>
+{
+	let myDatabase = db.load()
 
-				db.saveAll()
-			}
-		})
+	for (let i = myDatabase.length - 1; i >= 0; i--) {
+		if (myDatabase[i].underline === true)
+		{
+			myDatabase.splice(i, 1);
+		}
 	}
-	else if(e.target.id == "text") {
-		db.load().forEach((get,index) => {
-			if(e.target.ident == index)
-			{
-				get.text = e.target.innerText
 
-				db.saveAll()
-			}
-		})
-	}
-	else {
-		return null
-	}
+	db.saveAll()
+	loadResult()
 })
 
-document.addEventListener("keyup",(e) => {
-	if(e.target.id == "title") {
-		db.load().forEach((get,index) => {
-			if(e.target.ident == index)
-			{
-				get.title = e.target.innerText.toLowerCase()
-
-				db.saveAll()
-			}
-		})
-	}
-	else if(e.target.id == "text") {
-		db.load().forEach((get,index) => {
-			if(e.target.ident == index)
-			{
-				get.text = e.target.innerText
-
-				db.saveAll()
-			}
-		})
-	}
-	else {
-		return null
-	}
-})
-
-document.addEventListener("click",(e) => {
-	if(e.target.id == "deleteBtn") {
-		db.load().splice(e.target.ident, 1)
-
-		db.saveAll()
-
-		loadResult()
-	}
-})
-
-document.getElementById("clearButton").addEventListener("click",() => {
-	let conFirm = confirm("Are you sure?")
-
-	if(conFirm) {
-		db.clear()
-
-		db.saveAll()
-
-		loadResult()
-	}
-})
-
-document.getElementById("addButton").addEventListener("click",() => {
+document.getElementById("addButton").addEventListener("click",(e) => {
 	db.save({
 		ident: null,
-		title: "Edit Title..",
-		text: "Edit Text.."
+		underline: false,
+		text: document.getElementById("inputText").value
 	})
 
 	loadResult()
+	
+	document.getElementById("inputText").value = ""
 })
 
 window.onload = () => {
