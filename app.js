@@ -1,4 +1,4 @@
-//11.1.5
+//1.0.0
 let localStorageDataBaseName = "lobo"
 
 if(location.protocol == "http:") {
@@ -52,38 +52,34 @@ function loadResult()
 		let createRadio = document.createElement("input")
 		let createLabel = document.createElement("label")
 
-		createRadio.className = "margin-def"
-		createRadio.id = "radio"
-		createRadio.type = "radio"
+		createRadio.type = "checkbox"
+		createRadio.name = e.text
 		createRadio.value = e.text
-		createRadio.innerText = e.text
 		createRadio.ident = index
+		createRadio.className = "margin-def"
 
-		createLabel.className = ""
-		createLabel.id = "label"
 		createLabel.innerText = e.text
 
-		boxes.append(createNewBox)
-		createNewBox.append(createRadio)
-		createNewBox.append(createLabel)
+		boxes.appendChild(createNewBox)
 
-		if(e.underline)
+		createNewBox.appendChild(createRadio)
+		createNewBox.appendChild(createLabel)
+
+		createRadio.addEventListener("click",(x) =>
 		{
-			createNewBox.style.textDecoration = "line-through"
-			createNewBox.style.color = "red"
-		}
-
-		createRadio.addEventListener("click",(x) =>{
 			if(db.load()[x.target.ident].underline === false)
 			{
 				db.load()[x.target.ident].underline = true
+				createNewBox.style.textDecoration = "line-through"
+				createNewBox.style.color = "red"
 			}
 			else{
 				db.load()[x.target.ident].underline = false
+				createNewBox.style.textDecoration = "none"
+				createNewBox.style.color = "black"
 			}
 
 			db.saveAll()
-			loadResult()
 		})
 	})
 }
@@ -104,9 +100,13 @@ document.getElementById("delete").addEventListener("click",() =>
 })
 
 document.getElementById("addButton").addEventListener("click",(e) => {
+	let monthNames = ["January", "February", "March", "April", "May","June","July", "August", "September", "October", "November","December"]
+	let d = new Date()
+
 	db.save({
 		ident: null,
 		underline: false,
+		date: monthNames[d.getMonth()],
 		text: document.getElementById("inputText").value
 	})
 
