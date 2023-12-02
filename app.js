@@ -1,4 +1,4 @@
-//1.0.2
+//1.0.3
 let localStorageDataBaseName = "lobo"
 
 if(location.protocol == "http:") {
@@ -68,8 +68,13 @@ function loadResult()
 
 		if(e.underline == true)
 		{
-			createNewBox.style.textDecoration = "line-through red"
-			createNewBox.style.color = "#CCCCCC"
+			createLabel.style.textDecoration = "line-through red"
+			createLabel.style.color = "#CCCCCC"
+		}
+		else
+		{
+			createLabel.style.textDecoration = "none"
+			createLabel.style.color = "#888888"
 		}
 
 		//
@@ -85,6 +90,7 @@ function loadResult()
 			}
 
 			db.saveAll()
+
 			loadResult()
 		})
 	})
@@ -106,19 +112,22 @@ document.getElementById("delete").addEventListener("click",() =>
 })
 
 document.getElementById("addButton").addEventListener("click",(e) => {
-	let monthNames = ["January", "February", "March", "April", "May","June","July", "August", "September", "October", "November","December"]
-	let d = new Date()
+	if(document.getElementById("inputText").value.length > 0)
+	{
+		let monthNames = ["January", "February", "March", "April", "May","June","July", "August", "September", "October", "November","December"]
+		let d = new Date()
 
-	db.save({
-		ident: null,
-		underline: false,
-		date: monthNames[d.getMonth()],
-		text: document.getElementById("inputText").value
-	})
+		db.save({
+			ident: null,
+			underline: false,
+			date: monthNames[d.getMonth()],
+			text: document.getElementById("inputText").value
+		})
 
-	loadResult()
-	
-	document.getElementById("inputText").value = ""
+		loadResult()
+		
+		document.getElementById("inputText").value = ""
+	}
 })
 
 window.onload = () => {
