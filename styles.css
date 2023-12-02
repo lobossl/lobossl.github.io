@@ -1,18 +1,9 @@
 /*
-	1.0.0
+	1.0.1
 */
 a{
 	text-decoration: none;
 	color:#FFFFFF;
-}
-
-body{
-	font-family: "Courier New", Courier, monospace;
-	font-size: 1em;
-	line-height: 1.3;
-	margin:0 auto;
-	border:none;
-	padding:0;
 }
 
 .flex-wrap{
