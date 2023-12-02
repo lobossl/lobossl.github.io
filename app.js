@@ -1,4 +1,4 @@
-//1.0.1
+//1.0.2
 let localStorageDataBaseName = "lobo"
 
 if(location.protocol == "http:") {
@@ -56,6 +56,7 @@ function loadResult()
 		createRadio.name = e.text
 		createRadio.value = e.text
 		createRadio.ident = index
+		createRadio.underline = e.underline
 		createRadio.className = "margin-def"
 
 		createLabel.innerText = e.text
@@ -65,21 +66,26 @@ function loadResult()
 		createNewBox.appendChild(createRadio)
 		createNewBox.appendChild(createLabel)
 
+		if(e.underline == true)
+		{
+			createNewBox.style.textDecoration = "line-through red"
+			createNewBox.style.color = "#CCCCCC"
+		}
+
+		//
 		createRadio.addEventListener("click",(x) =>
 		{
-			if(db.load()[x.target.ident].underline === false)
+			if(x.target.underline)
+			{
+				db.load()[x.target.ident].underline = false
+			}
+			else
 			{
 				db.load()[x.target.ident].underline = true
-				createNewBox.style.textDecoration = "line-through"
-				createNewBox.style.color = "red"
-			}
-			else{
-				db.load()[x.target.ident].underline = false
-				createNewBox.style.textDecoration = "none"
-				createNewBox.style.color = "black"
 			}
 
 			db.saveAll()
+			loadResult()
 		})
 	})
 }

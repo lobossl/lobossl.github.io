@@ -1,5 +1,5 @@
 /*
-	1.0.1
+	1.0.2
 */
 a{
 	text-decoration: none;
@@ -150,3 +150,12 @@ a{
 .bold-0{
 	font-weight: bold;
 }
+
+::placeholder{
+	color: #ccc;
+	opacity: 1;
+  }
+  
+  ::-ms-input-placeholder{
+	color: #ccc;
+  }
