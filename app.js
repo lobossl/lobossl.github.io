@@ -1,4 +1,4 @@
-//1.0.4
+//1.0.5
 
 if(location.protocol == "http:")
 {
@@ -75,20 +75,20 @@ class myProject {
 
 			createRadio.type = "checkbox"
 			createRadio.id = "checkbox"
-			createRadio.name = this.dbread[i].text
-			createRadio.value = this.dbread[i].text
+			createRadio.name = "checkbox"
+			createRadio.value = "checkbox"
 			createRadio.ident = i
 			createRadio.underline = this.dbread[i].underline
 			createRadio.className = "margin-def"
-
-			createLabel.innerText = this.dbread[i].text
+			createRadio.style.fontSize = ""
 
 			this.UNDERLINE(this.dbread[i].underline,createLabel,createRadio)
 
 			this.elementBoxes.appendChild(createNewBox)
 
-			createNewBox.appendChild(createRadio)
 			createNewBox.appendChild(createLabel)
+			createLabel.appendChild(createRadio)
+			createLabel.appendChild(document.createTextNode(this.dbread[i].text))
 		}
 	}
 
@@ -98,11 +98,15 @@ class myProject {
 		{
 			radio.checked = true
 			label.style.textDecoration = "line-through red"
+			label.style.fontStyle = "italic"
+			label.style.color = "#999"
 		}
 		else
 		{
 			radio.checked = false
 			label.style.textDecoration = "none"
+			label.style.color = "#333"
+			label.style.fontStyle = "none"
 		}
 	}
 

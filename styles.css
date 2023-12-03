@@ -1,6 +1,15 @@
 /*
 	1.0.3
 */
+html
+{
+	background-repeat: none;
+	background-size: cover;
+	background: #C701C7;
+	background: linear-gradient(90deg, #C701C7,#FF4500);
+	height:100%;
+}
+
 a{
 	text-decoration: none;
 	color:#FFFFFF;
@@ -127,6 +136,9 @@ a{
 	cursor: pointer;
 }
 
+.font-size-small{
+	font-size:12px;
+}
 .font-size-def{
 	font-size:1em;
 }
