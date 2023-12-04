@@ -1,5 +1,5 @@
 /*
-	0.0.1
+	0.0.2
 */
 
 a{
@@ -11,17 +11,6 @@ a{
 	flex-wrap: wrap;
 }
 
-.flex-center{
-	align-items: center;
-    justify-content: center;
-}
-
-.flex-def-100{
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: 100vh;
-}
 .flex-def{
 	display: flex;
 }
@@ -77,10 +66,10 @@ a{
 }
 
 .padding-big{
-	padding:15px;
+	padding:30px;
 }
 .padding-def{
-	padding:15px;
+	padding:20px;
 }
 .padding-0{
 	padding:0;
@@ -93,21 +82,18 @@ a{
 	outline:none;
 }
 
+.margin-big{
+	margin:30px;
+}
 .margin-def{
-	margin:10px;
+	margin:20px;
 }
 .margin-0{
 	margin:0;
 }
 
-.radius-min{
-	border-radius:6px;
-}
 .radius-def{
-	border-radius:10px;
-}
-.radius-max{
-	border-radius:20px;
+	border-radius:5px;
 }
 
 .border-def{

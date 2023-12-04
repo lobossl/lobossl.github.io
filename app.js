@@ -1,5 +1,5 @@
 /*
-    0.0.1
+    0.0.2
 */
 class STORAGE {
     Save(db) {
@@ -53,19 +53,19 @@ class STORAGE {
 const myStorage = new STORAGE();
 
 let todoText = document.getElementById("todoText");
-let foodText = document.getElementById("foodText");
+let recipeText = document.getElementById("recipeText");
 let addTodo = document.getElementById("addTodo");
-let addFood = document.getElementById("addFood");
+let addFecipe = document.getElementById("addRecipe");
 let deleteTodo = document.getElementById("deleteTodo");
-let deleteFood = document.getElementById("deleteFood");
+let deleteRecipe = document.getElementById("deleteRecipe");
 
 deleteTodo.addEventListener("click",(e) => {
     myStorage.Delete("todo");
     Load();
 })
 
-deleteFood.addEventListener("click",(e) => {
-    myStorage.Delete("food");
+deleteRecipe.addEventListener("click",(e) => {
+    myStorage.Delete("recipe");
     Load();
 })
 
@@ -78,12 +78,12 @@ addTodo.addEventListener("click",(e) => {
     Load();
 });
 
-addFood.addEventListener("click",(e) => {
-    myStorage.Push("food",{
-        text: foodText.value,
+addRecipe.addEventListener("click",(e) => {
+    myStorage.Push("recipe",{
+        text: recipeText.value,
         checked: false
     });
-    foodText.value = "";
+    recipeText.value = "";
     Load();
 });
 
@@ -95,9 +95,9 @@ document.addEventListener("click",(e) =>
         Load();
     }
 
-    if(e.target.id == "foodList")
+    if(e.target.id == "recipeList")
     {
-        myStorage.Checker("food",e.target.setID)
+        myStorage.Checker("recipe",e.target.setID)
         Load();
     }
 })
@@ -105,7 +105,7 @@ document.addEventListener("click",(e) =>
 function Load()
 {
     innerTodo.innerText = "";
-    innerFood.innerText = "";
+    innerRecipe.innerText = "";
 
     for(let i = 0;i < myStorage.Read("todo").length;i++)
     {
@@ -113,46 +113,50 @@ function Load()
 
         child.setID = i;
         child.id = "todoList";
-        child.style.backgroundColor = "#111";
+        child.style.backgroundColor = "#111111";
         child.className = "border-def padding-def";
         child.innerText = myStorage.Read("todo")[i].text;
 
         if(myStorage.Read("todo")[i].checked == true)
         {
-            child.style.color = "red";
+            child.style.color = "#6d0e0e";
             child.style.textDecoration = "line-through";
+            child.style.border = "1px solid #6d0e0e";
         }
         else
         {
-            child.style.color = "#eee";
+            child.style.color = "#eeeeee";
             child.style.textDecoration = "none";
+            child.style.border = "1px solid #555";
         }
 
         innerTodo.append(child);
     }
 
-    for(let i = 0;i < myStorage.Read("food").length;i++)
+    for(let i = 0;i < myStorage.Read("recipe").length;i++)
     {
         let child = document.createElement("p");
 
         child.setID = i;
-        child.id = "foodList";
-        child.style.backgroundColor = "#111";
+        child.id = "recipeList";
+        child.style.backgroundColor = "#111111";
         child.className = "border-def padding-def align-left";
-        child.innerText = myStorage.Read("food")[i].text;
+        child.innerText = myStorage.Read("recipe")[i].text;
 
-        if(myStorage.Read("food")[i].checked == true)
+        if(myStorage.Read("recipe")[i].checked == true)
         {
-            child.style.color = "red";
+            child.style.color = "#ff0000";
             child.style.textDecoration = "line-through";
+            child.style.border = "1px solid #6d0e0e";
         }
         else
         {
-            child.style.color = "#eee";
+            child.style.color = "#eeeeee";
             child.style.textDecoration = "none";
+            child.style.border = "1px solid #555";
         }
 
-        innerFood.append(child);
+        innerRecipe.append(child);
     }
 }
 
