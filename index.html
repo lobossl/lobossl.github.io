@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>The To-Do List - Simple and free to-do list</title>
-        <meta name="description" content="Simple and free to-do list. Keep track of all your tasks with this easy to use to do list, no login required.">
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="styles.css?v=1.0.4">
-    </head>
-    <body class="user-select-0 align-def" style="color:#CCCCCC; margin:0 auto; padding:none; font-family:Verdana, Geneva, Tahoma, sans-serif;">
-        <div class="padding-def align-def margin-def radius-def" style="background-color: #FFFFFF;">
-            <p class="font-size-big" style="font-weight: 900;">TheToDoList.eu</p>
-            <p><span class="cursor font-size-small" style="color:#FF4500;" id="delete">[Delete]</span></p>
-            <div id="inputArea" class="flex-def border-0 margin-0 padding-0" style="background-color: #EEEEEE; border-radius:40px;">
-                <input type="inputText" id="inputText" class="flex-size-3 outline-0 border-0" style="padding:10px; color:#333; background: transparent;" placeholder="Text:">
-                <button id="addButton" class="cursor flex-size-1 outline-0 border-0" style="padding:10px; border-radius: 40px; color:#FFFFFF; background-color:#FF4500;">Add</button>
+<head>
+    <meta charset="UTF-8">
+    <title>Project X</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="design.css?version=0.0.1">
+</head>
+    <body class="padding-0 margin-0 align-def" style="font-family:Verdana, Geneva, Tahoma, sans-serif; color:#333; background-color: #111;">
+        <div id="master" class="flex-def flex-wrap flex-gap" style="color:#fff; background-color: #222;">
+            <div id="todo" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
+                <p style="color:silver;" class="font-size-med">Todo:</p>
+                <p><input type="text" id="todoText" class="padding-def outline-0 border-0 radius-def" style="background-color: #eee;" placeholder="Todo:"></p>
+                <p>
+                    <button id="addTodo" class="padding-def font-size-def radius-def border-0 outline-0" style="background-color: #000; color:#fff;">Add</button>
+                    <button id="deleteTodo" class="padding-def font-size-def radius-def border-0 outline-0" style="background-color: #000; color:red;">Delete</button>
+                </p>
+                <div id="innerTodo" class="padding-def border-def radius-def word-break" style="background-color: #222;"></div>
             </div>
-            <div id="boxes" class="align-left"></div>
+            <div id="food" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
+                <p style="color:silver;" class="font-size-med">Recipes:</p>
+                <p><textarea id="foodText" class="padding-def outline-0 border-0 radius-def" style="resize:none; height:200px; width:75%; background-color: #eee;" placeholder="Recipe:"></textarea></p>
+                <p>
+                    <button id="addFood" class="padding-def font-size-def radius-def border-0 outline-0" style="background-color: #000; color:#fff;">Add</button>
+                    <button id="deleteFood" class="padding-def font-size-def radius-def border-0 outline-0" style="background-color: #000; color:red;">Delete</button>
+                </p>
+                <div id="innerFood" class="padding-def border-def radius-def word-break" style="background-color: #222;"></div>
+            </div>
         </div>
-        <pre>Coded by <a href="https://github.com/lobossl/todo">LoboSSL</a></pre>
-    <script src="app.js?v=1.0.5"></script>
+        <div style="padding:100px;">
+            <p>Copyright &copy; <a href="https://github.com/lobossl/todo">[github]</a></p>
+            <p>TheToDoList.eu</p>
+        </div>
+        <script src="app.js?version=0.0.1"></script>
     </body>
 </html>

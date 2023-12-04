@@ -1,149 +1,160 @@
-//1.0.5
+/*
+    0.0.1
+*/
+class STORAGE {
+    Save(db) {
+        const savedData = this.Read(db);
+        localStorage.setItem(db, JSON.stringify(savedData));
+    }
 
-if(location.protocol == "http:")
-{
-	location.href = location.href.replace("http://", "https://");
+    Push(db,data) {
+        const savedData = this.Read(db);
+        savedData.push(data);
+        localStorage.setItem(db, JSON.stringify(savedData));
+    }
+
+    Checker(db,index)
+    {
+        const savedData = this.Read(db);
+
+        if(savedData[index].checked == false)
+        {
+            savedData[index].checked = true;
+        }
+        else
+        {
+            savedData[index].checked = false;
+        }
+
+        localStorage.setItem(db, JSON.stringify(savedData));
+    }
+
+    Delete(db)
+    {
+        const savedData = this.Read(db);
+
+        for(let i = savedData.length - 1; i >= 0; i--)
+        {
+            if(savedData[i].checked === true)
+            {
+                savedData.splice(i,1);
+            }
+        }
+
+        localStorage.setItem(db, JSON.stringify(savedData));
+    }
+
+    Read(db) {
+        const savedData = JSON.parse(localStorage.getItem(db) || "[]");
+        return savedData;
+    }
 }
 
-class myProject {
-	constructor(dbname)
-	{
-			this.elementBoxes = document.getElementById("boxes")
-			this.elementDelete = document.getElementById("delete")
-			this.elementAddBtn = document.getElementById("addButton")
-			this.inputText = document.getElementById("inputText")
-        	this.dbname = dbname;
-        	this.dbread = JSON.parse(localStorage.getItem(dbname)) || []
-	}
+const myStorage = new STORAGE();
 
-	SAVE(obj)
-	{
-		this.dbread.push(obj)
-		localStorage.setItem(this.dbname, JSON.stringify(this.dbread))
-	}
+let todoText = document.getElementById("todoText");
+let foodText = document.getElementById("foodText");
+let addTodo = document.getElementById("addTodo");
+let addFood = document.getElementById("addFood");
+let deleteTodo = document.getElementById("deleteTodo");
+let deleteFood = document.getElementById("deleteFood");
 
-	SAVEALL()
-	{
-		localStorage.setItem(this.dbname, JSON.stringify(this.dbread))
-	}
-
-	DELETE()
-	{
-		for(let i = this.dbread.length - 1; i >= 0; i--)
-		{
-			if(this.dbread[i].underline == true)
-			{
-				this.dbread.splice(i,1)
-			}
-		}
-
-		this.SAVEALL()
-		this.RELOAD()
-	}
-
-	ADD()
-	{
-		if(this.inputText.value.length > 0)
-		{
-			let monthNames = ["January", "February", "March", "April", "May","June","July", "August", "September", "October", "November","December"]
-			let d = new Date()
-	
-			this.SAVE({
-				ident: null,
-				underline: false,
-				date: monthNames[d.getMonth()],
-				text: this.inputText.value
-			})
-	
-			this.RELOAD()
-			
-			this.inputText.value = ""
-		}
-	}
-
-	RELOAD()
-	{
-		this.elementBoxes.innerText = ""
-
-		for(let i = this.dbread.length - 1; i >= 0; i--)
-		{
-			this.dbread[i].ident = i
-
-			let createNewBox = document.createElement("div")
-			let createRadio = document.createElement("input")
-			let createLabel = document.createElement("label")
-
-			createRadio.type = "checkbox"
-			createRadio.id = "checkbox"
-			createRadio.name = "checkbox"
-			createRadio.value = "checkbox"
-			createRadio.ident = i
-			createRadio.underline = this.dbread[i].underline
-			createRadio.className = "margin-def"
-			createRadio.style.fontSize = ""
-
-			this.UNDERLINE(this.dbread[i].underline,createLabel,createRadio)
-
-			this.elementBoxes.appendChild(createNewBox)
-
-			createNewBox.appendChild(createLabel)
-			createLabel.appendChild(createRadio)
-			createLabel.appendChild(document.createTextNode(this.dbread[i].text))
-		}
-	}
-
-	UNDERLINE(e,label,radio)
-	{
-		if(e == true)
-		{
-			radio.checked = true
-			label.style.textDecoration = "line-through red"
-			label.style.fontStyle = "italic"
-			label.style.color = "#999"
-		}
-		else
-		{
-			radio.checked = false
-			label.style.textDecoration = "none"
-			label.style.color = "#333"
-			label.style.fontStyle = "none"
-		}
-	}
-
-	SELECT(e)
-	{
-		if(this.dbread[e].underline == true)
-		{
-			this.dbread[e].underline = false
-		}
-		else
-		{
-			this.dbread[e].underline = true
-		}
-
-		this.SAVEALL()
-	}
-}
-
-let Project = new myProject("test")
-
-Project.RELOAD()
-
-Project.elementDelete.addEventListener("click",(e) =>
-{
-	Project.DELETE()
+deleteTodo.addEventListener("click",(e) => {
+    myStorage.Delete("todo");
+    Load();
 })
 
-Project.elementAddBtn.addEventListener("click",(e) =>
-{
-	Project.ADD()
+deleteFood.addEventListener("click",(e) => {
+    myStorage.Delete("food");
+    Load();
 })
+
+addTodo.addEventListener("click",(e) => {
+    myStorage.Push("todo",{
+        text: todoText.value,
+        checked: false
+    });
+    todoText.value = "";
+    Load();
+});
+
+addFood.addEventListener("click",(e) => {
+    myStorage.Push("food",{
+        text: foodText.value,
+        checked: false
+    });
+    foodText.value = "";
+    Load();
+});
 
 document.addEventListener("click",(e) =>
 {
-	if(e.target.id == "checkbox")
-	{
-		Project.SELECT(e.target.ident)
-		Project.RELOAD()
-	}
+    if(e.target.id == "todoList")
+    {
+        myStorage.Checker("todo",e.target.setID)
+        Load();
+    }
+
+    if(e.target.id == "foodList")
+    {
+        myStorage.Checker("food",e.target.setID)
+        Load();
+    }
 })
+
+function Load()
+{
+    innerTodo.innerText = "";
+    innerFood.innerText = "";
+
+    for(let i = 0;i < myStorage.Read("todo").length;i++)
+    {
+        let child = document.createElement("p");
+
+        child.setID = i;
+        child.id = "todoList";
+        child.style.backgroundColor = "#111";
+        child.className = "border-def padding-def";
+        child.innerText = myStorage.Read("todo")[i].text;
+
+        if(myStorage.Read("todo")[i].checked == true)
+        {
+            child.style.color = "red";
+            child.style.textDecoration = "line-through";
+        }
+        else
+        {
+            child.style.color = "#eee";
+            child.style.textDecoration = "none";
+        }
+
+        innerTodo.append(child);
+    }
+
+    for(let i = 0;i < myStorage.Read("food").length;i++)
+    {
+        let child = document.createElement("p");
+
+        child.setID = i;
+        child.id = "foodList";
+        child.style.backgroundColor = "#111";
+        child.className = "border-def padding-def align-left";
+        child.innerText = myStorage.Read("food")[i].text;
+
+        if(myStorage.Read("food")[i].checked == true)
+        {
+            child.style.color = "red";
+            child.style.textDecoration = "line-through";
+        }
+        else
+        {
+            child.style.color = "#eee";
+            child.style.textDecoration = "none";
+        }
+
+        innerFood.append(child);
+    }
+}
+
+Load();
+
