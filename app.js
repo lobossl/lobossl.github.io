@@ -1,5 +1,5 @@
 /*
-	0.04
+	0.05
 */
 class STORAGE {
     Save(db) {
@@ -55,14 +55,8 @@ const myStorage = new STORAGE();
 let todoText = document.getElementById("todoText");
 let recipeText = document.getElementById("recipeText");
 let addTodo = document.getElementById("addTodo");
-let addFecipe = document.getElementById("addRecipe");
-let deleteTodo = document.getElementById("deleteTodo");
+let addRecipe = document.getElementById("addRecipe");
 let deleteRecipe = document.getElementById("deleteRecipe");
-
-deleteTodo.addEventListener("click",(e) => {
-    myStorage.Delete("todo");
-    Load();
-})
 
 deleteRecipe.addEventListener("click",(e) => {
     myStorage.Delete("recipe");
@@ -95,15 +89,16 @@ addRecipe.addEventListener("click",(e) => {
 
 document.addEventListener("click",(e) =>
 {
-    if(e.target.id == "todoList")
-    {
-        myStorage.Checker("todo",e.target.setID)
-        Load();
-    }
-
     if(e.target.id == "recipeList")
     {
         myStorage.Checker("recipe",e.target.setID)
+        Load();
+    }
+
+    if(e.target.id == "todoList")
+    {
+        myStorage.Checker("todo",e.target.setID)
+        myStorage.Delete("todo");
         Load();
     }
 })
@@ -113,50 +108,43 @@ function Load()
     innerTodo.innerText = "";
     innerRecipe.innerText = "";
 
+    //TODO
     for(let i = 0;i < myStorage.Read("todo").length;i++)
     {
-        let child = document.createElement("p");
-        let childDate = document.createElement("span");
-        let childText = document.createElement("span");
+        let p = document.createElement("p");
+        let icon = document.createElement("span");
+        let text = document.createElement("p");
+        let date = document.createElement("span");
 
-        child.setID = i;
-        child.id = "todoList";
-        childText.id = "todoList";
-        childText.setID = i;
-        childDate.setID = i;
-        childDate.id = "todoList";
-        child.style.borderBottom = "2px dashed #555";
-        child.className = "padding-def align-left";
-        childText.innerText = myStorage.Read("todo")[i].text;
-        childDate.innerText = myStorage.Read("todo")[i].day + " " + myStorage.Read("todo")[i].month + "\n";
+        p.style.backgroundColor = "#222";
+        p.className = "padding-def border-def";
 
-        if(myStorage.Read("todo")[i].checked == true)
-        {
-            child.style.color = "#555";
-            child.style.textDecoration = "line-through #555";
-            child.style.border = "2px dashed #6d0e0e";
-        }
-        else
-        {
-            child.style.color = "#eeeeee";
-            child.style.textDecoration = "none";
-            child.style.border = "2px dashed #555";
-        }
+        let year = new Date().getFullYear();
+        date.innerText = "[" + myStorage.Read("todo")[i].day + "." + myStorage.Read("todo")[i].month + "." + year + "]";
 
-        innerTodo.append(child);
-        child.appendChild(childDate);
-        child.appendChild(childText);
+        icon.id = "todoList";
+        icon.setID = i;
+        icon.innerText = "♻";
+        icon.className = "cursor margin-def";
+
+        text.innerText = myStorage.Read("todo")[i].text || "no text..";
+
+        innerTodo.append(p);
+        p.append(icon);
+        p.append(date);
+        p.append(text);
     }
 
+    //recipe
     for(let i = 0;i < myStorage.Read("recipe").length;i++)
     {
-        let child = document.createElement("div");
+        let child = document.createElement("p");
 
         child.setID = i;
         child.id = "recipeList";
         child.style.backgroundColor = "#222";
         child.className = "border-def padding-def align-left";
-        child.innerText = myStorage.Read("recipe")[i].text;
+        child.innerText = myStorage.Read("recipe")[i].text || "no text..";
 
         if(myStorage.Read("recipe")[i].checked == true)
         {
@@ -176,4 +164,3 @@ function Load()
 }
 
 Load();
-
