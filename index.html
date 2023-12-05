@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Project X</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="design.css?version=0.0.2">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Simple To-Do List using localStorage - TheToDoList</title>
+    <link rel="stylesheet" href="design.css?version=0.0.3">
 </head>
     <body class="padding-0 margin-0 align-def" style="font-family:Verdana, Geneva, Tahoma, sans-serif; color:#333; background-color: #111;">
         <div id="master" class="flex-def flex-wrap flex-gap" style="color:#ffffff; background-color: #222222;">
             <div id="todo" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
-                <p><input type="text" id="todoText" class="padding-def outline-0 border-0 radius-def" style="background-color: #eee;" placeholder="Todo:"></p>
+                <p><input type="text" id="todoText" class="padding-def outline-0 border-big radius-def" style="background-color: #eee;" placeholder="Insert text.."></p>
                 <p>
                     <button id="addTodo" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #222222; color:#ffffff;">Add</button>
                     <button id="deleteTodo" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #6d0e0e; color:#ffffff;">Delete</button>
@@ -17,7 +17,7 @@
                 <div id="innerTodo" class="padding-def border-0 word-break"></div>
             </div>
             <div id="recipe" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
-                <p><textarea id="recipeText" class="padding-def outline-0 border-0 radius-def" style="resize:none; height:200px; width:75%; background-color: #eee;" placeholder="Recipe:"></textarea></p>
+                <p><textarea id="recipeText" class="padding-def outline-0 border-0 radius-def border-big" style="resize:none; height:200px; width:75%; background-color: #eee;" placeholder="Insert text.."></textarea></p>
                 <p>
                     <button id="addRecipe" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #222222; color:#ffffff;">Add</button>
                     <button id="deleteRecipe" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #6d0e0e; color:#ffffff;">Delete</button>
@@ -29,6 +29,6 @@
             <p>Copyright &copy; <a href="https://github.com/lobossl/todo">[github]</a></p>
             <p>TheToDoList.eu</p>
         </div>
-        <script src="app.js?version=0.0.2"></script>
+        <script src="app.js?version=0.0.3"></script>
     </body>
 </html>

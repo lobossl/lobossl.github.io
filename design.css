@@ -1,5 +1,5 @@
 /*
-	0.0.2
+	0.0.3
 */
 
 a{
@@ -97,13 +97,13 @@ a{
 }
 
 .border-def{
-	border:1px solid #555;
+	border:1px solid #444;
 }
 .border-0{
 	border:none;
 }
-.border-debug{
-	border:2px solid red;
+.border-big{
+	border:3px solid #444;
 }
 
 .wrap{

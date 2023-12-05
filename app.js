@@ -1,5 +1,5 @@
 /*
-    0.0.2
+	0.0.3
 */
 class STORAGE {
     Save(db) {
@@ -113,21 +113,21 @@ function Load()
 
         child.setID = i;
         child.id = "todoList";
-        child.style.backgroundColor = "#111111";
-        child.className = "border-def padding-def";
+        child.style.borderBottom = "2px dashed #555";
+        child.className = "padding-def align-left";
         child.innerText = myStorage.Read("todo")[i].text;
 
         if(myStorage.Read("todo")[i].checked == true)
         {
             child.style.color = "#6d0e0e";
             child.style.textDecoration = "line-through";
-            child.style.border = "1px solid #6d0e0e";
+            child.style.borderBottom = "2px dashed #555";
         }
         else
         {
             child.style.color = "#eeeeee";
             child.style.textDecoration = "none";
-            child.style.border = "1px solid #555";
+            child.style.borderBottom = "2px dashed #555";
         }
 
         innerTodo.append(child);
@@ -139,7 +139,7 @@ function Load()
 
         child.setID = i;
         child.id = "recipeList";
-        child.style.backgroundColor = "#111111";
+        child.style.backgroundColor = "#222";
         child.className = "border-def padding-def align-left";
         child.innerText = myStorage.Read("recipe")[i].text;
 
