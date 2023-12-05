@@ -1,5 +1,5 @@
 /*
-	0.05
+	0.06
 */
 class STORAGE {
     Save(db) {
@@ -56,17 +56,10 @@ let todoText = document.getElementById("todoText");
 let recipeText = document.getElementById("recipeText");
 let addTodo = document.getElementById("addTodo");
 let addRecipe = document.getElementById("addRecipe");
-let deleteRecipe = document.getElementById("deleteRecipe");
-
-deleteRecipe.addEventListener("click",(e) => {
-    myStorage.Delete("recipe");
-    Load();
-})
+let day = document.getElementById("day");
+let month = document.getElementById("month");
 
 addTodo.addEventListener("click",(e) => {
-    let day = document.getElementById("day");
-    let month = document.getElementById("month");
-
     myStorage.Push("todo",{
         text: todoText.value,
         checked: false,
@@ -92,6 +85,7 @@ document.addEventListener("click",(e) =>
     if(e.target.id == "recipeList")
     {
         myStorage.Checker("recipe",e.target.setID)
+        myStorage.Delete("recipe");
         Load();
     }
 
@@ -114,18 +108,22 @@ function Load()
         let p = document.createElement("p");
         let icon = document.createElement("span");
         let text = document.createElement("p");
-        let date = document.createElement("span");
+        let date = document.createElement("p");
+
+        text.className = "padding-def align-left";
 
         p.style.backgroundColor = "#222";
-        p.className = "padding-def border-def";
+        p.className = "border-def";
 
         let year = new Date().getFullYear();
-        date.innerText = "[" + myStorage.Read("todo")[i].day + "." + myStorage.Read("todo")[i].month + "." + year + "]";
+        date.innerText = myStorage.Read("todo")[i].day + "." + myStorage.Read("todo")[i].month + "." + year;
+        date.className = "align-def";
 
         icon.id = "todoList";
         icon.setID = i;
         icon.innerText = "♻";
-        icon.className = "cursor margin-def";
+        icon.className = "cursor";
+        icon.style.margin = "1px";
 
         text.innerText = myStorage.Read("todo")[i].text || "no text..";
 
@@ -135,31 +133,28 @@ function Load()
         p.append(text);
     }
 
-    //recipe
     for(let i = 0;i < myStorage.Read("recipe").length;i++)
     {
-        let child = document.createElement("p");
+        let p = document.createElement("p");
+        let icon = document.createElement("span");
+        let text = document.createElement("p");
 
-        child.setID = i;
-        child.id = "recipeList";
-        child.style.backgroundColor = "#222";
-        child.className = "border-def padding-def align-left";
-        child.innerText = myStorage.Read("recipe")[i].text || "no text..";
+        text.className = "padding-def align-left";
 
-        if(myStorage.Read("recipe")[i].checked == true)
-        {
-            child.style.color = "#ccc";
-            child.style.textDecoration = "line-through red";
-            child.style.border = "1px solid #6d0e0e";
-        }
-        else
-        {
-            child.style.color = "#eeeeee";
-            child.style.textDecoration = "none";
-            child.style.border = "1px solid #555";
-        }
+        p.style.backgroundColor = "#222";
+        p.className = "border-def";
 
-        innerRecipe.append(child);
+        icon.id = "recipeList";
+        icon.setID = i;
+        icon.innerText = "♻";
+        icon.className = "cursor";
+        icon.style.margin = "1px";
+
+        text.innerText = myStorage.Read("recipe")[i].text || "no text..";
+
+        innerRecipe.append(p);
+        p.append(icon);
+        p.append(text);
     }
 }
 
