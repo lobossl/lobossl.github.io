@@ -1,5 +1,5 @@
 /*
-	0.06
+	0.07
 */
 class STORAGE {
     Save(db) {
@@ -122,8 +122,8 @@ function Load()
         icon.id = "todoList";
         icon.setID = i;
         icon.innerText = "♻";
-        icon.className = "cursor";
-        icon.style.margin = "1px";
+        icon.className = "cursor font-size-med";
+        icon.style.margin = "6px";
 
         text.innerText = myStorage.Read("todo")[i].text || "no text..";
 
@@ -147,8 +147,8 @@ function Load()
         icon.id = "recipeList";
         icon.setID = i;
         icon.innerText = "♻";
-        icon.className = "cursor";
-        icon.style.margin = "1px";
+        icon.className = "cursor font-size-med";
+        icon.style.margin = "6px";
 
         text.innerText = myStorage.Read("recipe")[i].text || "no text..";
 
