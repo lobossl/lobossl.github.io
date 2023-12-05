@@ -4,12 +4,61 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=0.0.3">
+    <link rel="stylesheet" href="design.css?version=0.04">
 </head>
-    <body class="padding-0 margin-0 align-def" style="font-family:Verdana, Geneva, Tahoma, sans-serif; color:#333; background-color: #111;">
+    <body class="padding-0 margin-0 align-def font-size-def" style="font-family:Verdana, Geneva, Tahoma, sans-serif; color:#333; background-color: #111;">
         <div id="master" class="flex-def flex-wrap flex-gap" style="color:#ffffff; background-color: #222222;">
             <div id="todo" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
-                <p><input type="text" id="todoText" class="padding-def outline-0 border-big radius-def" style="background-color: #eee;" placeholder="Insert text.."></p>
+                <p><input type="text" id="todoText" class="padding-def outline-0 radius-def" style="background-color: #eee; border:1px solid #000;" placeholder="Todo.."></p>
+                <p>
+                    <select id="day" class="outline-0 border-def font-size-med">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                    <select id="month" class="outline-0 border-def font-size-med">
+                        <option value="January">January</option>
+                        <option value="February">February</option>
+                        <option value="March">March</option>
+                        <option value="April">April</option>
+                        <option value="May">May</option>
+                        <option value="June">June</option>
+                        <option value="July">July</option>
+                        <option value="August">August</option>
+                        <option value="September">September</option>
+                        <option value="October">October</option>
+                        <option value="November">November</option>
+                        <option value="December">December</option>
+                    </select>
+                </p>
                 <p>
                     <button id="addTodo" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #222222; color:#ffffff;">Add</button>
                     <button id="deleteTodo" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #6d0e0e; color:#ffffff;">Delete</button>
@@ -17,7 +66,7 @@
                 <div id="innerTodo" class="padding-def border-0 word-break"></div>
             </div>
             <div id="recipe" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
-                <p><textarea id="recipeText" class="padding-def outline-0 border-0 radius-def border-big" style="resize:none; height:200px; width:75%; background-color: #eee;" placeholder="Insert text.."></textarea></p>
+                <p><textarea id="recipeText" class="padding-def outline-0 border-0 radius-def" style="resize:none; height:200px; width:75%; background-color: #eee; border:1px solid #000;" placeholder="Insert text.."></textarea></p>
                 <p>
                     <button id="addRecipe" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #222222; color:#ffffff;">Add</button>
                     <button id="deleteRecipe" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #6d0e0e; color:#ffffff;">Delete</button>

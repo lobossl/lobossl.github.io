@@ -1,5 +1,5 @@
 /*
-	0.0.3
+	0.04
 */
 class STORAGE {
     Save(db) {
@@ -70,10 +70,16 @@ deleteRecipe.addEventListener("click",(e) => {
 })
 
 addTodo.addEventListener("click",(e) => {
+    let day = document.getElementById("day");
+    let month = document.getElementById("month");
+
     myStorage.Push("todo",{
         text: todoText.value,
-        checked: false
+        checked: false,
+        day: day.value,
+        month: month.value
     });
+
     todoText.value = "";
     Load();
 });
@@ -110,32 +116,41 @@ function Load()
     for(let i = 0;i < myStorage.Read("todo").length;i++)
     {
         let child = document.createElement("p");
+        let childDate = document.createElement("span");
+        let childText = document.createElement("span");
 
         child.setID = i;
         child.id = "todoList";
+        childText.id = "todoList";
+        childText.setID = i;
+        childDate.setID = i;
+        childDate.id = "todoList";
         child.style.borderBottom = "2px dashed #555";
         child.className = "padding-def align-left";
-        child.innerText = myStorage.Read("todo")[i].text;
+        childText.innerText = myStorage.Read("todo")[i].text;
+        childDate.innerText = myStorage.Read("todo")[i].day + " " + myStorage.Read("todo")[i].month + "\n";
 
         if(myStorage.Read("todo")[i].checked == true)
         {
-            child.style.color = "#6d0e0e";
-            child.style.textDecoration = "line-through";
-            child.style.borderBottom = "2px dashed #555";
+            child.style.color = "#555";
+            child.style.textDecoration = "line-through #555";
+            child.style.border = "2px dashed #6d0e0e";
         }
         else
         {
             child.style.color = "#eeeeee";
             child.style.textDecoration = "none";
-            child.style.borderBottom = "2px dashed #555";
+            child.style.border = "2px dashed #555";
         }
 
         innerTodo.append(child);
+        child.appendChild(childDate);
+        child.appendChild(childText);
     }
 
     for(let i = 0;i < myStorage.Read("recipe").length;i++)
     {
-        let child = document.createElement("p");
+        let child = document.createElement("div");
 
         child.setID = i;
         child.id = "recipeList";
@@ -145,8 +160,8 @@ function Load()
 
         if(myStorage.Read("recipe")[i].checked == true)
         {
-            child.style.color = "#ff0000";
-            child.style.textDecoration = "line-through";
+            child.style.color = "#ccc";
+            child.style.textDecoration = "line-through red";
             child.style.border = "1px solid #6d0e0e";
         }
         else
