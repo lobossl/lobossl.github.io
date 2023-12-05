@@ -1,5 +1,5 @@
 /*
-	0.07
+	0.08
 */
 class STORAGE {
     Save(db) {
@@ -99,6 +99,11 @@ document.addEventListener("click",(e) =>
 
 function Load()
 {
+    let DATE = new Date();
+    let YEAR = DATE.getFullYear();
+    let MONTH = DATE.getMonth() + 1;
+    let DAY = DATE.getDate();
+
     innerTodo.innerText = "";
     innerRecipe.innerText = "";
 
@@ -115,17 +120,21 @@ function Load()
         p.style.backgroundColor = "#222";
         p.className = "border-def";
 
-        let year = new Date().getFullYear();
-        date.innerText = myStorage.Read("todo")[i].day + "." + myStorage.Read("todo")[i].month + "." + year;
+        date.innerText = myStorage.Read("todo")[i].day + "." + myStorage.Read("todo")[i].month + "." + YEAR;
         date.className = "align-def";
 
         icon.id = "todoList";
         icon.setID = i;
-        icon.innerText = "♻";
-        icon.className = "cursor font-size-med";
+        icon.innerText = "⨉";
+        icon.className = "cursor font-size-med user-select-0";
         icon.style.margin = "6px";
 
         text.innerText = myStorage.Read("todo")[i].text || "no text..";
+
+        if((myStorage.Read("todo")[i].day == DAY) && (myStorage.Read("todo")[i].month == MONTH))
+        {
+            p.style.borderColor = "red";
+        }
 
         innerTodo.append(p);
         p.append(icon);
@@ -146,8 +155,8 @@ function Load()
 
         icon.id = "recipeList";
         icon.setID = i;
-        icon.innerText = "♻";
-        icon.className = "cursor font-size-med";
+        icon.innerText = "⨉";
+        icon.className = "cursor font-size-med user-select-0";
         icon.style.margin = "6px";
 
         text.innerText = myStorage.Read("recipe")[i].text || "no text..";

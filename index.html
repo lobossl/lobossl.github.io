@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=0.07">
+    <link rel="stylesheet" href="design.css?version=0.08">
 </head>
     <body class="padding-0 margin-0 align-def font-size-def" style="font-family:Verdana, Geneva, Tahoma, sans-serif; color:#333; background-color: #111;">
         <div id="master" class="flex-def flex-wrap flex-gap" style="color:#ffffff; background-color: #222222;">
             <div id="todo" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
                 <p><input type="text" id="todoText" class="padding-def outline-0 radius-def" style="background-color: #222; border:1px solid #000; color:#fff;" placeholder="Todo.."></p>
                 <p>
-                    <select id="day" class="outline-0 border-def font-size-med">
+                    <select id="day" class="outline-0 border-def font-size-med cursor">
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -44,30 +44,30 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
-                    <select id="month" class="outline-0 border-def font-size-med">
-                        <option value="January">January</option>
-                        <option value="February">February</option>
-                        <option value="March">March</option>
-                        <option value="April">April</option>
-                        <option value="May">May</option>
-                        <option value="June">June</option>
-                        <option value="July">July</option>
-                        <option value="August">August</option>
-                        <option value="September">September</option>
-                        <option value="October">October</option>
-                        <option value="November">November</option>
-                        <option value="December">December</option>
+                    <select id="month" class="outline-0 border-def font-size-med cursor">
+                        <option value="1">January</option>
+                        <option value="2">February</option>
+                        <option value="3">March</option>
+                        <option value="4">April</option>
+                        <option value="5">May</option>
+                        <option value="6">June</option>
+                        <option value="7">July</option>
+                        <option value="8">August</option>
+                        <option value="9">September</option>
+                        <option value="10">October</option>
+                        <option value="11">November</option>
+                        <option value="12">December</option>
                     </select>
                 </p>
                 <p>
-                    <button id="addTodo" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #111; color:#ffffff;">✎ Add</button>
+                    <button id="addTodo" class="cursor padding-def font-size-med radius-def border-0 outline-0 margin-0" style="background-color: #111; color:#ffffff; width:100px;">✎</button>
                 </p>
                 <div id="innerTodo" class="padding-def border-0 word-break align-right"></div>
             </div>
             <div id="recipe" class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
                 <p><textarea id="recipeText" class="padding-def outline-0 border-0 radius-def" style="resize:none; height:200px; width:75%; color:#fff; background-color: #222; border:1px solid #000;" placeholder="Insert text.."></textarea></p>
                 <p>
-                    <button id="addRecipe" class="padding-def font-size-def radius-def border-0 outline-0 margin-0" style="background-color: #111; color:#ffffff;">✎ Add</button>
+                    <button id="addRecipe" class="cursor padding-def font-size-med radius-def border-0 outline-0 margin-0" style="background-color: #111; color:#ffffff; width:100px;">✎</button>
                 </p>
                 <div id="innerRecipe" class="padding-def border-0 word-break align-right"></div>
             </div>
@@ -76,6 +76,6 @@
             <p>Copyright &copy; <a href="https://github.com/lobossl/todo">[github]</a></p>
             <p>TheToDoList.eu</p>
         </div>
-        <script src="app.js?version=0.07"></script>
+        <script src="app.js?version=0.08"></script>
     </body>
 </html>
