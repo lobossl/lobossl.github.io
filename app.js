@@ -1,175 +1,223 @@
 /*
-	0.09
+	0.11
 */
 class STORAGE {
-    Save(db) {
-        const savedData = this.Read(db);
-        localStorage.setItem(db, JSON.stringify(savedData));
-    }
-
-    Push(db,data) {
-        const savedData = this.Read(db);
-        savedData.push(data);
-        localStorage.setItem(db, JSON.stringify(savedData));
-    }
-
-    Checker(db,index)
+    constructor(dbName)
     {
-        const savedData = this.Read(db);
+        this.dbName = dbName;
+    }
 
-        if(savedData[index].checked == false)
+    GET()
+    {
+        let str = JSON.parse(localStorage.getItem(this.dbName)) || {todo: [],recipe: []};
+
+        return str;
+    }
+
+    SAVE()
+    {
+        let data = this.GET();
+
+        localStorage.setItem(this.dbName,JSON.stringify(data));
+    }
+
+    SET(db,obj)
+    {
+        let data = this.GET();
+
+        data[db].push(obj);
+    
+        localStorage.setItem(this.dbName, JSON.stringify(data));
+    }
+
+    DELETE(db,id)
+    {
+        const data = this.GET();
+
+        data[db].splice(id,1);
+
+        localStorage.setItem(this.dbName, JSON.stringify(data));
+    }
+
+    MARK(db,id)
+    {
+        const data = this.GET();
+
+        if(data[db][id].marked == false)
         {
-            savedData[index].checked = true;
+            data[db][id].marked = true;
         }
         else
         {
-            savedData[index].checked = false;
+            data[db][id].marked = false;
         }
 
-        localStorage.setItem(db, JSON.stringify(savedData));
-    }
-
-    Delete(db)
-    {
-        const savedData = this.Read(db);
-
-        for(let i = savedData.length - 1; i >= 0; i--)
-        {
-            if(savedData[i].checked === true)
-            {
-                savedData.splice(i,1);
-            }
-        }
-
-        localStorage.setItem(db, JSON.stringify(savedData));
-    }
-
-    Read(db) {
-        const savedData = JSON.parse(localStorage.getItem(db) || "[]");
-        return savedData;
+        localStorage.setItem(this.dbName, JSON.stringify(data));
     }
 }
 
-const myStorage = new STORAGE();
+const myStorage = new STORAGE("main");
 
 let todoText = document.getElementById("todoText");
 let recipeText = document.getElementById("recipeText");
 let addTodo = document.getElementById("addTodo");
 let addRecipe = document.getElementById("addRecipe");
+let innerTodo = document.getElementById("innerTodo");
+let innerRecipe = document.getElementById("innerRecipe");
 let day = document.getElementById("day");
 let month = document.getElementById("month");
 
 addTodo.addEventListener("click",(e) => {
-    myStorage.Push("todo",{
+    myStorage.SET("todo",{
         text: todoText.value,
-        checked: false,
         day: day.value,
-        month: month.value
+        month: month.value,
+        marked: false
     });
 
-    todoText.value = "";
+    todoText.value = ""; //
     Load();
 });
 
 addRecipe.addEventListener("click",(e) => {
-    myStorage.Push("recipe",{
+    myStorage.SET("recipe",{
         text: recipeText.value,
-        checked: false
+        marked: false
     });
-    recipeText.value = "";
+
+    recipeText.value = ""; //
     Load();
 });
 
 document.addEventListener("click",(e) =>
 {
-    if(e.target.id == "recipeList")
+    if(e.target.id == "todo")
     {
-        myStorage.Checker("recipe",e.target.setID)
-        myStorage.Delete("recipe");
+        myStorage.DELETE("todo",e.target.setID);
         Load();
     }
 
-    if(e.target.id == "todoList")
+    if(e.target.id == "recipe")
     {
-        myStorage.Checker("todo",e.target.setID)
-        myStorage.Delete("todo");
+        myStorage.DELETE("recipe",e.target.setID);
+        Load();
+    }
+
+    if(e.target.id === "markTodo")
+    {
+        myStorage.MARK("todo",e.target.setID);
+        Load();
+    }
+
+    if(e.target.id === "markRecipe")
+    {
+        myStorage.MARK("recipe",e.target.setID);
         Load();
     }
 })
 
 function Load()
 {
-    let DATE = new Date();
-    let YEAR = DATE.getFullYear();
-    let MONTH = DATE.getMonth() + 1;
-    let DAY = DATE.getDate();
+    let currentDate = new Date();
 
     innerTodo.innerText = "";
     innerRecipe.innerText = "";
 
-    //TODO
-    for(let i = 0;i < myStorage.Read("todo").length;i++)
+    for(let i = 0; i < myStorage.GET().todo.length; i ++)
     {
-        let p = document.createElement("p");
-        let icon = document.createElement("span");
-        let text = document.createElement("p");
-        let date = document.createElement("span");
+        let Data = myStorage.GET().todo[i];
 
-        text.className = "align-left";
-        text.style.padding = "3px";
+        let Frame = document.createElement("div");
+        let Date = document.createElement("p");
+        let Delete = document.createElement("span");
+        let Mark = document.createElement("span");
+        let Text = document.createElement("p");
 
-        p.style.backgroundColor = "#222";
-        p.style.color = "#ccc";
-        p.className = "border-def";
+        Frame.className = "align-Right border-def margin-def align-right";
+        Frame.style.display = "inline-block";
+        Frame.style.backgroundColor = "#222";
+        Frame.style.color = "#ccc";
 
-        date.innerText = myStorage.Read("todo")[i].day + "." + myStorage.Read("todo")[i].month + "." + YEAR;
-        date.className = "align-def";
+        Date.innerText = Data.day + "." + Data.month + "." + currentDate.getFullYear();
+        Date.style.marginRight = "2px";
+        Date.className = "align-def padding-def";
 
-        icon.id = "todoList";
-        icon.setID = i;
-        icon.innerText = "x";
-        icon.style.color = "#FF4500";
-        icon.className = "cursor font-size-med user-select-0";
-        icon.style.margin = "6px";
+        Delete.innerText = "X";
+        Delete.setID = i;
+        Delete.id = "todo";
+        Delete.style.color = "#FF4500";
+        Delete.style.margin = "5px";
+        Delete.className = "align-right cursor user-select-0";
 
-        text.innerText = myStorage.Read("todo")[i].text || "no text..";
+        Mark.innerText = "V";
+        Mark.setID = i;
+        Mark.id = "markTodo";
+        Mark.style.color = "#579E1E";
+        Mark.style.margin = "5px";
+        Mark.className = "align-right cursor user-select-0";
 
-        if((myStorage.Read("todo")[i].day == DAY) && (myStorage.Read("todo")[i].month == MONTH))
+        Text.innerText = Data.text || "no text..";
+        Text.className = "align-left padding-def";
+
+        if(Data.marked == true)
         {
-            p.style.borderColor = "#FF4500";
+            Frame.style.borderColor = "#579E1E";
+        }
+        else if(Data.marked == false)
+        {
+            Frame.style.borderColor = "#444";
         }
 
-        innerTodo.append(p);
-        p.append(date);
-        p.append(icon);
-        p.append(text);
+        innerTodo.append(Frame);
+        Frame.append(Mark);
+        Frame.append(Delete);
+        Frame.append(Date);
+        Frame.append(Text);
     }
 
-    for(let i = 0;i < myStorage.Read("recipe").length;i++)
+    for(let i = 0; i < myStorage.GET().recipe.length; i ++)
     {
-        let p = document.createElement("p");
-        let icon = document.createElement("span");
-        let text = document.createElement("p");
+        let Data = myStorage.GET().recipe[i];
 
-        text.className = "align-left";
-        text.style.padding = "3px";
+        let Frame = document.createElement("div");
+        let Delete = document.createElement("span");
+        let Text = document.createElement("p");
+        let Mark = document.createElement("span");
 
-        p.style.backgroundColor = "#222";
-        p.className = "border-def";
-        p.style.color = "#ccc";
+        Frame.className = "align-Right border-def margin-def align-right";
+        Frame.style.backgroundColor = "#222";
+        Frame.style.color = "#ccc";
 
-        icon.id = "recipeList";
-        icon.setID = i;
-        icon.innerText = "x";
-        icon.style.color = "#FF4500";
-        icon.className = "cursor font-size-med user-select-0";
-        icon.style.margin = "6px";
+        Delete.innerText = "X";
+        Delete.setID = i;
+        Delete.id = "recipe";
+        Delete.style.color = "#FF4500";
+        Delete.style.margin = "5px";
+        Delete.className = "align-right cursor user-select-0";
 
-        text.innerText = myStorage.Read("recipe")[i].text || "no text..";
+        Mark.innerText = "V";
+        Mark.setID = i;
+        Mark.id = "markRecipe";
+        Mark.style.color = "#579E1E";
+        Mark.style.margin = "5px";
+        Mark.className = "align-right cursor user-select-0";
 
-        innerRecipe.append(p);
-        p.append(icon);
-        p.append(text);
+        Text.innerText = Data.text || "no text..";
+        Text.className = "align-left padding-def";
+
+        if(Data.marked == true)
+        {
+            Frame.style.borderColor = "#579E1E";
+        }
+        else if(Data.marked == false)
+        {
+            Frame.style.borderColor = "#444";
+        }
+
+        innerRecipe.append(Frame);
+        Frame.append(Mark);
+        Frame.append(Delete);
+        Frame.append(Text);
     }
 }
 
