@@ -1,5 +1,5 @@
 /*
-	0.08
+	0.09
 */
 class STORAGE {
     Save(db) {
@@ -113,11 +113,13 @@ function Load()
         let p = document.createElement("p");
         let icon = document.createElement("span");
         let text = document.createElement("p");
-        let date = document.createElement("p");
+        let date = document.createElement("span");
 
-        text.className = "padding-def align-left";
+        text.className = "align-left";
+        text.style.padding = "3px";
 
         p.style.backgroundColor = "#222";
+        p.style.color = "#ccc";
         p.className = "border-def";
 
         date.innerText = myStorage.Read("todo")[i].day + "." + myStorage.Read("todo")[i].month + "." + YEAR;
@@ -125,7 +127,8 @@ function Load()
 
         icon.id = "todoList";
         icon.setID = i;
-        icon.innerText = "⨉";
+        icon.innerText = "x";
+        icon.style.color = "#FF4500";
         icon.className = "cursor font-size-med user-select-0";
         icon.style.margin = "6px";
 
@@ -133,12 +136,12 @@ function Load()
 
         if((myStorage.Read("todo")[i].day == DAY) && (myStorage.Read("todo")[i].month == MONTH))
         {
-            p.style.borderColor = "red";
+            p.style.borderColor = "#FF4500";
         }
 
         innerTodo.append(p);
-        p.append(icon);
         p.append(date);
+        p.append(icon);
         p.append(text);
     }
 
@@ -148,14 +151,17 @@ function Load()
         let icon = document.createElement("span");
         let text = document.createElement("p");
 
-        text.className = "padding-def align-left";
+        text.className = "align-left";
+        text.style.padding = "3px";
 
         p.style.backgroundColor = "#222";
         p.className = "border-def";
+        p.style.color = "#ccc";
 
         icon.id = "recipeList";
         icon.setID = i;
-        icon.innerText = "⨉";
+        icon.innerText = "x";
+        icon.style.color = "#FF4500";
         icon.className = "cursor font-size-med user-select-0";
         icon.style.margin = "6px";
 
