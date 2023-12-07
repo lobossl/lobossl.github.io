@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=0.11">
+    <link rel="stylesheet" href="design.css?version=0.12">
 </head>
     <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#000; background-color: #FF4500;">
         <div id="master" class="flex-def flex-wrap flex-gap" style="color:#ffffff; background-color: #222222;">
@@ -72,10 +72,15 @@
                 <div id="innerRecipe" class="padding-def border-0 word-break align-def"></div>
             </div>
         </div>
-        <div style="padding:100px;">
+        <div style="padding:15px;">
             <p>Copyright &copy; <a href="https://github.com/lobossl/todo">[github]</a></p>
             <p>TheToDoList.eu</p>
+            <p id="backup" class="cursor" style="color:#fff;">Click here to Backup database</p>
+            <p>
+                <label for="restore" name="restore" style="color:#fff;">Click here to Restore database</label><br>
+                <input type="file" id="restore" accept="*.json">
+            </p>
         </div>
-        <script src="app.js?version=0.11"></script>
+        <script src="app.js?version=0.12"></script>
     </body>
 </html>

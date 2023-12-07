@@ -1,5 +1,5 @@
 /*
-	0.11
+	0.12
 */
 class STORAGE {
     constructor(dbName)
@@ -54,6 +54,25 @@ class STORAGE {
 
         localStorage.setItem(this.dbName, JSON.stringify(data));
     }
+
+    BACKUP()
+    {
+        const data = localStorage.getItem(this.dbName);
+  
+        const blob = new Blob([data], { type: 'application/octet-stream' });
+        const url = window.URL.createObjectURL(blob);
+        let link = document.createElement("a");
+      
+        link.href = url;
+        link.download = "backup.json";
+      
+        document.body.appendChild(link);
+      
+        link.click();
+
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+    }
 }
 
 const myStorage = new STORAGE("main");
@@ -66,6 +85,33 @@ let innerTodo = document.getElementById("innerTodo");
 let innerRecipe = document.getElementById("innerRecipe");
 let day = document.getElementById("day");
 let month = document.getElementById("month");
+let restore = document.getElementById("restore");
+let backup = document.getElementById("backup");
+
+restore.addEventListener("change",(e) =>
+{
+    let selectedFile = e.target.files[0];
+
+    if(selectedFile)
+    {
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+            let data = event.target.result;
+
+            localStorage.setItem("main",data);
+            Load();
+            alert("json data was restored..");
+        }
+
+        reader.readAsText(selectedFile);
+    }
+});
+
+backup.addEventListener("click",(e) =>
+{
+    myStorage.BACKUP();
+});
 
 addTodo.addEventListener("click",(e) => {
     myStorage.SET("todo",{
@@ -147,14 +193,14 @@ function Load()
         Delete.id = "todo";
         Delete.style.color = "#FF4500";
         Delete.style.margin = "5px";
-        Delete.className = "align-right cursor user-select-0";
+        Delete.className = "align-right cursor user-select-0 font-size-med";
 
         Mark.innerText = "V";
         Mark.setID = i;
         Mark.id = "markTodo";
         Mark.style.color = "#579E1E";
         Mark.style.margin = "5px";
-        Mark.className = "align-right cursor user-select-0";
+        Mark.className = "align-right cursor user-select-0 font-size-med";
 
         Text.innerText = Data.text || "no text..";
         Text.className = "align-left padding-def";
@@ -193,14 +239,14 @@ function Load()
         Delete.id = "recipe";
         Delete.style.color = "#FF4500";
         Delete.style.margin = "5px";
-        Delete.className = "align-right cursor user-select-0";
+        Delete.className = "align-right cursor user-select-0 font-size-med";
 
         Mark.innerText = "V";
         Mark.setID = i;
         Mark.id = "markRecipe";
         Mark.style.color = "#579E1E";
         Mark.style.margin = "5px";
-        Mark.className = "align-right cursor user-select-0";
+        Mark.className = "align-right cursor user-select-0 font-size-med";
 
         Text.innerText = Data.text || "no text..";
         Text.className = "align-left padding-def";
