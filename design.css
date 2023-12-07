@@ -1,5 +1,5 @@
 /*
-	0.13
+	0.14
 */
 
 a{
@@ -124,7 +124,7 @@ a{
 	font-size:1.2em;
 }
 .font-size-big{
-	font-size:2em;
+	font-size:1.5em;
 }
 
 .opacity-def{

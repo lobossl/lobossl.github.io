@@ -1,5 +1,5 @@
 /*
-	0.13
+	0.14
 */
 class STORAGE {
     constructor(dbName)
@@ -145,6 +145,7 @@ document.addEventListener("click",(e) =>
 
     if(e.target.id == "recipe")
     {
+        console.log("clicked");
         myStorage.DELETE("recipe",e.target.setID);
         Load();
     }
@@ -174,9 +175,9 @@ function Load()
         let Data = myStorage.GET().todo[i];
 
         let Frame = document.createElement("div");
-        let Date = document.createElement("p");
+        let Date = document.createElement("span");
         let Delete = document.createElement("span");
-        let Mark = document.createElement("span");
+        let deleteFrame = document.createElement("div");
         let Text = document.createElement("p");
 
         Frame.className = "align-Right border-def margin-def align-right user-select-0";
@@ -189,15 +190,16 @@ function Load()
         Date.innerText = Data.day + "." + Data.month + "." + currentDate.getFullYear();
         Date.style.marginRight = "2px";
         Date.className = "align-def padding-def";
-        Date.setID = i;
-        Date.id = "markTodo";
 
         Delete.innerText = "X";
         Delete.setID = i;
         Delete.id = "todo";
-        Delete.style.color = "#FF4500";
+        Delete.style.color = "#ccc";
         Delete.style.margin = "5px";
-        Delete.className = "align-right cursor user-select-0 font-size-med";
+        Delete.className = "align-right cursor user-select-0 font-size-big";
+
+        deleteFrame.style.backgroundColor = "#FF4500";
+        deleteFrame.style.margin = "0px";
 
         Text.innerText = Data.text || "no text..";
         Text.className = "align-left padding-def";
@@ -206,16 +208,21 @@ function Load()
 
         if(Data.marked == true)
         {
-            Frame.style.borderColor = "#579E1E";
+            Frame.style.borderBottomColor = "#FF4500";
+            Frame.style.borderLeftColor = "#FF4500";
+            Frame.style.borderRightColor = "#FF4500";
         }
         else if(Data.marked == false)
         {
-            Frame.style.borderColor = "#444";
+            Frame.style.borderBottomColor = "#444";
+            Frame.style.borderLeftColor = "#444";
+            Frame.style.borderRightColor = "#444";
         }
 
         innerTodo.append(Frame);
-        Frame.append(Delete);
-        Frame.append(Date);
+        Frame.append(deleteFrame);
+        deleteFrame.append(Date);
+        deleteFrame.append(Delete);
         Frame.append(Text);
     }
 
@@ -225,8 +232,8 @@ function Load()
 
         let Frame = document.createElement("div");
         let Delete = document.createElement("span");
+        let deleteFrame = document.createElement("div");
         let Text = document.createElement("p");
-        let Mark = document.createElement("span");
 
         Frame.className = "align-Right border-def margin-def align-right user-select-0";
         Frame.style.backgroundColor = "#222";
@@ -237,9 +244,12 @@ function Load()
         Delete.innerText = "X";
         Delete.setID = i;
         Delete.id = "recipe";
-        Delete.style.color = "#FF4500";
+        Delete.style.color = "#ccc";
         Delete.style.margin = "5px";
-        Delete.className = "align-right cursor user-select-0 font-size-med";
+        Delete.className = "align-right cursor user-select-0 font-size-big";
+
+        deleteFrame.style.backgroundColor = "#FF4500";
+        deleteFrame.style.margin = "0px";
 
         Text.innerText = Data.text || "no text..";
         Text.className = "align-left padding-def";
@@ -248,16 +258,20 @@ function Load()
 
         if(Data.marked == true)
         {
-            Frame.style.borderColor = "#579E1E";
+            Frame.style.borderBottomColor = "#FF4500";
+            Frame.style.borderLeftColor = "#FF4500";
+            Frame.style.borderRightColor = "#FF4500";
         }
         else if(Data.marked == false)
         {
-            Frame.style.borderColor = "#444";
+            Frame.style.borderBottomColor = "#444";
+            Frame.style.borderLeftColor = "#444";
+            Frame.style.borderRightColor = "#444";
         }
 
         innerRecipe.append(Frame);
-        Frame.append(Mark);
-        Frame.append(Delete);
+        Frame.append(deleteFrame);
+        deleteFrame.append(Delete);
         Frame.append(Text);
     }
 }
