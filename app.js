@@ -1,5 +1,5 @@
 /*
-	0.12
+	0.13
 */
 class STORAGE {
     constructor(dbName)
@@ -179,14 +179,18 @@ function Load()
         let Mark = document.createElement("span");
         let Text = document.createElement("p");
 
-        Frame.className = "align-Right border-def margin-def align-right";
+        Frame.className = "align-Right border-def margin-def align-right user-select-0";
         Frame.style.display = "inline-block";
         Frame.style.backgroundColor = "#222";
         Frame.style.color = "#ccc";
+        Frame.setID = i;
+        Frame.id = "markTodo";
 
         Date.innerText = Data.day + "." + Data.month + "." + currentDate.getFullYear();
         Date.style.marginRight = "2px";
         Date.className = "align-def padding-def";
+        Date.setID = i;
+        Date.id = "markTodo";
 
         Delete.innerText = "X";
         Delete.setID = i;
@@ -195,15 +199,10 @@ function Load()
         Delete.style.margin = "5px";
         Delete.className = "align-right cursor user-select-0 font-size-med";
 
-        Mark.innerText = "V";
-        Mark.setID = i;
-        Mark.id = "markTodo";
-        Mark.style.color = "#579E1E";
-        Mark.style.margin = "5px";
-        Mark.className = "align-right cursor user-select-0 font-size-med";
-
         Text.innerText = Data.text || "no text..";
         Text.className = "align-left padding-def";
+        Text.setID = i;
+        Text.id = "markTodo";
 
         if(Data.marked == true)
         {
@@ -215,7 +214,6 @@ function Load()
         }
 
         innerTodo.append(Frame);
-        Frame.append(Mark);
         Frame.append(Delete);
         Frame.append(Date);
         Frame.append(Text);
@@ -230,9 +228,11 @@ function Load()
         let Text = document.createElement("p");
         let Mark = document.createElement("span");
 
-        Frame.className = "align-Right border-def margin-def align-right";
+        Frame.className = "align-Right border-def margin-def align-right user-select-0";
         Frame.style.backgroundColor = "#222";
         Frame.style.color = "#ccc";
+        Frame.setID = i;
+        Frame.id = "markRecipe";
 
         Delete.innerText = "X";
         Delete.setID = i;
@@ -241,15 +241,10 @@ function Load()
         Delete.style.margin = "5px";
         Delete.className = "align-right cursor user-select-0 font-size-med";
 
-        Mark.innerText = "V";
-        Mark.setID = i;
-        Mark.id = "markRecipe";
-        Mark.style.color = "#579E1E";
-        Mark.style.margin = "5px";
-        Mark.className = "align-right cursor user-select-0 font-size-med";
-
         Text.innerText = Data.text || "no text..";
         Text.className = "align-left padding-def";
+        Text.setID = i;
+        Text.id = "markRecipe";
 
         if(Data.marked == true)
         {
