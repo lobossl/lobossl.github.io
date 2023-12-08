@@ -1,5 +1,5 @@
 /*
-	0.14
+	//1.0.0
 */
 
 a{
@@ -33,6 +33,10 @@ a{
 
 .flex-size-3{
 	flex:3;
+}
+
+.flex-size-auto{
+	flex:auto;
 }
 
 .flex-gap{
@@ -96,14 +100,27 @@ a{
 	border-radius:5px;
 }
 
+.border-left{
+	border-left:1px solid #ccc;
+}
+.border-right{
+	border-right:1px solid #ccc;
+}
+.border-bottom{
+	border-bottom:1px solid #ccc;
+}
+.border-top{
+	border-top:1px solid #ccc;
+}
 .border-def{
-	border:1px solid #444;
+	border:1px solid #ccc;
 }
 .border-0{
 	border:none;
 }
-.border-big{
-	border:3px solid #444;
+
+.resize-0{
+	resize: none;
 }
 
 .wrap{

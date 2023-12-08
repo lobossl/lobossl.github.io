@@ -2,85 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=0.14">
+    <link rel="stylesheet" href="design.css?version=1.0.0">
 </head>
-    <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#000; background-color: #FF4500;">
-        <div id="master" class="flex-def flex-wrap flex-gap" style="color:#ffffff; background-color: #222222;">
-            <div class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
-                <p><input type="text" id="todoText" class="padding-def outline-0 radius-def" style="background-color: #222; border:1px solid #FF4500; color:#fff;" placeholder="What do-do?"></p>
-                <p>
-                    <select id="day" class="outline-0 border-def font-size-med cursor">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
-                    <select id="month" class="outline-0 border-def font-size-med cursor">
-                        <option value="1">January</option>
-                        <option value="2">February</option>
-                        <option value="3">March</option>
-                        <option value="4">April</option>
-                        <option value="5">May</option>
-                        <option value="6">June</option>
-                        <option value="7">July</option>
-                        <option value="8">August</option>
-                        <option value="9">September</option>
-                        <option value="10">October</option>
-                        <option value="11">November</option>
-                        <option value="12">December</option>
-                    </select>
-                </p>
-                <p>
-                    <button id="addTodo" class="cursor padding-def font-size-def radius-def border-0 outline-0 margin-0 user-select-0" style="background-color: #111; color:#eee;">✎</button>
-                </p>
-                <div id="innerTodo" class="padding-def border-0 word-break align-def"></div>
-            </div>
-            <div class="margin-def align-def border-def padding-def flex-size-1 radius-def" style="background-color: #333;">
-                <p><textarea id="recipeText" class="padding-def outline-0 border-0 radius-def" style="resize:none; height:200px; width:75%; color:#fff; background-color: #222; border:1px solid #FF4500;" placeholder="Add notes.."></textarea></p>
-                <p>
-                    <button id="addRecipe" class="cursor padding-def font-size-def radius-def border-0 outline-0 margin-0 user-select-0" style="background-color: #111; color:#eee;">✎</button>
-                </p>
-                <div id="innerRecipe" class="padding-def border-0 word-break align-def"></div>
-            </div>
-        </div>
-        <div style="padding:15px;" class="user-select-0">
-            <p>Copyright &copy; <a style="color:#fff;" href="https://github.com/lobossl/todo">[github]</a></p>
-            <p>TheToDoList.eu</p>
-            <p id="backup" class="cursor" style="color:#fff;">Backup database</p>
-            <p>
-                <label for="restore" name="restore" style="color:#fff;">Restore database</label>
+    <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#eee; background-color: #000;">
+        <div class="padding-def align-def" style="color:#ccc; background-color:#6e1818; border-bottom:3px solid #eee;">
+            <h2>TheToDoList</h2>
+            <h3>Step 1</h3>
+            <p class="cursor" id="backup">Click here to create backup.</p>
+            <h3>Step 2</h3>
+            <p id="restore">
+                <label for="restore">Restore your file.</label>
                 <input type="file" id="restore" accept="*.json">
             </p>
         </div>
-        <script src="app.js?version=0.14"></script>
+        <p>
+            <input type="text" id="textTask" class="radius-def outline-0 padding-def border-0" style="background-color: #111; color:#eee;" placeholder="task..">
+            <button class="radius-def outline-0 padding-def border-0" id="addTask" style="background-color: #111; color:#eee;">Add task</button>
+        </p>
+        <div id="main"></div>
+        <div id="new"></div>
+        <p style="color:#555;" class="font-size-small">Simple To-Do List using localStorage</p>
+        <p style="color:#555;" class="font-size-small">Works on all browsers</p>
+        <p><a href="https://github.com/lobossl/todo" style="color:#555;" class="font-size-small">TheTodoList.eu - GitHub.com/lobossl</a></p>
+     <script src="app.js?version=1.0.0"></script>
     </body>
 </html>

@@ -1,66 +1,47 @@
 /*
-	0.14
+	//1.0.0
 */
+
 class STORAGE {
     constructor(dbName)
     {
-        this.dbName = dbName;
+        this.dbName = dbName
     }
 
     GET()
     {
-        let str = JSON.parse(localStorage.getItem(this.dbName)) || {todo: [],recipe: []};
+        let getItem = JSON.parse(localStorage.getItem(this.dbName) || "[]")
 
-        return str;
+        return getItem
     }
 
-    SAVE()
+    SAVE(data)
     {
-        let data = this.GET();
-
-        localStorage.setItem(this.dbName,JSON.stringify(data));
+        localStorage.setItem(this.dbName,JSON.stringify(data))
     }
 
-    SET(db,obj)
+    PUSH(obj)
     {
-        let data = this.GET();
+        let data = this.GET()
 
-        data[db].push(obj);
+        data.push(obj)
     
-        localStorage.setItem(this.dbName, JSON.stringify(data));
+        localStorage.setItem(this.dbName, JSON.stringify(data))
     }
 
-    DELETE(db,id)
+    DELETE(id,data)
     {
-        const data = this.GET();
+        data.splice(id,1)
 
-        data[db].splice(id,1);
-
-        localStorage.setItem(this.dbName, JSON.stringify(data));
-    }
-
-    MARK(db,id)
-    {
-        const data = this.GET();
-
-        if(data[db][id].marked == false)
-        {
-            data[db][id].marked = true;
-        }
-        else
-        {
-            data[db][id].marked = false;
-        }
-
-        localStorage.setItem(this.dbName, JSON.stringify(data));
+        localStorage.setItem(this.dbName, JSON.stringify(data))
     }
 
     BACKUP()
     {
-        const data = localStorage.getItem(this.dbName);
+        let Data = localStorage.getItem(this.dbName);
   
-        const blob = new Blob([data], { type: 'application/octet-stream' });
-        const url = window.URL.createObjectURL(blob);
+        let blob = new Blob([Data], { type: 'application/octet-stream' });
+        let url = window.URL.createObjectURL(blob);
         let link = document.createElement("a");
       
         link.href = url;
@@ -75,205 +56,198 @@ class STORAGE {
     }
 }
 
-const myStorage = new STORAGE("main");
+let localStorageClass = new STORAGE("test");
 
-let todoText = document.getElementById("todoText");
-let recipeText = document.getElementById("recipeText");
-let addTodo = document.getElementById("addTodo");
-let addRecipe = document.getElementById("addRecipe");
-let innerTodo = document.getElementById("innerTodo");
-let innerRecipe = document.getElementById("innerRecipe");
-let day = document.getElementById("day");
-let month = document.getElementById("month");
-let restore = document.getElementById("restore");
-let backup = document.getElementById("backup");
-
-restore.addEventListener("change",(e) =>
+function restoreData(e)
 {
-    let selectedFile = e.target.files[0];
+    let selectedFile = e.target.files[0]
 
     if(selectedFile)
     {
-        const reader = new FileReader();
+        const reader = new FileReader()
 
         reader.onload = function(event) {
-            let data = event.target.result;
+            let data = event.target.result
 
-            localStorage.setItem("main",data);
-            Load();
-            alert("json data was restored..");
+            localStorageClass.SAVE(JSON.parse(data))
         }
 
         reader.readAsText(selectedFile);
     }
-});
+}
 
-backup.addEventListener("click",(e) =>
+function addNewTask(value)
 {
-    myStorage.BACKUP();
-});
+    localStorageClass.PUSH({
+        text: value,
+        note: "",
+        ident: null
+    })
 
-addTodo.addEventListener("click",(e) => {
-    myStorage.SET("todo",{
-        text: todoText.value,
-        day: day.value,
-        month: month.value,
-        marked: false
-    });
+    document.getElementById("textTask").value = ""
+}
 
-    todoText.value = ""; //
-    Load();
-});
-
-addRecipe.addEventListener("click",(e) => {
-    myStorage.SET("recipe",{
-        text: recipeText.value,
-        marked: false
-    });
-
-    recipeText.value = ""; //
-    Load();
-});
-
-document.addEventListener("click",(e) =>
+function openNoteWindow(ident,id)
 {
-    if(e.target.id == "todo")
-    {
-        myStorage.DELETE("todo",e.target.setID);
-        Load();
-    }
+    let createNoteDiv = document.createElement("div")
+    let createTextArea = document.createElement("textarea")
+    let createSaveBtn = document.createElement("button")
+    let createCloseBtn = document.createElement("button")
 
-    if(e.target.id == "recipe")
-    {
-        console.log("clicked");
-        myStorage.DELETE("recipe",e.target.setID);
-        Load();
-    }
+    createCloseBtn.id = "closeBtn"
+    createCloseBtn.innerText = "Close"
 
-    if(e.target.id === "markTodo")
-    {
-        myStorage.MARK("todo",e.target.setID);
-        Load();
-    }
+    createSaveBtn.id = "saveNote"
+    createSaveBtn.innerText = "Save"
 
-    if(e.target.id === "markRecipe")
-    {
-        myStorage.MARK("recipe",e.target.setID);
-        Load();
-    }
-})
+    createTextArea.value = localStorageClass.GET()[ident].note
+    createTextArea.className = "margin-0 padding-0 border-0 outline-0 resize-0 font-size-med"
+    createTextArea.style.width = "100%"
+    createTextArea.style.height = "50vh"
+    createTextArea.style.backgroundColor = "#6e1818"
+    createTextArea.style.color = "#eee"
+    createTextArea.style.padding = "1px"
+    createTextArea.placeholder = "Notes.."
 
-function Load()
+    createNoteDiv.className = "border-0"
+    createNoteDiv.style.padding = "5px"
+    createNoteDiv.style.position = "absolute"
+    createNoteDiv.style.top = "1px"
+    createNoteDiv.style.left = "1px"
+    createNoteDiv.style.right = "1px"
+    createNoteDiv.style.height = "300px"
+    createNoteDiv.style.backgroundColor = "#222"
+
+    createNoteDiv.append(createTextArea)
+    createNoteDiv.append(createSaveBtn)
+    createNoteDiv.append(createCloseBtn)
+
+    document.getElementById("new").append(createNoteDiv)
+
+    createSaveBtn.addEventListener("click",(e) =>
+    {
+        saveNote(createTextArea.value,ident)
+    })
+}
+
+function saveNote(value,ident)
 {
-    let currentDate = new Date();
+    document.getElementById("new").innerText = ""
 
-    innerTodo.innerText = "";
-    innerRecipe.innerText = "";
+    let Data = localStorageClass.GET()
 
-    for(let i = 0; i < myStorage.GET().todo.length; i ++)
+    Data[ident].note = value
+
+    localStorageClass.SAVE(Data)
+}
+
+function onLoadPage()
+{
+    document.getElementById("main").innerText = ""
+
+    let storageGetData = localStorageClass.GET()
+
+    for(let i = 0;i < storageGetData.length;i++)
     {
-        let Data = myStorage.GET().todo[i];
+        let mainDiv = document.createElement("div")
+        let iconDiv = document.createElement("div")
+        let noteIcon = document.createElement("span")
+        let deleteIcon = document.createElement("span")
+        let textDiv = document.createElement("div")
 
-        let Frame = document.createElement("div");
-        let Date = document.createElement("span");
-        let Delete = document.createElement("span");
-        let deleteFrame = document.createElement("div");
-        let Text = document.createElement("p");
+        mainDiv.className = "border-0 margin-def radius-def"
+        mainDiv.style.backgroundColor = "#6e1818"
+        mainDiv.style.display = "inline-block"
 
-        Frame.className = "align-Right border-def margin-def align-right user-select-0";
-        Frame.style.display = "inline-block";
-        Frame.style.backgroundColor = "#222";
-        Frame.style.color = "#ccc";
-        Frame.setID = i;
-        Frame.id = "markTodo";
+        noteIcon.innerText = "..."
+        noteIcon.className = "cursor"
+        noteIcon.id = "noteIcon"
+        noteIcon.ident = i
+        noteIcon.style.marginRight = "15px"
 
-        Date.innerText = Data.day + "." + Data.month + "." + currentDate.getFullYear();
-        Date.style.marginRight = "2px";
-        Date.className = "align-def padding-def";
+        deleteIcon.innerText = "X"
+        deleteIcon.className = "cursor"
+        deleteIcon.id = "deleteIcon"
+        deleteIcon.ident = i
+        deleteIcon.style.marginRight = "10px"
 
-        Delete.innerText = "X";
-        Delete.setID = i;
-        Delete.id = "todo";
-        Delete.style.color = "#ccc";
-        Delete.style.margin = "5px";
-        Delete.className = "align-right cursor user-select-0 font-size-big";
+        textDiv.innerText = storageGetData[i].text || "//no text added"
+        textDiv.className = "padding-def align-left word-break"
+        textDiv.style.color = "#fff"
 
-        deleteFrame.style.backgroundColor = "#FF4500";
-        deleteFrame.style.margin = "0px";
+        iconDiv.className = "align-right"
+        iconDiv.style.padding = "2px"
+        iconDiv.style.backgroundColor = "#611111"
+        iconDiv.style.color = "#fff"
 
-        Text.innerText = Data.text || "no text..";
-        Text.className = "align-left padding-def";
-        Text.setID = i;
-        Text.id = "markTodo";
+        mainDiv.append(iconDiv)
+        iconDiv.append(noteIcon)
+        iconDiv.append(deleteIcon)
+        mainDiv.append(textDiv)
 
-        if(Data.marked == true)
-        {
-            Frame.style.borderBottomColor = "#FF4500";
-            Frame.style.borderLeftColor = "#FF4500";
-            Frame.style.borderRightColor = "#FF4500";
-        }
-        else if(Data.marked == false)
-        {
-            Frame.style.borderBottomColor = "#444";
-            Frame.style.borderLeftColor = "#444";
-            Frame.style.borderRightColor = "#444";
-        }
-
-        innerTodo.append(Frame);
-        Frame.append(deleteFrame);
-        deleteFrame.append(Date);
-        deleteFrame.append(Delete);
-        Frame.append(Text);
-    }
-
-    for(let i = 0; i < myStorage.GET().recipe.length; i ++)
-    {
-        let Data = myStorage.GET().recipe[i];
-
-        let Frame = document.createElement("div");
-        let Delete = document.createElement("span");
-        let deleteFrame = document.createElement("div");
-        let Text = document.createElement("p");
-
-        Frame.className = "align-Right border-def margin-def align-right user-select-0";
-        Frame.style.backgroundColor = "#222";
-        Frame.style.color = "#ccc";
-        Frame.setID = i;
-        Frame.id = "markRecipe";
-
-        Delete.innerText = "X";
-        Delete.setID = i;
-        Delete.id = "recipe";
-        Delete.style.color = "#ccc";
-        Delete.style.margin = "5px";
-        Delete.className = "align-right cursor user-select-0 font-size-big";
-
-        deleteFrame.style.backgroundColor = "#FF4500";
-        deleteFrame.style.margin = "0px";
-
-        Text.innerText = Data.text || "no text..";
-        Text.className = "align-left padding-def";
-        Text.setID = i;
-        Text.id = "markRecipe";
-
-        if(Data.marked == true)
-        {
-            Frame.style.borderBottomColor = "#FF4500";
-            Frame.style.borderLeftColor = "#FF4500";
-            Frame.style.borderRightColor = "#FF4500";
-        }
-        else if(Data.marked == false)
-        {
-            Frame.style.borderBottomColor = "#444";
-            Frame.style.borderLeftColor = "#444";
-            Frame.style.borderRightColor = "#444";
-        }
-
-        innerRecipe.append(Frame);
-        Frame.append(deleteFrame);
-        deleteFrame.append(Delete);
-        Frame.append(Text);
+        document.getElementById("main").append(mainDiv)
     }
 }
 
-Load();
+function deleteTask(ident)
+{
+    let Data = localStorageClass.GET()
+
+    Data.splice(ident,1)
+
+    localStorageClass.SAVE(Data)
+}
+
+function closeNoteWindow()
+{
+    document.getElementById("new").innerText = ""
+}
+
+document.getElementById("addTask").addEventListener("click",(e) =>
+{
+    addNewTask(document.getElementById("textTask").value)
+
+    onLoadPage()
+})
+
+document.getElementById("restore").addEventListener("change",(e) =>
+{
+    restoreData(e)
+
+    document.getElementById("main").innerText = "LOADING.."
+
+    setTimeout(() =>
+    {
+        onLoadPage()
+    },3000)
+})
+
+document.addEventListener("click",(e) =>
+{
+    if(e.target.id == "backup")
+    {
+        localStorageClass.BACKUP()
+    }
+
+    if(e.target.id == "closeBtn")
+    {
+        closeNoteWindow()
+    }
+
+    if(e.target.id === "deleteIcon")
+    {
+        deleteTask(e.target.ident)
+
+        onLoadPage()
+    }
+
+    if(e.target.id === "noteIcon")
+    {
+        openNoteWindow(e.target.ident,e.target.id)
+    }
+})
+
+document.addEventListener("DOMContentLoaded",() =>
+{
+    onLoadPage()
+})
