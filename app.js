@@ -1,5 +1,5 @@
 /*
-	//1.0.1
+	//1.0.2
 */
 
 class STORAGE {
@@ -203,6 +203,13 @@ function closeNoteWindow()
     document.getElementById("new").innerText = ""
 }
 
+function forceHTTPS()
+{
+    if(location.protocol !== "https:")
+    {
+        location.protocol = "https:"
+    }
+}
 document.getElementById("addTask").addEventListener("click",(e) =>
 {
     addNewTask(document.getElementById("textTask").value)
@@ -249,5 +256,7 @@ document.addEventListener("click",(e) =>
 
 document.addEventListener("DOMContentLoaded",() =>
 {
+    forceHTTPS()
+
     onLoadPage()
 })
