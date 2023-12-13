@@ -1,5 +1,5 @@
 /*
-	//1.0.2
+	//1.0.3
 */
 
 class STORAGE {
@@ -87,12 +87,13 @@ function addNewTask(value)
     document.getElementById("textTask").value = ""
 }
 
-function openNoteWindow(ident,id)
+function openNoteWindow(ident)
 {
     let createNoteDiv = document.createElement("div")
     let createTextArea = document.createElement("textarea")
     let createSaveBtn = document.createElement("button")
     let createCloseBtn = document.createElement("button")
+    let space = document.createElement("p")
 
     createCloseBtn.id = "closeBtn"
     createCloseBtn.innerText = "Close"
@@ -102,25 +103,25 @@ function openNoteWindow(ident,id)
 
     createTextArea.value = localStorageClass.GET()[ident].note
     createTextArea.className = "margin-0 padding-0 border-0 outline-0 resize-0 font-size-med"
-    createTextArea.style.width = "100%"
-    createTextArea.style.height = "50vh"
-    createTextArea.style.backgroundColor = "#6e1818"
+    createTextArea.style.width = "50%"
+    createTextArea.style.height = "50%"
+    createTextArea.style.backgroundColor = "#333"
     createTextArea.style.color = "#eee"
     createTextArea.style.padding = "1px"
-    createTextArea.placeholder = "Notes.."
+    createTextArea.placeholder = "text.."
 
-    createNoteDiv.className = "border-0"
-    createNoteDiv.style.padding = "5px"
+    createNoteDiv.className = "border-0 padding-0"
     createNoteDiv.style.position = "absolute"
-    createNoteDiv.style.top = "1px"
-    createNoteDiv.style.left = "1px"
-    createNoteDiv.style.right = "1px"
-    createNoteDiv.style.height = "300px"
+    createNoteDiv.style.top = "0px"
+    createNoteDiv.style.left = "0px"
+    createNoteDiv.style.right = "0px"
+    createNoteDiv.style.height = "100%"
     createNoteDiv.style.backgroundColor = "#222"
 
     createNoteDiv.append(createTextArea)
-    createNoteDiv.append(createSaveBtn)
-    createNoteDiv.append(createCloseBtn)
+    createNoteDiv.append(space)
+    space.append(createSaveBtn)
+    space.append(createCloseBtn)
 
     document.getElementById("new").append(createNoteDiv)
 
