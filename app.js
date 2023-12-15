@@ -1,5 +1,5 @@
 /*
-	//1.0.5
+	//1.0.6
 */
 
 class STORAGE {
@@ -105,7 +105,7 @@ function openNoteWindow(ident)
     createTextArea.className = "margin-0 padding-def border-def outline-0 resize-0 font-size-med"
     createTextArea.style.width = "90%"
     createTextArea.style.height = "90%"
-    createTextArea.style.backgroundColor = "#222"
+    createTextArea.style.backgroundColor = "#181515"
     createTextArea.style.color = "#eee"
     createTextArea.style.padding = "1px"
     createTextArea.placeholder = "text.."
@@ -116,7 +116,7 @@ function openNoteWindow(ident)
     createNoteDiv.style.left = "15px"
     createNoteDiv.style.right = "15px"
     createNoteDiv.style.bottom = "15px"
-    createNoteDiv.style.backgroundColor = "#111"
+    createNoteDiv.style.backgroundColor = "#000000"
 
     createNoteDiv.append(createTextArea)
     createNoteDiv.append(space)
@@ -156,9 +156,8 @@ function onLoadPage()
         let deleteIcon = document.createElement("span")
         let textDiv = document.createElement("div")
 
-        mainDiv.className = "border-def margin-def flex-size-auto"
+        mainDiv.className = "user-select-0 border-def margin-def flex-size-auto"
         mainDiv.style.backgroundColor = "#181515"
-        mainDiv.style.height = "150px"
         mainDiv.style.minWidth = "150px"
 
         noteIcon.innerText = "edit"
@@ -174,7 +173,7 @@ function onLoadPage()
         deleteIcon.style.marginRight = "10px"
 
         textDiv.innerText = storageGetData[i].text || "//no text added"
-        textDiv.className = "padding-def align-center word-break font-size-med"
+        textDiv.className = "padding-def align-center word-break font-size-def"
         textDiv.style.color = "#eee"
 
         iconDiv.className = "align-right"
@@ -257,7 +256,7 @@ document.addEventListener("click",(e) =>
 
 document.addEventListener("DOMContentLoaded",() =>
 {
-    forceHTTPS()
+    //forceHTTPS()
 
     onLoadPage()
 })

@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=1.0.5">
+    <link rel="stylesheet" href="design.css?version=1.0.6">
 </head>
-    <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#eee; background-color: #111;">
+    <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#eee; background-color: #222222;">
         <div class="">
-            <details class="padding-def" style="font-size: 32px; background-color: #333;">
+            <details class="padding-def" style="font-size: 32px; background-color: #000000;">
                 <summary></summary>
                   <p id="backup" class="hover cursor">Backup</p>
                   <p class="hover"><input type="file" id="restore" accept="*.json"></p>
               </details>
         </div>
-        <p><input type="text" maxlength="75" id="textTask" class="radius-def outline-0 padding-def border-def" style="background-color: #181515; color:#eee;" placeholder="title.."></p>
-        <p><button class="radius-def outline-0 padding-def border-def" id="addTask" style="background-color: #181515; color:#eee;">Add task</button></p>
+        <p><input type="text" maxlength="200" id="textTask" class="font-size-med radius-def outline-0 padding-def border-def" style="width:50%; background-color: #181515; color:#eee;" placeholder="title.."></p>
+        <p><button class="font-size-med hover radius-def outline-0 padding-def border-0" id="addTask" style="background-color: #ccc;">Add task</button></p>
         <div id="main" class="flex-def flex-wrap flex-gap"></div>
         <div id="new"></div>
         <p><a href="https://github.com/lobossl/todo" style="color:#555;" class="font-size-small">TheTodoList.eu</a></p>
-     <script src="app.js?version=1.0.5"></script>
+     <script src="app.js?version=1.0.6"></script>
     </body>
 </html>
