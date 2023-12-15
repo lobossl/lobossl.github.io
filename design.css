@@ -1,5 +1,5 @@
 /*
-	//1.0.3
+	//1.0.5
 */
 
 a{
@@ -101,19 +101,19 @@ a{
 }
 
 .border-left{
-	border-left:1px solid #ccc;
+	border-left:1px solid #333;
 }
 .border-right{
-	border-right:1px solid #ccc;
+	border-right:1px solid #333;
 }
 .border-bottom{
-	border-bottom:1px solid #ccc;
+	border-bottom:1px solid #333;
 }
 .border-top{
-	border-top:1px solid #ccc;
+	border-top:1px solid #333;
 }
 .border-def{
-	border:1px solid #ccc;
+	border:1px solid #333;
 }
 .border-0{
 	border:none;
@@ -161,8 +161,12 @@ a{
 ::placeholder{
 	color: #ccc;
 	opacity: 1;
-  }
+}
   
-  ::-ms-input-placeholder{
+::-ms-input-placeholder{
 	color: #ccc;
-  }
+}
+
+.hover:hover{
+	color: #ec6206;
+}

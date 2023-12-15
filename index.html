@@ -4,26 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=1.0.3">
+    <link rel="stylesheet" href="design.css?version=1.0.5">
 </head>
-    <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#eee; background-color: #000;">
-        <div class="padding-def align-def" style="color:#ccc; background-color:#6e1818; border-bottom:3px solid #eee;">
-            <h2>TheToDoList</h2>
-            <h3>Step 1</h3>
-            <span class="cursor" id="backup">Click here to create backup.</span>
-            <h3>Step 2</h3>
-            <p id="restore">
-                <label for="restore">Restore your file.</label>
-                <input type="file" id="restore" accept="*.json">
-            </p>
+    <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#eee; background-color: #111;">
+        <div class="">
+            <details class="padding-def" style="font-size: 32px; background-color: #333;">
+                <summary></summary>
+                  <p id="backup" class="hover cursor">Backup</p>
+                  <p class="hover"><input type="file" id="restore" accept="*.json"></p>
+              </details>
         </div>
-        <p>
-            <input type="text" id="textTask" class="radius-def outline-0 padding-def border-0" style="background-color: #111; color:#eee;" placeholder="text..">
-            <button class="radius-def outline-0 padding-def border-0" id="addTask" style="background-color: #111; color:#eee;">Add task</button>
-        </p>
-        <div id="main"></div>
+        <p><input type="text" maxlength="75" id="textTask" class="radius-def outline-0 padding-def border-def" style="background-color: #181515; color:#eee;" placeholder="title.."></p>
+        <p><button class="radius-def outline-0 padding-def border-def" id="addTask" style="background-color: #181515; color:#eee;">Add task</button></p>
+        <div id="main" class="flex-def flex-wrap flex-gap"></div>
         <div id="new"></div>
         <p><a href="https://github.com/lobossl/todo" style="color:#555;" class="font-size-small">TheTodoList.eu</a></p>
-     <script src="app.js?version=1.0.3"></script>
+     <script src="app.js?version=1.0.5"></script>
     </body>
 </html>

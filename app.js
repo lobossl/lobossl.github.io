@@ -1,5 +1,5 @@
 /*
-	//1.0.3
+	//1.0.5
 */
 
 class STORAGE {
@@ -102,21 +102,21 @@ function openNoteWindow(ident)
     createSaveBtn.innerText = "Save"
 
     createTextArea.value = localStorageClass.GET()[ident].note
-    createTextArea.className = "margin-0 padding-0 border-0 outline-0 resize-0 font-size-med"
-    createTextArea.style.width = "50%"
-    createTextArea.style.height = "50%"
-    createTextArea.style.backgroundColor = "#333"
+    createTextArea.className = "margin-0 padding-def border-def outline-0 resize-0 font-size-med"
+    createTextArea.style.width = "90%"
+    createTextArea.style.height = "90%"
+    createTextArea.style.backgroundColor = "#222"
     createTextArea.style.color = "#eee"
     createTextArea.style.padding = "1px"
     createTextArea.placeholder = "text.."
 
-    createNoteDiv.className = "border-0 padding-0"
+    createNoteDiv.className = "border-def padding-def"
     createNoteDiv.style.position = "absolute"
-    createNoteDiv.style.top = "0px"
-    createNoteDiv.style.left = "0px"
-    createNoteDiv.style.right = "0px"
-    createNoteDiv.style.height = "100%"
-    createNoteDiv.style.backgroundColor = "#222"
+    createNoteDiv.style.top = "15px"
+    createNoteDiv.style.left = "15px"
+    createNoteDiv.style.right = "15px"
+    createNoteDiv.style.bottom = "15px"
+    createNoteDiv.style.backgroundColor = "#111"
 
     createNoteDiv.append(createTextArea)
     createNoteDiv.append(space)
@@ -148,7 +148,7 @@ function onLoadPage()
 
     let storageGetData = localStorageClass.GET()
 
-    for(let i = 0;i < storageGetData.length;i++)
+    for(let i = storageGetData.length - 1;i >= 0;i--)
     {
         let mainDiv = document.createElement("div")
         let iconDiv = document.createElement("div")
@@ -156,30 +156,30 @@ function onLoadPage()
         let deleteIcon = document.createElement("span")
         let textDiv = document.createElement("div")
 
-        mainDiv.className = "border-0 margin-def radius-def"
-        mainDiv.style.backgroundColor = "#6e1818"
-        mainDiv.style.display = "inline-block"
+        mainDiv.className = "border-def margin-def flex-size-auto"
+        mainDiv.style.backgroundColor = "#181515"
+        mainDiv.style.height = "150px"
+        mainDiv.style.minWidth = "150px"
 
-        noteIcon.innerText = "..."
-        noteIcon.className = "cursor"
+        noteIcon.innerText = "edit"
+        noteIcon.className = "hover cursor font-size-med"
         noteIcon.id = "noteIcon"
         noteIcon.ident = i
         noteIcon.style.marginRight = "15px"
 
         deleteIcon.innerText = "X"
-        deleteIcon.className = "cursor"
+        deleteIcon.className = "cursor hover font-size-med"
         deleteIcon.id = "deleteIcon"
         deleteIcon.ident = i
         deleteIcon.style.marginRight = "10px"
 
         textDiv.innerText = storageGetData[i].text || "//no text added"
-        textDiv.className = "padding-def align-left word-break"
-        textDiv.style.color = "#fff"
+        textDiv.className = "padding-def align-center word-break font-size-med"
+        textDiv.style.color = "#eee"
 
         iconDiv.className = "align-right"
         iconDiv.style.padding = "2px"
-        iconDiv.style.backgroundColor = "#611111"
-        iconDiv.style.color = "#fff"
+        iconDiv.style.backgroundColor = "#333"
 
         mainDiv.append(iconDiv)
         iconDiv.append(noteIcon)
