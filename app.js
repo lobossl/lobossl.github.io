@@ -1,5 +1,5 @@
 /*
-	//1.0.8
+	//1.0.9
 */
 
 class STORAGE {
@@ -102,12 +102,11 @@ function openNoteWindow(ident)
     createSaveBtn.innerText = "Save"
 
     createTextArea.innerHTML = localStorageClass.GET()[ident].note
-    createTextArea.className = "align-left margin-0 padding-def border-def outline-0 resize-0 font-size-big"
-    createTextArea.style.width = "95%"
-    createTextArea.style.height = "95%"
+    createTextArea.className = "align-left margin-0 padding-def border-def outline-0 resize-0 font-size-def"
+    createTextArea.style.height = "50%"
     createTextArea.style.backgroundColor = "#181515"
     createTextArea.style.color = "#eee"
-    createTextArea.style.padding = "15px"
+    createTextArea.style.padding = "5px"
     createTextArea.style.margin = "0 auto"
     createTextArea.placeholder = "text.."
     createTextArea.style.overflow = "auto"
@@ -115,10 +114,10 @@ function openNoteWindow(ident)
 
     createNoteDiv.className = "border-def padding-def"
     createNoteDiv.style.position = "absolute"
-    createNoteDiv.style.top = "15px"
-    createNoteDiv.style.left = "15px"
-    createNoteDiv.style.right = "15px"
-    createNoteDiv.style.bottom = "15px"
+    createNoteDiv.style.top = "5px"
+    createNoteDiv.style.left = "5px"
+    createNoteDiv.style.right = "5px"
+    createNoteDiv.style.bottom = "5px"
     createNoteDiv.style.backgroundColor = "#000000"
 
     createNoteDiv.append(createTextArea)
@@ -254,6 +253,7 @@ function forceHTTPS()
         location.protocol = "https:"
     }
 }
+
 document.getElementById("addTask").addEventListener("click",(e) =>
 {
     addNewTask(document.getElementById("textTask").value)
@@ -300,7 +300,7 @@ document.addEventListener("click",(e) =>
 
 document.addEventListener("DOMContentLoaded",() =>
 {
-    forceHTTPS()
+    //forceHTTPS()
 
     onLoadPage()
 })
