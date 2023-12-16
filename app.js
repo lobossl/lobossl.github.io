@@ -1,5 +1,5 @@
 /*
-	//1.0.9
+	//1.0.10
 */
 
 class STORAGE {
@@ -140,40 +140,6 @@ function openNoteWindow(ident)
     })
 }
 
-function pasteImage(createTextArea,items)
-{
-    if(items)
-    {
-        for(let i=0;i<items.length;i++)
-        {
-            let blob = items[i].getAsFile()
-
-            /*
-            if(items[i].kind === "file")
-            {
-                var reader = new FileReader()
-
-                reader.readAsDataURL(blob)
-                
-                reader.onload = function (event)
-                {
-                    let image = new Image()
-                    image.src = event.target.result
-                    image.width = 300
-                    image.height = 300
-                    createTextArea.appendChild(image)
-                }
-            }
-            */
-        }
-    }
-}
-
-function saveBlob(value,ident,blob)
-{
-    console.log(value,ident,blob)
-}
-
 function saveNote(value,ident)
 {
     document.getElementById("new").innerHTML = ""
@@ -300,7 +266,7 @@ document.addEventListener("click",(e) =>
 
 document.addEventListener("DOMContentLoaded",() =>
 {
-    //forceHTTPS()
+    forceHTTPS()
 
     onLoadPage()
 })
