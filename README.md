@@ -1,9 +1,9 @@
 # THE TO DO LIST
 
 # https://thetodolist.eu/
+# https://lobossl.github.io
+# http://lobossl.github.io
 
-- A simple to-do-list in vanilla javascript!
-- Storing data to localStorage!
-- Works on all browsers!
-
-- LoboSSL
+- A simple To-Do-List in vanilla javascript
+- Using localStorage as database
+- Works on all browsers out there
