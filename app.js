@@ -1,5 +1,5 @@
 /*
-	//1.0.7
+	//1.0.8
 */
 
 class STORAGE {
@@ -90,7 +90,7 @@ function addNewTask(value)
 function openNoteWindow(ident)
 {
     let createNoteDiv = document.createElement("div")
-    let createTextArea = document.createElement("textarea")
+    let createTextArea = document.createElement("p")
     let createSaveBtn = document.createElement("button")
     let createCloseBtn = document.createElement("button")
     let space = document.createElement("p")
@@ -101,14 +101,17 @@ function openNoteWindow(ident)
     createSaveBtn.id = "saveNote"
     createSaveBtn.innerText = "Save"
 
-    createTextArea.value = localStorageClass.GET()[ident].note
-    createTextArea.className = "margin-0 padding-def border-def outline-0 resize-0 font-size-med"
-    createTextArea.style.width = "90%"
-    createTextArea.style.height = "90%"
+    createTextArea.innerHTML = localStorageClass.GET()[ident].note
+    createTextArea.className = "align-left margin-0 padding-def border-def outline-0 resize-0 font-size-big"
+    createTextArea.style.width = "95%"
+    createTextArea.style.height = "95%"
     createTextArea.style.backgroundColor = "#181515"
     createTextArea.style.color = "#eee"
-    createTextArea.style.padding = "1px"
+    createTextArea.style.padding = "15px"
+    createTextArea.style.margin = "0 auto"
     createTextArea.placeholder = "text.."
+    createTextArea.style.overflow = "auto"
+    createTextArea.contentEditable = true
 
     createNoteDiv.className = "border-def padding-def"
     createNoteDiv.style.position = "absolute"
@@ -125,15 +128,56 @@ function openNoteWindow(ident)
 
     document.getElementById("new").append(createNoteDiv)
 
-    createSaveBtn.addEventListener("click",(e) =>
+    createSaveBtn.addEventListener("click",() =>
     {
-        saveNote(createTextArea.value,ident)
+        saveNote(createTextArea.innerHTML,ident)
     })
+
+    createTextArea.addEventListener("paste",(paste) =>
+    {
+        let items = paste.clipboardData.items
+
+        pasteImage(createTextArea,items,ident)
+    })
+}
+
+function pasteImage(createTextArea,items)
+{
+    if(items)
+    {
+        for(let i=0;i<items.length;i++)
+        {
+            let blob = items[i].getAsFile()
+
+            /*
+            if(items[i].kind === "file")
+            {
+                var reader = new FileReader()
+
+                reader.readAsDataURL(blob)
+                
+                reader.onload = function (event)
+                {
+                    let image = new Image()
+                    image.src = event.target.result
+                    image.width = 300
+                    image.height = 300
+                    createTextArea.appendChild(image)
+                }
+            }
+            */
+        }
+    }
+}
+
+function saveBlob(value,ident,blob)
+{
+    console.log(value,ident,blob)
 }
 
 function saveNote(value,ident)
 {
-    document.getElementById("new").innerText = ""
+    document.getElementById("new").innerHTML = ""
 
     let Data = localStorageClass.GET()
 
