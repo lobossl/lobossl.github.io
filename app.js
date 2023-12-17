@@ -1,5 +1,5 @@
 /*
-	//1.0.10
+	//1.0.11
 */
 
 class STORAGE {
@@ -89,6 +89,8 @@ function addNewTask(value)
 
 function openNoteWindow(ident)
 {
+    document.getElementById("main").innerText = ""
+
     let createNoteDiv = document.createElement("div")
     let createTextArea = document.createElement("p")
     let createSaveBtn = document.createElement("button")
@@ -149,6 +151,8 @@ function saveNote(value,ident)
     Data[ident].note = value
 
     localStorageClass.SAVE(Data)
+
+    onLoadPage()
 }
 
 function onLoadPage()
@@ -165,9 +169,10 @@ function onLoadPage()
         let deleteIcon = document.createElement("span")
         let textDiv = document.createElement("div")
 
-        mainDiv.className = "user-select-0 border-def margin-def flex-size-auto"
-        mainDiv.style.backgroundColor = "#181515"
+        mainDiv.className = "user-select-0 flex-size-auto"
+        mainDiv.style.backgroundColor = "#222"
         mainDiv.style.minWidth = "150px"
+        mainDiv.style.border = "6px solid #eee"
 
         noteIcon.innerText = "edit"
         noteIcon.className = "hover cursor font-size-med"
@@ -183,11 +188,12 @@ function onLoadPage()
 
         textDiv.innerText = storageGetData[i].text || "//no text added"
         textDiv.className = "padding-def align-center word-break font-size-def"
-        textDiv.style.color = "#eee"
+        textDiv.style.color = "#fff"
 
         iconDiv.className = "align-right"
         iconDiv.style.padding = "2px"
         iconDiv.style.backgroundColor = "#333"
+        iconDiv.style.color = "#fff"
 
         mainDiv.append(iconDiv)
         iconDiv.append(noteIcon)
@@ -210,6 +216,7 @@ function deleteTask(ident)
 function closeNoteWindow()
 {
     document.getElementById("new").innerText = ""
+    onLoadPage()
 }
 
 function forceHTTPS()
