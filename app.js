@@ -1,5 +1,5 @@
 /*
-	//1.0.12
+	//1.0.13
 */
 
 class STORAGE {
@@ -105,7 +105,7 @@ function openNoteWindow(ident)
 
     createTextArea.innerHTML = localStorageClass.GET()[ident].note
     createTextArea.className = "align-left margin-0 padding-def border-def outline-0 resize-0 font-size-def"
-    createTextArea.style.height = "50%"
+    createTextArea.style.height = "75%"
     createTextArea.style.backgroundColor = "#181515"
     createTextArea.style.color = "#eee"
     createTextArea.style.padding = "5px"
@@ -116,10 +116,10 @@ function openNoteWindow(ident)
 
     createNoteDiv.className = "border-def padding-def"
     createNoteDiv.style.position = "absolute"
-    createNoteDiv.style.top = "5px"
-    createNoteDiv.style.left = "5px"
-    createNoteDiv.style.right = "5px"
-    createNoteDiv.style.bottom = "5px"
+    createNoteDiv.style.top = "0px"
+    createNoteDiv.style.left = "0px"
+    createNoteDiv.style.right = "0px"
+    createNoteDiv.style.bottom = "0px"
     createNoteDiv.style.backgroundColor = "#000000"
 
     createNoteDiv.append(createTextArea)
@@ -272,7 +272,7 @@ document.addEventListener("click",(e) =>
 
 document.addEventListener("DOMContentLoaded",() =>
 {
-    //forceHTTPS()
+    forceHTTPS()
 
     onLoadPage()
 })
