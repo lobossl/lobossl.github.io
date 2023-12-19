@@ -1,5 +1,5 @@
 /*
-	//1.0.11
+	//1.0.12
 */
 
 class STORAGE {
@@ -169,10 +169,9 @@ function onLoadPage()
         let deleteIcon = document.createElement("span")
         let textDiv = document.createElement("div")
 
-        mainDiv.className = "user-select-0 flex-size-auto"
+        mainDiv.className = "user-select-0 flex-size-auto border-0 margin-def radius-def"
         mainDiv.style.backgroundColor = "#222"
         mainDiv.style.minWidth = "150px"
-        mainDiv.style.border = "6px solid #eee"
 
         noteIcon.innerText = "edit"
         noteIcon.className = "hover cursor font-size-med"
@@ -273,7 +272,7 @@ document.addEventListener("click",(e) =>
 
 document.addEventListener("DOMContentLoaded",() =>
 {
-    forceHTTPS()
+    //forceHTTPS()
 
     onLoadPage()
 })

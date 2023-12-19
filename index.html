@@ -4,21 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=1.0.11">
+    <link rel="stylesheet" href="design.css?version=1.0.12">
 </head>
     <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#eee; background-color: #eee;">
-        <div class="">
-            <details class="padding-def" style="font-size: 32px; background-color: #000000;">
-                <summary></summary>
+        <div>
+            <details class="padding-def" style="font-size: 32px; background-color: #000000; color:#333;">
+                <summary class="cursor">MENU</summary>
                   <p id="backup" class="hover cursor">Backup</p>
                   <p class="hover"><input type="file" id="restore" accept="*.json"></p>
               </details>
         </div>
-        <p><input type="text" maxlength="200" id="textTask" class="font-size-med radius-def outline-0 padding-def border-def" style="width:50%; background-color: #181515; color:#eee;" placeholder="title.."></p>
-        <p><button class="font-size-med hover radius-def outline-0 padding-def border-0" id="addTask" style="background-color: #ccc;">Add task</button></p>
+        <div class="padding-def" style="background-color: #333;">
+            <p><input type="text" maxlength="200" id="textTask" class="font-size-med radius-def outline-0 padding-def border-def" style="width:50%; background-color: #181515; color:#eee;" placeholder="title.."></p>
+            <p><button class="font-size-med hover radius-def outline-0 padding-def border-0" id="addTask" style="background-color: #ccc;">Add task</button></p>
+        </div>
         <div id="main" class="flex-def flex-wrap" style="background-color: #eee;"></div>
         <div id="new"></div>
         <p><a href="https://github.com/lobossl/todo" style="color:#555;" class="font-size-small">TheTodoList.eu</a></p>
-     <script src="app.js?version=1.0.11"></script>
+     <script src="app.js?version=1.0.12"></script>
     </body>
 </html>
