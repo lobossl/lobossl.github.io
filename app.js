@@ -1,5 +1,5 @@
 /*
-	//1.0.13
+	//1.0.14
 */
 
 class STORAGE {
@@ -78,13 +78,16 @@ function restoreData(e)
 
 function addNewTask(value)
 {
-    localStorageClass.PUSH({
-        text: value,
-        note: "",
-        ident: null
-    })
+    if(value.length > 0)
+    {
+        localStorageClass.PUSH({
+            text: value,
+            note: "",
+            ident: null
+        })
 
-    document.getElementById("textTask").value = ""
+        document.getElementById("textTask").value = ""
+    }
 }
 
 function openNoteWindow(ident)
@@ -174,20 +177,22 @@ function onLoadPage()
         mainDiv.style.minWidth = "150px"
 
         noteIcon.innerText = "edit"
-        noteIcon.className = "hover cursor font-size-med"
+        noteIcon.className = "cursor font-size-med"
         noteIcon.id = "noteIcon"
         noteIcon.ident = i
         noteIcon.style.marginRight = "15px"
+        noteIcon.style.color = "orange"
 
         deleteIcon.innerText = "X"
-        deleteIcon.className = "cursor hover font-size-med"
+        deleteIcon.className = "cursor font-size-med"
         deleteIcon.id = "deleteIcon"
         deleteIcon.ident = i
         deleteIcon.style.marginRight = "10px"
+        deleteIcon.style.color = "#ff0000"
 
-        textDiv.innerText = storageGetData[i].text || "//no text added"
-        textDiv.className = "padding-def align-center word-break font-size-def"
-        textDiv.style.color = "#fff"
+        textDiv.innerText = storageGetData[i].text
+        textDiv.className = "padding-def align-center word-break font-size-med bold-def"
+        textDiv.style.color = "#cccccc"
 
         iconDiv.className = "align-right"
         iconDiv.style.padding = "2px"
