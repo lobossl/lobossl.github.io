@@ -4,23 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simple To-Do List using localStorage - TheToDoList</title>
-    <link rel="stylesheet" href="design.css?version=1.0.15">
+    <link rel="stylesheet" href="design.css?version=1.0.16">
 </head>
     <body class="padding-0 margin-0 align-def font-size-def" style="font-family: 'Courier New', monospace; color:#333333; background-color: #8DA4B5;">
-        <div>
-            <details class="padding-def user-select-0" style="font-size: 24px; background-color: #000000; color:#333333;">
+        <div class="padding-def" style="background-color: #333333;">
+            <details class="padding-def user-select-0" style="color:#ffffff;">
                 <summary class="cursor"></summary>
                   <p id="backup" class="hover cursor user-select-0">Backup</p>
                   <p class="hover"><input type="file" id="restore" accept="*.json"></p>
-              </details>
-        </div>
-        <div class="padding-def" style="background-color: #333333;">
+            </details>
             <p><input type="text" maxlength="200" id="textTask" class="user-select-0 font-size-med radius-def outline-0 padding-def border-def" style="width:75%; background-color: #181515; color:#eee;" placeholder="title.."></p>
-            <p><button class="user-select-0 font-size-big radius-def outline-0 border-0 padding-def" id="addTask" style="width:100px; background-color: #444; color:#666;">Add</button></p>
+            <p><button class="user-select-0 font-size-def radius-def outline-0 border-0 padding-def bold-def" id="addTask" style="background-color: #444; color:#ffffff;">Add</button></p>
         </div>
         <div id="main" class="flex-def flex-wrap" style="background-color: #8DA4B5;"></div>
         <div id="new"></div>
-        <p><a href="https://github.com/lobossl/todo" style="color:#555;" class="font-size-small">TheTodoList.eu</a></p>
-     <script src="app.js?version=1.0.15"></script>
+        <p><a href="https://github.com/lobossl/todo" style="color:#ffffff;" class="font-size-small">TheTodoList.eu</a></p>
+     <script src="app.js?version=1.0.16"></script>
     </body>
 </html>
