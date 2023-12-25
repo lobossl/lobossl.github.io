@@ -1,5 +1,5 @@
 /*
-	//1.0.14
+	//1.0.15
 */
 
 class STORAGE {
@@ -136,13 +136,6 @@ function openNoteWindow(ident)
     {
         saveNote(createTextArea.innerHTML,ident)
     })
-
-    createTextArea.addEventListener("paste",(paste) =>
-    {
-        let items = paste.clipboardData.items
-
-        pasteImage(createTextArea,items,ident)
-    })
 }
 
 function saveNote(value,ident)
@@ -278,6 +271,5 @@ document.addEventListener("click",(e) =>
 document.addEventListener("DOMContentLoaded",() =>
 {
     forceHTTPS()
-
     onLoadPage()
 })
