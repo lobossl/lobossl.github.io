@@ -5,33 +5,40 @@ const pause = document.getElementById("pause")
 const resume = document.getElementById("resume")
 const player = document.getElementById("player")
 const stat = document.getElementById("status")
+const timer = document.getElementById("timer")
 
 //SETTINGS
 let stream = null
 let chunks = []
 let recorder = null
+let counter = 0
+let counterActive = false
+let secure = true
 
 // START
 start.addEventListener("click", async () =>
 {
     try
     {
-        //reset
-        chunks = []
-        player.innerText = ""
-
-        stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-
-        recorder = new MediaRecorder(stream)
-
-        recorder.ondataavailable = (event) =>
+        if(secure)
         {
-            chunks.push(event.data)
+            stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+    
+            recorder = new MediaRecorder(stream)
+    
+            recorder.ondataavailable = (event) =>
+            {
+                chunks.push(event.data)
+            }
+    
+            recorder.start()
+            secure = false
+            counterActive = true
+            chunks = []
+            player.innerText = ""
+            stat.innerText = "Started"
+            stat.style.color = "green"
         }
-
-        recorder.start()
-        stat.innerText = "Started"
-        stat.style.color = "green"
     }
     catch(err)
     {
@@ -45,6 +52,9 @@ stop.addEventListener("click", async () =>
     try
     {
         recorder.stop()
+        secure = true
+        counter = 0
+        counterActive = false
         stat.innerText = "Stopped"
         stat.style.color = "red"
 
@@ -79,6 +89,7 @@ pause.addEventListener("click", async () =>
     try
     {
         recorder.pause()
+        counterActive = false
         stat.innerText = "Paused"
         stat.style.color = "orange"
     }
@@ -94,6 +105,7 @@ resume.addEventListener("click", async () =>
     try
     {
         recorder.resume()
+        counterActive = true
         stat.innerText = "Resumed"
         stat.style.color = "green"
     }
@@ -102,3 +114,12 @@ resume.addEventListener("click", async () =>
         return false
     }
 })
+
+setInterval(() =>
+{
+    if(counterActive)
+    {
+        timer.innerText = "Live for " + counter + " second(s)."
+        counter++
+    }
+},1000)
