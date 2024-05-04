@@ -3,17 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lobo Audio Recorder - LAR</title>
+    <title>LR - Lobo Recorder - Perfect for Podcast</title>
 </head>
-<body style="text-align:center;margin:0 auto;background-color: #222222;color:#eeeeee;font-weight:900;">
-    <h3 style="color:#666666;">Lobo Audio Recorder</h3>
-    <div style="display:inline-block;">
-        <button id="start" style="margin:6px;font-size:2em;padding:6px;background-color: #111111;outline:none;border:3px solid green;color:green;">START</button>
-        <button id="stop" style="margin:6px;font-size:2em;padding:6px;background-color: #111111;outline:none;border:3px solid red;color:red;">STOP</button>
-    </div>
-    <div id="status" style="font-size:2em;">--</div>
-    <div id="counter" style="font-size:2em;">00:00</div>
-      <pre>LAR v1.12</pre>
-    <script src="app.js?v=1.12"></script>
+<body style="margin:0 auto;text-align: center;">
+    <h3>Lobo Recorder</h3>
+    <p><button id="start">start</button><button id="stop">stop</button><button id="pause">pause</button><button id="resume">resume</button></p>
+    <div id="status">Idle</div>
+    <figure id="player"></figure>
+    <script src="app.js?v2.0"></script>
 </body>
 </html>

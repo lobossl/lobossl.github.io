@@ -1,121 +1,104 @@
-//v1.12
+// DOM
+const start = document.getElementById("start")
+const stop = document.getElementById("stop")
+const pause = document.getElementById("pause")
+const resume = document.getElementById("resume")
+const player = document.getElementById("player")
+const stat = document.getElementById("status")
 
+//SETTINGS
 let stream = null
-let mediaRecorder = null
-let recordedChunks = []
-let isRunning = false
-let speed = 1000
+let chunks = []
+let recorder = null
 
-let myTimer = {
-    a: 0,
-    b: 0,
-    c: 0,
-    d: 0
-}
-
-let start = document.getElementById("start")
-let stop = document.getElementById("stop")
-let counter = document.getElementById("counter")
-let stat = document.getElementById("status")
-
-async function startMedia()
+// START
+start.addEventListener("click", async () =>
 {
     try
     {
-        stream = await navigator.mediaDevices.getUserMedia({audio: true})
+        //reset
+        chunks = []
+        player.innerText = ""
 
-        mediaRecorder = new MediaRecorder(stream)
+        stream = await navigator.mediaDevices.getUserMedia({ audio: true })
 
-        mediaRecorder.ondataavailable = function (event)
+        recorder = new MediaRecorder(stream)
+
+        recorder.ondataavailable = (event) =>
         {
-            recordedChunks.push(event.data)
+            chunks.push(event.data)
         }
-        
-        mediaRecorder.start()
 
-        stat.innerText = "LIVE"
+        recorder.start()
+        stat.innerText = "Started"
         stat.style.color = "green"
     }
-    catch (err)
+    catch(err)
     {
-        console.log("Error start")
+        return false
     }
-}
+})
 
-async function stopMedia()
+// STOP
+stop.addEventListener("click", async () =>
 {
     try
     {
-        mediaRecorder.stop()
-
-        stat.innerText = "OFFLINE"
+        recorder.stop()
+        stat.innerText = "Stopped"
         stat.style.color = "red"
 
-        mediaRecorder.onstop = async function ()
+        recorder.onstop = async function ()
         {
-            const blob = new Blob(recordedChunks, { type: "audio/wav" })
+            const bob = new Blob(chunks, { type: "audio/wav" })
 
-            const unixTime = Math.floor(new Date() / 1000)
+            let createPlayer = document.createElement("audio")
+            let downloadLink = document.createElement("a")
 
-            const url = URL.createObjectURL(blob)
-            const a = document.createElement("a")
-            document.body.appendChild(a)
-            a.style = "display: none"
-            a.href = url
-            a.download = unixTime + ".wav"
-            a.click()
-            window.URL.revokeObjectURL(url)
+            createPlayer.src = URL.createObjectURL(bob)
+            createPlayer.type = bob.type
+            createPlayer.controls = true
 
-            recordedChunks = []
+            downloadLink.href = createPlayer.src
+            downloadLink.download = "soundFile.wav"
+            downloadLink.click()
+
+            player.appendChild(createPlayer)
+            player.appendChild(downloadLink)
         }
     }
-    catch (err)
+    catch(err)
     {
-        console.log("Error stop")
+        return false
     }
-}
-
-
-start.addEventListener("click",() =>
-{
-    myTimer.a = 0
-    myTimer.b = 0
-    myTimer.c = 0
-    myTimer.d = 0
-
-    startMedia()
-    isRunning = true
 })
 
-stop.addEventListener("click",() =>
+// PAUSE
+pause.addEventListener("click", async () =>
 {
-    stopMedia()
-    isRunning = false
+    try
+    {
+        recorder.pause()
+        stat.innerText = "Paused"
+        stat.style.color = "orange"
+    }
+    catch(err)
+    {
+        return false
+    }
 })
 
-setInterval(() =>
+// RESUME
+resume.addEventListener("click", async () =>
 {
-    if(isRunning)
+    try
     {
-        if(myTimer.d == 10)
-        {
-            myTimer.d = 0
-            myTimer.c += 1
-        }
-        if(myTimer.c == 6)
-        {
-            myTimer.c = 0
-            myTimer.d = 0
-            myTimer.b += 1
-        }
-        if(myTimer.b == 10)
-        {
-            myTimer.b = 0
-            myTimer.a += 1
-        }
-
-        counter.innerText = `${myTimer.a}${myTimer.b}:${myTimer.c}${myTimer.d}`
-
-        myTimer.d++
+        recorder.resume()
+        stat.innerText = "Resumed"
+        stat.style.color = "green"
     }
-},speed)
+    catch(err)
+    {
+        return false
+    }
+})
