@@ -1,4 +1,6 @@
 let text = document.getElementById("text")
+let del = document.getElementById("delete")
+let list = []
 
 document.addEventListener("click",(e) =>
 {
@@ -68,5 +70,28 @@ document.addEventListener("click",(e) =>
 
 function inner(src)
 {
-	text.innerHTML += "<img src='" + src + "' class='image'>"
+        list.push("<img src='" + src + "' class='image'>")
+
+        let test = ""
+
+        list.forEach((e) =>
+        {
+                test += e
+        })
+
+        text.innerHTML = test
 }
+
+del.addEventListener("click",() =>
+{
+        list.splice(-1,1)
+
+        let test = ""
+
+        list.forEach((e) =>
+        {
+                test += e
+        })
+
+        text.innerHTML = test
+})
