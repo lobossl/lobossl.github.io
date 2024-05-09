@@ -1,7 +1,14 @@
+body
+{
+	background-color: #999999;
+	padding:0 auto;
+	margin:0;
+	text-align: center;
+}
 .image:hover
 {
-	background-color:#445566;
 	cursor:pointer;
+	background-color: #777777;
 }
 .image
 {
@@ -10,11 +17,5 @@
 	width:64px;
 	height:64px;
 	border-radius: 50%;
-	background-color: #888888;
-}
-#text
-{
-	background-color: #ffffff;
-	padding:15px;
-	margin: 15px;
+	border:1px solid #666666;
 }
