@@ -41,14 +41,14 @@ body
 {
 	display: flex;
 }
-#a
+#amain
 {
 	background-color: #bc902b;
 	flex:1;
 	border-right:2px solid #b36b39;
 	border-bottom:2px solid #b36b39;
 }
-#b
+#bmain
 {
 	flex:3;
 	text-align: left;
