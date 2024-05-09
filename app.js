@@ -83,13 +83,10 @@ function inner(src)
         })
 
         text.innerHTML = test
-        text.style.border = "1px solid #000000"
-        text.style.margin = "15px"
 }
 
 del.addEventListener("click",() =>
 {
         list = []
         text.innerHTML = ""
-        text.style.border = "none"
 })

@@ -1,6 +1,6 @@
 body
 {
-	background-color: #999999;
+	background-color: #c7a85f;
 	padding:0 auto;
 	margin:0;
 	text-align: center;
@@ -8,14 +8,48 @@ body
 .image:hover
 {
 	cursor:pointer;
-	background-color: #777777;
 }
 .image
 {
-	padding:5px;
-	margin:15px;
+	padding:10px;
+	margin:5px;
 	width:64px;
 	height:64px;
 	border-radius: 50%;
-	border:1px solid #666666;
+}
+.btn
+{
+	background-color: #222222;
+	color:#eeeeee;
+	padding:15px;
+	width:100px;
+	outline: none;
+	border:none;
+	font-size: 18px;
+	border-radius: 15px;
+	color:#bc902b;
+	margin:5px;
+}
+#top
+{
+	text-align: left;
+	padding:15px;
+	background-color: #000000;
+	color:#ffffff;
+}
+#main
+{
+	display: flex;
+}
+#a
+{
+	background-color: #bc902b;
+	flex:1;
+	border-right:2px solid #b36b39;
+	border-bottom:2px solid #b36b39;
+}
+#b
+{
+	flex:3;
+	text-align: left;
 }
