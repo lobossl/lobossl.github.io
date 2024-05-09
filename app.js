@@ -1,125 +1,100 @@
-// DOM
-const start = document.getElementById("start")
-const stop = document.getElementById("stop")
-const pause = document.getElementById("pause")
-const resume = document.getElementById("resume")
-const player = document.getElementById("player")
-const stat = document.getElementById("status")
-const timer = document.getElementById("timer")
+let text = document.getElementById("text")
+let del = document.getElementById("delete")
+let list = []
 
-//SETTINGS
-let stream = null
-let chunks = []
-let recorder = null
-let counter = 0
-let counterActive = false
-let secure = true
-
-// START
-start.addEventListener("click", async () =>
+document.addEventListener("click",(e) =>
 {
-    try
-    {
-        if(secure)
+	switch(e.target.id)
+	{
+		case "1":
+			inner(e.target.src)
+			break
+                case "2":
+                        inner(e.target.src)
+                        break
+                case "3":
+                        inner(e.target.src)
+                        break
+                case "4":
+                        inner(e.target.src)
+                        break
+                case "12":
+                        inner(e.target.src)
+                        break
+                case "13":
+                        inner(e.target.src)
+                        break
+                case "24":
+                        inner(e.target.src)
+                        break
+                case "34":
+                        inner(e.target.src)
+                        break
+                case "14":
+                        inner(e.target.src)
+                        break
+                case "23":
+                        inner(e.target.src)
+                        break
+                case "b":
+                        inner(e.target.src)
+                        break
+                case "f":
+                        inner(e.target.src)
+                        break
+                case "d":
+                        inner(e.target.src)
+                        break
+                case "u":
+                        inner(e.target.src)
+                        break
+                case "db":
+                        inner(e.target.src)
+                        break
+                case "df":
+                        inner(e.target.src)
+                        break
+                case "ub":
+                        inner(e.target.src)
+                        break
+                case "uf":
+                        inner(e.target.src)
+                        break
+                case "arrow":
+                        inner(e.target.src)
+                        break
+                case "run":
+                        inner(e.target.src)
+                        break
+	default:
+		return null
+	}
+})
+
+function inner(src)
+{
+        list.push("<img src='" + src + "' class='image'>")
+
+        let test = ""
+
+        list.forEach((e) =>
         {
-            stream = await navigator.mediaDevices.getUserMedia({ audio: true })
-    
-            recorder = new MediaRecorder(stream)
-    
-            recorder.ondataavailable = (event) =>
-            {
-                chunks.push(event.data)
-            }
-    
-            recorder.start()
-            secure = false
-            counterActive = true
-            chunks = []
-            player.innerText = ""
-            stat.innerText = "Started"
-            stat.style.color = "green"
-        }
-    }
-    catch(err)
-    {
-        return false
-    }
-})
+                test += e
+        })
 
-// STOP
-stop.addEventListener("click", async () =>
+        text.innerHTML = test
+}
+
+del.addEventListener("click",() =>
 {
-    try
-    {
-        recorder.stop()
-        secure = true
-        counter = 0
-        counterActive = false
-        stat.innerText = "Stopped"
-        stat.style.color = "red"
+        list.splice(-1,1)
 
-        recorder.onstop = async function ()
+        let test = ""
+
+        list.forEach((e) =>
         {
-            const bob = new Blob(chunks, { type: "audio/wav" })
+                test += e
+        })
 
-            let createPlayer = document.createElement("audio")
-            let downloadLink = document.createElement("a")
-
-            createPlayer.src = URL.createObjectURL(bob)
-            createPlayer.type = bob.type
-            createPlayer.controls = true
-
-            downloadLink.href = createPlayer.src
-            downloadLink.download = "soundFile.wav"
-            downloadLink.click()
-
-            player.appendChild(createPlayer)
-            player.appendChild(downloadLink)
-        }
-    }
-    catch(err)
-    {
-        return false
-    }
+        text.innerHTML = test
 })
-
-// PAUSE
-pause.addEventListener("click", async () =>
-{
-    try
-    {
-        recorder.pause()
-        counterActive = false
-        stat.innerText = "Paused"
-        stat.style.color = "orange"
-    }
-    catch(err)
-    {
-        return false
-    }
-})
-
-// RESUME
-resume.addEventListener("click", async () =>
-{
-    try
-    {
-        recorder.resume()
-        counterActive = true
-        stat.innerText = "Resumed"
-        stat.style.color = "green"
-    }
-    catch(err)
-    {
-        return false
-    }
-})
-
-setInterval(() =>
-{
-    if(counterActive)
-    {
-        timer.innerText = "Live for " + counter + " second(s)."
-        counter++
-    }
-},1000)
