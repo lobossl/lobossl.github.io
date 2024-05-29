@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="styles.css?v=290520242158">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BETA</title>
 </head>
-<body style="background-color: #888888;font-size:24px;color:#ffffff;font-family: monospace;">
-    <button id="RESET" style="background-color: orange;">!!!RESET!!!</button>
-    <button id="lower" style="background-color: red;">lower</button> <button id="raise" style="background-color: green;">raise</button> <button id="addWorker" style="background-color: yellow;">worker (10,000$)</button>
-    <p>Public Demand:<span id="myDemands"></span>%</p>
-    <p>Business Money:<span id="myEarnings"></span></p>
-    <p>Availble Cakes:<span id="myCakes"></span></p>
-    <p>Total Workers:<span id="myWorkers"></span></p>
-    <p>Current Price:<span id="myPrice"></span></p>
-    <p>Current Buyers:<span id="myBuyers"></span></p>
-    <div id="system" style="background-color: #333333;color:#ffffff;text-align: center;padding:15px;"></div>
-    <script src="engine.js?v=1.4"></script>
+<body>
+    <div id="divSystem">System Activated</div>
+    <div id="main">
+        <h3><span id="divEarnings"></span></h3>
+        <p><span id="divPrice"></span> <button id="btnLower">-</button> <button id="btnRaise">+</button></p>
+        <p><span id="divGoods"></span></p>
+        <p><span id="divWorkers"></span> <button id="btnWorker">+</button></p>
+        <p><span id="divDemands"></span></p>
+        <p><span id="divBuyers"></span></p>
+        <p><span id="divTotal"></span></p>
+    </div>
+    <p><button id="btnReset">FactoryReset</button></p>
+    <script src="engine.js?v=290520242158"></script>
 </body>
 </html>
