@@ -15,8 +15,13 @@ let divBuyers = document.getElementById("divBuyers")
 let divTotal = document.getElementById("divTotal")
 /* localStorage key */
 let KEY = "stats"
-/* update speed */
-setInterval(game,100)
+/* random strings */
+let maxGoods = 100
+let maxPrice = 10
+let minPrice = 1
+let setSpeed = 100
+/* update / refresh game speed */
+setInterval(game,setSpeed)
 /* Clicks */
 btnWorker.addEventListener("click",() =>{
     divSystem.innerText = "You bought +1 worker."
@@ -26,14 +31,14 @@ btnWorker.addEventListener("click",() =>{
 btnLower.addEventListener("click",() =>{
     let stats = get(KEY)
 
-    if(Number(stats.price >= 0.10)){
+    if(Number(stats.price > 1)){
         divSystem.innerText = "You lowered the price of the product"
-        remove("price",0.1)
+        remove("price",1)
     }
 })
 btnRaise.addEventListener("click",() =>{
     divSystem.innerText = "You raised the price of the product."
-    add("price",0.1)
+    add("price",1)
 })
 btnReset.addEventListener("click",() =>{
     reset()
@@ -42,52 +47,29 @@ btnReset.addEventListener("click",() =>{
 function game(){
     let stats = get(KEY)
 
-    //calculer demand
-    let calculateDemand = 100 - (stats.price * 100)
-    //Force fra 0 til 100
-    calculateDemand = Math.max(0, Math.min(100, calculateDemand))
+    //regn ut etterspørselen (ikke rør)
+    let demand = 100 - ((Number(stats.price) - minPrice) / (maxPrice - minPrice)) * 100
+    set("demands",Math.max(0, Math.min(100, demand)))
 
-    //create random buyers
-    let randomBuyers = Math.floor(Math.random() * (stats.goods) + 1)
+    set("buyers",(Math.round((Number(stats.demands) / 100) * Number(stats.goods))))
 
-    //set demand all the time
-    set("demands",calculateDemand)
+    add("goods",Number(stats.workers))
+    remove("goods",Number(stats.buyers))
+    add("earnings",Number(stats.buyers) * Number(stats.price))
+    add("total",Number(stats.buyers))
 
-    //make goods if you have workers
-    if(Number(stats.workers) > 0){
-        add("goods",Number(stats.workers))
-    }
-
-    //if goods are higher > buyers do this
-    if(Number(stats.goods) > Number(stats.buyers)){
-        if(calculateDemand >= 10){
-            add("total",randomBuyers)
-            add("buyers",randomBuyers)
-            remove("goods",randomBuyers)
-            set("buyers",randomBuyers) //
-            set("goods",randomBuyers) //
-            add("earnings",randomBuyers * Number(stats.price))
-        }
-        else if(calculateDemand <= 1){
-            //fix later
-            remove("earnings",Number(stats.price))
-            set("buyers",0)
-        }
-    }
-
-    //display live stats to divs
     display(stats)
 }
 /* localStorage */
 function start(){
     db = {
-        price: 0.0,
-        goods: 0.0,
-        earnings: 0.0,
-        workers: 1.0,
-        demands: 0.0,
-        buyers: 0.0,
-        total: 0.0
+        price: 1,
+        goods: 0,
+        earnings: 0,
+        workers: 1,
+        demands: 0,
+        buyers: 0,
+        total: 0
     }
 
     if(!get(KEY)){
@@ -132,13 +114,13 @@ function reset(){
 }
 function display(stats){
     /* Output Live Data */
-    divPrice.innerText = "Product Price: " + stats.price.toFixed(2) + "$"
+    divPrice.innerText = "Product Price: " + stats.price.toFixed(0) + "$"
     divGoods.innerText = "Goods: " + stats.goods.toFixed(0)
-    divEarnings.innerText = "Earnings: " + stats.earnings.toFixed(2) + "$"
+    divEarnings.innerText = "Earnings: " + stats.earnings.toFixed(0) + "$"
     divWorkers.innerText = "Workers: " + stats.workers.toFixed(0)
-    divDemands.innerText = "Public Demands: " + stats.demands.toFixed(0) + "%"
+    divDemands.innerText = "Demand: " + stats.demands.toFixed(0) + "%"
     divBuyers.innerText = "Buyers: " + stats.buyers.toFixed(0)
-    divTotal.innerText = "Total Items Sold: " + stats.total.toFixed(0)
+    divTotal.innerText = "Total Sold: " + stats.total.toFixed(0)
 }
 /* Create localStorage  database setup */
 start()
