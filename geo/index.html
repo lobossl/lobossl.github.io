@@ -37,7 +37,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 setInterval(() =>{
      navigator.geolocation.getCurrentPosition(success, error);
-},3000);
+},1000);
 
 if(!navigator.geolocation){
      alert("1")
@@ -63,7 +63,7 @@ function success(pos){
 }
 
 function error(err){
-     console.log(err);
+     alert(err.message);
 }
 </script>
 </html>
