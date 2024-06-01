@@ -23,7 +23,11 @@
 </body>
 <script>
      //Coded by LoboSSL 2024
-     var map = L.map('map').setView([59.8954, 10.7985], 13);
+     let a = null;
+     let b = null;
+     let accuracy = 1;
+     
+     var map = L.map('map').setView([a, b], 13);
 
      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -35,37 +39,36 @@ if(!navigator.geolocation){
 else{
      setInterval(() =>{
           navigator.geolocation.getCurrentPosition(success, error);
-     },1000);
+     },0);
 }
      
 let marker, cricle, zoom;
 
 function success(pos){
-     const lat = pos.coords.latitude;
-     const lng = pos.coords.longitude;
-     const accuracy = 1;
+     a = pos.coords.latitude;
+     b = pos.coords.longitude;
 
      if(marker){
           map.removeLayer(marker);
           map.removeLayer(circle);
      }
 
-     marker = L.marker([lat, lng]).addTo(map);
-     circle = L.circle([lat, lng],{ radius: accuracy }).addTo(map);
+     marker = L.marker([a, b]).addTo(map);
+     circle = L.circle([a, b],{ radius: accuracy }).addTo(map);
 
      if(!zoom){
           zoom = map.fitBounds(circle.getBounds());
      }
 
-     map.setView([lat, lng]);
+     map.setView([a, b]);
 }
 
 function error(err){
      if(err.code === 1){
-          alert("please allow location access to view your current location")
+          alert("please allow location access to view your current location");
      }
      else{
-          alert("unable to find location system, try again later..")
+          alert("unable to find location system, try again later..");
      }
 }
 </script>
