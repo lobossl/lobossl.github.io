@@ -22,6 +22,7 @@
      <div id="map"></div>
 </body>
 <script>
+     //Coded by LoboSSL 2024
      var map = L.map('map').setView([51.505, -0.09], 13);
 
      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -29,7 +30,14 @@
     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-navigator.geolocation.watchPosition(success, error);
+if(!navigator.geolocation){
+}
+else{
+     setInterval(() =>{
+          navigator.geolocation.getCurrentPosition(success, error);
+     },1000);
+}
+     
 let marker, cricle, zoom;
 
 function success(pos){
