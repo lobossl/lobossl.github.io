@@ -39,7 +39,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      
 setInterval(() =>{
      navigator.geolocation.getCurrentPosition(success, error);
-},3000);
+},1000);
 
 if(!navigator.geolocation){
      alert("Error, your system does not allow geolocation.");
@@ -61,7 +61,7 @@ function success(pos){
           zoom = map.fitBounds(circle.getBounds());
      }
 
-     map.setView([a, b]);
+     map.setView([a, b],0);
 }
 
 function error(err){
