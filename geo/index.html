@@ -23,7 +23,7 @@
 </body>
 <script>
      //Coded by LoboSSL 2024
-     var map = L.map('map').setView([51.505, -0.09], 1);
+     var map = L.map('map').setView([51.505, -0.09], 6);
 
      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -43,8 +43,7 @@ let marker, cricle, zoom;
 function success(pos){
      const lat = pos.coords.latitude;
      const lng = pos.coords.longitude;
-     const accuracy = 1; //1 meter
-     //const accuracy = pos.coords.accuracy;
+     const accuracy = 1;
 
      if(marker){
           map.removeLayer(marker);
@@ -63,10 +62,10 @@ function success(pos){
 
 function error(err){
      if(err.code === 1){
-          alert("please allow location access")
+          alert("please allow location access to view your current location")
      }
      else{
-          alert("cannot get current location")
+          alert("unable to find location system, try again later..")
      }
 }
 </script>
