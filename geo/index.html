@@ -18,10 +18,12 @@
      </style>
 </head>
 <body>
-     <div id="map"></div>
+     <div id="move"></div>
+     <div id="map"></div>>
 </body>
 <script>
 //edit by LoboSSL 01.06.2024
+let move = document.getElementById("move")
 let a = false;
 let b = false;
 let accuracy = 1;
@@ -56,6 +58,8 @@ function success(pos){
      if(!zoom){
           zoom = map.fitBounds(circle.getBounds());
      }
+
+     move.innerText = "You are moving:" + a + "," + b;
 
      map.setView([a, b]);
 }
