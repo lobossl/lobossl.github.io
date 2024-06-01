@@ -69,12 +69,7 @@ function success(pos){
 }
 
 function error(err){
-     if(err.code === 1){
-          updateText.innerText = "please allow location access to view your current location";
-     }
-     else{
-          updateText.innerText = "unable to find location system, try again later..";
-     }
+     updateText.innerText = err;
 }
 </script>
 </html>
