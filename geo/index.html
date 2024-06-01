@@ -22,6 +22,10 @@
      <div id="map"></div>
 </body>
 <script>
+setInterval(() =>{
+     navigator.geolocation.getCurrentPosition(success, error);
+},1000);
+
 //edit by LoboSSL
 let a = false;
 let b = false;
@@ -44,12 +48,6 @@ else{
 
 if(!navigator.geolocation){
      alert("Error, your system does not allow geolocation.");
-}
-else{
-     setInterval(() =>{
-          navigator.geolocation.getCurrentPosition(success, error);
-          console.log("debug 3");
-     },1000);
 }
      
 let marker, cricle, zoom;
