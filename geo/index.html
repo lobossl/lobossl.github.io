@@ -37,14 +37,28 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
+window.onload = function()
+{
+    //fetch new GPS info every 10000 milliseconds
+    window.setInterval(function ()
+    {
+          navigator.geolocation.getCurrentPosition(success, error, {
+               enableHighAccuracy: true,
+               maximumAge: 0,
+               timeout: 30000 //large timeout to accomodate slow GPS lock on some devices
+          });
+    }, 10000);  //update current location every ten seconds
+};
+     /*
 if(!navigator.geolocation){
      alert("your system does not have geolocation installed")
 }
 else{
-     navigator.geolocation.watchPosition(success,error,{
+     navigator.geolocation.getCurrentPosition(success,error,{
           enableHighAccuracy: true
      });
 }
+*/
 
 function success(pos){
      a = pos.coords.latitude;
