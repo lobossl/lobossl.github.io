@@ -15,10 +15,12 @@
 
      <style>
           body { background-color: #000000; padding:0px; margin:0 auto;}
+          #updateText { position:absolute; top:0px; border-bottom:2px solid #440000; }
           #map { height:100vh; }
      </style>
 </head>
 <body>
+     <div id="updateText"></div>
      <div id="map"></div>
 </body>
 <script>
@@ -38,10 +40,10 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      
 setInterval(() =>{
      navigator.geolocation.getCurrentPosition(success, error);
-},0);
+},100);
 
 if(!navigator.geolocation){
-     alert("Error, your system does not allow geolocation.");
+     updateText.innerText = "Error, your system does not allow geolocation.";
 }
 
 function success(pos){
@@ -61,14 +63,16 @@ function success(pos){
      }
 
      map.setView([a, b]);
+
+     updateText.innerText = "Updating cords:" + a + "," + b;
 }
 
 function error(err){
      if(err.code === 1){
-          alert("please allow location access to view your current location");
+          updateText.innerText = "please allow location access to view your current location";
      }
      else{
-          alert("unable to find location system, try again later..");
+          updateText.innerText = "unable to find location system, try again later..";
      }
 }
 </script>
