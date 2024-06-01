@@ -37,10 +37,11 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
 
-navigator.geolocation.watchPosition(success,error);
-
 if(!navigator.geolocation){
      alert("your system does not have geolocation installed")
+}
+else{
+     navigator.geolocation.watchPosition(success,error);
 }
 
 function success(pos){
