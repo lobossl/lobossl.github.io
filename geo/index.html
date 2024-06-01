@@ -31,13 +31,6 @@ let marker, cricle, zoom;
      
 setInterval(() =>{
      navigator.geolocation.getCurrentPosition(success, error);
-
-     map = L.map('map').setView([a, b], 13);
-     
-     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-          maxZoom: 19,
-          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-     }).addTo(map);
 },1000);
 
 if(!navigator.geolocation){
@@ -60,7 +53,14 @@ function success(pos){
           zoom = map.fitBounds(circle.getBounds());
      }
 
-     //map.setView([a, b]);
+     map = L.map('map').setView([a, b], 13);
+     
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+     }).addTo(map);
+
+     map.setView([a, b]);
 }
 
 function error(err){
