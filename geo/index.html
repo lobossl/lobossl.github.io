@@ -29,8 +29,7 @@ let accuracy = 1;
 let map = false;
 let marker, cricle, zoom;
 
-//map = L.map('map').setView([49, 156], 0);
-map = L.map('map');
+map = L.map('map').setView([49, 156], 0);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      maxZoom: 19,
@@ -39,7 +38,7 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      
 setInterval(() =>{
      navigator.geolocation.getCurrentPosition(success, error);
-},1000);
+},0);
 
 if(!navigator.geolocation){
      alert("Error, your system does not allow geolocation.");
@@ -61,7 +60,7 @@ function success(pos){
           zoom = map.fitBounds(circle.getBounds());
      }
 
-     map.setView([a, b],0);
+     map.setView([a, b]);
 }
 
 function error(err){
