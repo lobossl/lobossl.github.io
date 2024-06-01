@@ -15,7 +15,7 @@
 
      <style>
           body { background-color: #000000; padding:0px; margin:0 auto;}
-          #updateText { position:absolute; top:0px; border-bottom:2px solid #440000; }
+          #updateText { position:absolute; top:0px; border-bottom:2px solid #440000; background-color: #222222; color:#eeeeee; text-align: center; font-size:1.2em; }
           #map { height:100vh; }
      </style>
 </head>
@@ -25,6 +25,7 @@
 </body>
 <script>
 //edit by LoboSSL 01.06.2024
+let updateText = document.getElementById("updateText");
 let a = false;
 let b = false;
 let accuracy = 1;
