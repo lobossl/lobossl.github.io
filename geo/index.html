@@ -43,7 +43,7 @@ let marker, cricle, zoom;
 function success(pos){
      const lat = pos.coords.latitude;
      const lng = pos.coords.longitude;
-     const accuracy = pos.coords.accuracy;
+     const accuracy = 10; //const accuracy = pos.coords.accuracy;
 
      if(marker){
           map.removeLayer(marker);
