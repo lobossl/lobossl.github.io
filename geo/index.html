@@ -42,9 +42,7 @@ if(!navigator.geolocation){
 }
 else{
      navigator.geolocation.watchPosition(success,error,{
-          enableHighAccuracy: true,
-          maximumAge: 0,
-          timeout: 3000
+          enableHighAccuracy: true
      });
 }
 
