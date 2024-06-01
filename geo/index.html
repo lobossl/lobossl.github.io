@@ -29,7 +29,8 @@ let accuracy = 1;
 let map = false;
 let marker, cricle, zoom;
 
-map = L.map('map').setView([49, 156], 0);
+//map = L.map('map').setView([49, 156], 0);
+map = L.map('map');
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      maxZoom: 19,
