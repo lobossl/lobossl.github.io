@@ -41,11 +41,14 @@ if(!navigator.geolocation){
      alert("your system does not have geolocation installed")
 }
 else{
-     navigator.geolocation.watchPosition(success,error);
+     navigator.geolocation.watchPosition(success,error,{
+          enableHighAccuracy: true,
+          maximumAge: 3000,
+          timeout: 3000
+     });
 }
 
 function success(pos){
-     console.log("update:",pos);
      a = pos.coords.latitude;
      b = pos.coords.longitude;
 
