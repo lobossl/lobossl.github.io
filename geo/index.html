@@ -14,9 +14,7 @@
      crossorigin=""></script>
 
      <style>
-          body { background-color: #000000; padding:0px; margin:0 auto;}
-          /*#updateText { position:absolute; bottom:0px; background-color: #222222; color:#eeeeee; text-align: center; font-size:1.2em; height:10vh; width:100%; }*/
-          #map { height:90vh; }
+          #map { height:100vh; }
      </style>
 </head>
 <body>
@@ -24,7 +22,6 @@
 </body>
 <script>
 //edit by LoboSSL 01.06.2024
-//let updateText = document.getElementById("updateText");
 let a = false;
 let b = false;
 let accuracy = 1;
@@ -37,8 +34,6 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
      maxZoom: 19,
      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 }).addTo(map);
-
-updateText.innerText = "Loading, please wait..";
 
 setInterval(() =>{
      navigator.geolocation.getCurrentPosition(success, error);
