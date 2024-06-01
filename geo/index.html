@@ -22,18 +22,22 @@
      <div id="map"></div>
 </body>
 <script>
-//Coded by LoboSSL 2024
+//edit by LoboSSL
 let a = false;
 let b = false;
 let accuracy = 1;
+let map = false;
 
 if(a && b){
-     var map = L.map('map').setView([a, b], 13);
+     map = L.map('map').setView([a, b], 13);
 
      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
      }).addTo(map);
+}
+else{
+     return null;
 }
 
 if(!navigator.geolocation){
