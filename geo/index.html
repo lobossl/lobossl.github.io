@@ -60,7 +60,7 @@
           }
 
           marker = L.marker([latitude, longitude]).addTo(map)
-          circle = L.circle([latitude, longitude],{ radius: accuracy }).addTo(map)
+          circle = L.circle([latitude, longitude],{ radius: 10 }).addTo(map)
 
           if(!zoom){
                zoom = map.fitBounds(circle.getBounds())
