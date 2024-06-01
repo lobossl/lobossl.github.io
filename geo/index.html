@@ -35,9 +35,11 @@ if(a && b){
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
      }).addTo(map);
+
+     console.log("debug 1");
 }
 else{
-     return null;
+     console.log("debug 2");
 }
 
 if(!navigator.geolocation){
@@ -46,6 +48,7 @@ if(!navigator.geolocation){
 else{
      setInterval(() =>{
           navigator.geolocation.getCurrentPosition(success, error);
+          console.log("debug 3");
      },1000);
 }
      
@@ -68,6 +71,7 @@ function success(pos){
      }
 
      map.setView([a, b]);
+     console.log("debug 4");
 }
 
 function error(err){
