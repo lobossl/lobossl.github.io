@@ -22,35 +22,27 @@
      <div id="map"></div>
 </body>
 <script>
-setInterval(() =>{
-     navigator.geolocation.getCurrentPosition(success, error);
-},1000);
-
 //edit by LoboSSL
 let a = false;
 let b = false;
 let accuracy = 1;
 let map = false;
+let marker, cricle, zoom;
+     
+setInterval(() =>{
+     navigator.geolocation.getCurrentPosition(success, error);
 
-if(a && b){
      map = L.map('map').setView([a, b], 13);
-
+     
      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
           maxZoom: 19,
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
      }).addTo(map);
-
-     console.log("debug 1");
-}
-else{
-     console.log("debug 2");
-}
+},1000);
 
 if(!navigator.geolocation){
      alert("Error, your system does not allow geolocation.");
 }
-     
-let marker, cricle, zoom;
 
 function success(pos){
      a = pos.coords.latitude;
@@ -69,7 +61,6 @@ function success(pos){
      }
 
      map.setView([a, b]);
-     console.log("debug 4");
 }
 
 function error(err){
