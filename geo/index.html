@@ -3,80 +3,66 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>GEO-LOBO</title>
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-     crossorigin=""/>
-
-     <!-- Make sure you put this AFTER Leaflet's CSS -->
-     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-     crossorigin=""></script>
-
+     <title>abc</title>
+     <link rel="stylesheet" href="leaflet.css?v1.0" />
+     <script src="leaflet-src.js?v1.0"></script>
      <style>
-          body { padding:0; margin:0 auto; background-color: green; }
-          #flex { display: flex; }
-          #map { height:90vh; flex:2; }
-          #move { background-color:green; color:white; font-size: 1.3em; text-align:center; flex:1; }
+          #map { height: 50vh; }
      </style>
 </head>
 <body>
-     <div id="box">
-          <div id="map"></div>
-          <div id="move"></div>
-     </div>
+     <div id="map"></div>
 </body>
 <script>
-//edit by LoboSSL 01.06.2024
-let move = document.getElementById("move")
-let a = false;
-let b = false;
-let accuracy = 1;
-let map = false;
-let marker, cricle, zoom;
+     let map = null
+     let zoom = null
+     let marker = null
+     let circle = null
 
-map = L.map('map').setView([49, 156], 0);
-
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-     maxZoom: 19,
-     attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-}).addTo(map);
-
-window.onload = function()
-{
-    window.setInterval(function ()
-    {
-          navigator.geolocation.getCurrentPosition(success, error, {
-               enableHighAccuracy: true,
-               maximumAge: 0,
-               timeout: 60000
-          });
-    }, 1000);
-};
-
-function success(pos){
-     a = pos.coords.latitude;
-     b = pos.coords.longitude;
-
-     if(marker){
-          map.removeLayer(marker);
-          map.removeLayer(circle);
+     let options = {
+          enableHighAccuracy: true,
+          maximumAge: 0,
+          timeout: 60000
      }
 
-     marker = L.marker([a, b]).addTo(map);
-     circle = L.circle([a, b],{ radius: accuracy }).addTo(map);
+     map = L.map('map').setView([0, 0],13)
 
-     if(!zoom){
-          zoom = map.fitBounds(circle.getBounds());
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+               maxZoom: 19,
+               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+     }).addTo(map)
+
+     window.onload = () =>
+     {
+          window.setInterval(() => {
+               if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(success, error, options)
+               }
+          },1000)
      }
 
-     move.innerText = a + "," + b;
+     function success(event){
+          let latitude = event.coords.latitude
+          let longitude = event.coords.longitude
+          let accuracy = event.coords.accuracy
 
-     map.setView([a, b]);
-}
+          if(marker){
+               map.removeLayer(marker)
+               map.removeLayer(circle)
+          }
 
-function error(err){
-     alert(err.message);
-}
+          marker = L.marker([latitude, longitude]).addTo(map)
+          circle = L.circle([latitude, longitude],{ radius: accuracy }).addTo(map)
+
+          if(!zoom){
+               zoom = map.fitBounds(circle.getBounds())
+          }
+
+          map.setView([latitude,longitude])
+     }
+
+     function error(event){
+          console.log(event.code,event.message)
+     }
 </script>
 </html>
