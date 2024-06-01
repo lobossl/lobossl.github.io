@@ -15,17 +15,16 @@
 
      <style>
           body { background-color: #000000; padding:0px; margin:0 auto;}
-          #updateText { position:absolute; bottom:0px; background-color: #222222; color:#eeeeee; text-align: center; font-size:1.2em; height:10vh; width:100%; }
+          /*#updateText { position:absolute; bottom:0px; background-color: #222222; color:#eeeeee; text-align: center; font-size:1.2em; height:10vh; width:100%; }*/
           #map { height:90vh; }
      </style>
 </head>
 <body>
      <div id="map"></div>
-     <div id="updateText"></div>
 </body>
 <script>
 //edit by LoboSSL 01.06.2024
-let updateText = document.getElementById("updateText");
+//let updateText = document.getElementById("updateText");
 let a = false;
 let b = false;
 let accuracy = 1;
@@ -46,7 +45,7 @@ setInterval(() =>{
 },3000);
 
 if(!navigator.geolocation){
-     updateText.innerText = "Error, your system does not allow geolocation.";
+     alert("1")
 }
 
 function success(pos){
@@ -66,13 +65,10 @@ function success(pos){
      }
 
      map.setView([a, b]);
-
-     updateText.innerText = "Updating cords:" + a + "," + b;
 }
 
 function error(err){
-     console.log(err);
-     updateText.innerText = err;
+     alert("2")
 }
 </script>
 </html>
