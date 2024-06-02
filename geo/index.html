@@ -20,51 +20,60 @@
      </div>
 </body>
 <script>
-     // Update 02.06.2024 23:05 by LoboSSL
+     // last Update: 03.06.2024
      let array = []
-     let map = null
-     let zoom = null
-     let marker = null
-     let circle = null
-     let newMarker = null
+     let map
+     let latitude
+     let longitude
+     let accuracy
+     let zoom
+     let marker
+     let circle
+     let newMarker
+     let lastPoint
+     let polyline
+     let endMeter = 0
      let options = {
           enableHighAccuracy: true,
           maximumAge: 0,
           timeout: 86400
      }
 
-     function success(event){
-          let latitude = event.coords.latitude
-          let longitude = event.coords.longitude
-          let accuracy = event.coords.accuracy
+     function poly(a,b){
+          if(lastPoint){
+               distance(lastPoint,b)
+               array = [lastPoint,b]
+          }
+          else{
+               distance(a,b)
+               array = [a,b]
+          }
 
-          let omg = L.latLng(latitude,longitude)
-          array.push(omg)
+          polyline = L.polyline(array,{
+               color: 'red'
+          }).addTo(map)
+
+          lastPoint = b
+     }
+
+     function distance(a,b){
+          let dist = map.distance(a,b)
+
+          endMeter += dist
+
+          document.getElementById("text").innerText = "Distansen er:" + endMeter.toFixed(1) + " meter."
+     }
+
+     function success(event){
+          latitude = event.coords.latitude
+          longitude = event.coords.longitude
+          accuracy = event.coords.accuracy
 
           map.on('click', function(ev){
-               newMarker = L.marker([ev.latlng.lat,ev.latlng.lng]).addTo(map)
-
                let a = L.latLng(latitude,longitude)
                let b = L.latLng(ev.latlng.lat,ev.latlng.lng)
 
-               array.push(b)
-
-               let distance = Number(map.distance(a,b)).toFixed(2)
-
-               let km = 1000
-               let mil = 10000
-
-               if(distance >= mil){
-                    distance = (distance / mil) + " (mil)"
-               }
-               else if(distance >= km && distance < mil){
-                    distance = (distance / km) + " (km)"
-               }
-               else if(distance < km){
-                    distance = (distance) + " (meter)"
-               }
-
-               document.getElementById("text").innerText = "Distance from you and marker:" + distance
+               poly(a,b)
           })
 
           if(marker){
@@ -78,10 +87,6 @@
           if(!zoom){
                zoom = map.fitBounds(circle.getBounds())
           }
-
-          L.polyline(array, {
-               color: 'red'
-          }).addTo(map)
 
           map.setView([latitude,longitude])
      }
@@ -110,11 +115,13 @@
 
      window.onload = () =>
      {
-          window.setInterval(() => {
+          navigator.geolocation.getCurrentPosition(success, error, options)
+          /*window.setInterval(() => {
                if(navigator.geolocation){
                     navigator.geolocation.getCurrentPosition(success, error, options)
                }
           },1000)
+          */
      }
 </script>
 </html>
