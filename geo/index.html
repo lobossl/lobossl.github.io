@@ -24,27 +24,10 @@
      let zoom = null
      let marker = null
      let circle = null
-
      let options = {
           enableHighAccuracy: true,
           maximumAge: 0,
-          timeout: 60000
-     }
-
-     map = L.map('map').setView([0, 0],13)
-
-     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
-               maxZoom: 19,
-               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-     }).addTo(map)
-
-     window.onload = () =>
-     {
-          window.setInterval(() => {
-               if(navigator.geolocation){
-                    navigator.geolocation.getCurrentPosition(success, error, options)
-               }
-          },1000)
+          timeout: 999999999999999999999999999
      }
 
      function success(event){
@@ -70,7 +53,34 @@
      }
 
      function error(event){
-          alert(event.message)
+          if(event.code == 1){
+               document.getElementById("text").innerText = event.message
+          }
+          else if(event.code == 2){
+               document.getElementById("text").innerText = event.message
+          }
+          else if(event.code == 3){
+               document.getElementById("text").innerText = event.message
+          }
+          else{
+               document.getElementById("text").innerText = "ERROR"
+          }
+     }
+
+     map = L.map('map').setView([0, 0],13)
+
+     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{
+               maxZoom: 19,
+               attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+     }).addTo(map)
+
+     window.onload = () =>
+     {
+          window.setInterval(() => {
+               if(navigator.geolocation){
+                    navigator.geolocation.getCurrentPosition(success, error, options)
+               }
+          },1000)
      }
 </script>
 </html>
