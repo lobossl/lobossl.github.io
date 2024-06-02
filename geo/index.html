@@ -9,14 +9,14 @@
      <style>
           body { margin:0 auto; padding:0; font-family: monospace; }
           #flex { display: flex; flex-direction: column;}
-          #map { height:50vh; }
-          #test { flex:1 100%; text-align: center; font-size:1.3em; }
+          #map { height:80vh; }
+          #text { flex:1 100%; text-align: center; font-size:1.0em; }
      </style>
 </head>
 <body>
      <div id="flex">
           <div id="map"></div>
-          <div id="test"></div>
+          <div id="text"></div>
      </div>
 </body>
 <script>
@@ -52,7 +52,7 @@
           let longitude = event.coords.longitude
           let accuracy = event.coords.accuracy
 
-          document.getElementById("test").innerText = "latitude:" + latitude + "\nlongitude:" + longitude + "\naccuracy:" + accuracy
+          document.getElementById("text").innerText = "latitude:" + latitude + "\nlongitude:" + longitude + "\naccuracy:" + accuracy
 
           if(marker){
                map.removeLayer(marker)
@@ -70,7 +70,7 @@
      }
 
      function error(event){
-          console.log(event.code,event.message)
+          alert(event.message)
      }
 </script>
 </html>
