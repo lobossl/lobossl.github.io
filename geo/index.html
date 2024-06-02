@@ -17,10 +17,12 @@
      <div id="flex">
           <div id="map"></div>
           <div id="text"></div>
+          <p><button id="Pause">Pause</button></p>
      </div>
 </body>
 <script>
      // last Update: 03.06.2024
+     let pause = false
      let array = []
      let map
      let latitude
@@ -88,7 +90,9 @@
                zoom = map.fitBounds(circle.getBounds())
           }
 
-          map.setView([latitude,longitude])
+          if(!pause){
+               map.setView([latitude,longitude])
+          }
      }
 
      function error(event){
@@ -105,6 +109,15 @@
                document.getElementById("text").innerText = "ERROR"
           }
      }
+
+     document.getElementById("pause").addEventListener("click",() =>{
+          if(pause){
+               pause = false
+          }
+          else{
+               pause = true
+          }
+     })
 
      map = L.map('map').setView([0, 0],13)
 
