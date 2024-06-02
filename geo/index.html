@@ -20,14 +20,17 @@
      </div>
 </body>
 <script>
+     // Update 02.06.2024 23:05 by LoboSSL
+     let array = []
      let map = null
      let zoom = null
      let marker = null
      let circle = null
+     let newMarker = null
      let options = {
           enableHighAccuracy: true,
           maximumAge: 0,
-          timeout: 999999999999999999999999999
+          timeout: 86400
      }
 
      function success(event){
@@ -35,7 +38,34 @@
           let longitude = event.coords.longitude
           let accuracy = event.coords.accuracy
 
-          document.getElementById("text").innerText = "latitude:" + latitude + "\nlongitude:" + longitude + "\naccuracy:" + accuracy
+          let omg = L.latLng(latitude,longitude)
+          array.push(omg)
+
+          map.on('click', function(ev){
+               newMarker = L.marker([ev.latlng.lat,ev.latlng.lng]).addTo(map)
+
+               let a = L.latLng(latitude,longitude)
+               let b = L.latLng(ev.latlng.lat,ev.latlng.lng)
+
+               array.push(b)
+
+               let distance = Number(map.distance(a,b)).toFixed(2)
+
+               let km = 1000
+               let mil = 10000
+
+               if(distance >= mil){
+                    distance = (distance / mil) + " (mil)"
+               }
+               else if(distance >= km && distance < mil){
+                    distance = (distance / km) + " (km)"
+               }
+               else if(distance < km){
+                    distance = (distance) + " (meter)"
+               }
+
+               document.getElementById("text").innerText = "Distance from you and marker:" + distance
+          })
 
           if(marker){
                map.removeLayer(marker)
@@ -48,6 +78,10 @@
           if(!zoom){
                zoom = map.fitBounds(circle.getBounds())
           }
+
+          L.polyline(array, {
+               color: 'red'
+          }).addTo(map)
 
           map.setView([latitude,longitude])
      }
