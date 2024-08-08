@@ -1,24 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeGame</title>
+    <title>Stemmegjenkjenning Eksempel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #start {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
 </head>
-<body style="margin: 0 auto;text-align: center;padding: 0;border: none;margin: 0;color: #000000;">
-    <pre style="color:#CCCCCC;">LifeGame v1.0.0</pre>
-    <div style="width: 75%;font-size: 1.5em;background-color: #eeeeee;color: #000000;margin: 0 auto;border: 1px solid #cccccc;border-radius: 6px;">
-        <div style="margin: 5px;"><img src='img/strength.png' alt='STRENGTH' />:<span id="strength">0</span></div>
-        <div style="margin: 5px;"><img src='img/intelligence.png' alt='INTELLIGENCE' />:<span id="intelligence">0</span></div>
-        <div style="margin: 5px;"><img src='img/dexterity.png' alt='DEXTERITY' />:<span id="dexterity">0</span></div>
-        <div style="margin: 5px;"><img src='img/xp.png' alt='XP' />:<span id="xp">0</span></div>
-        <div style="margin: 5px;"><img src='img/gold.png' alt='GOLD' />:<span id="gold">0</span></div>
-    </div>
-    <div style="text-align: center;padding: 5px;margin: 5px;">
-        <button id="btn_add" style="padding: 15px;font-size: 1em;outline: none;border: 3px solid #000000;background-color: #0c961e;color: #ffffff;cursor: pointer;border-radius: 6px;">Ready</button>
-    </div>
-    <h3 id="countQuests"></h3>
-    <div id="table" style="text-align: center;padding: 5px;margin: 5px;word-break: break-word;display: flex;justify-content: center;flex-wrap: wrap;"></div>
-    <script src="index.js?v=1.0000"></script>
+<body>
+    <h1>Stemmegjenkjenning Test</h1>
+    <button id="start">Start stemmegjenkjenning</button>
+    <p id="result">Resultat vil vises her</p>
+
+    <script>
+        // Sjekk om nettleseren støtter webkitSpeechRecognition
+        if ('webkitSpeechRecognition' in window) {
+            // Initialiser stemmegjenkjenning
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = 'no-NO'; // Sett språk til norsk
+            recognition.interimResults = false; // Ingen delresultater
+            recognition.maxAlternatives = 1; // Én alternativ
+
+            // Start stemmegjenkjenning ved å klikke på knappen
+            document.getElementById('start').addEventListener('click', function() {
+                recognition.start();
+            });
+
+            // Behandle resultater
+            recognition.onresult = function(event) {
+                var transcript = event.results[0][0].transcript;
+                document.getElementById('result').textContent = 'Gjenkjent tale: ' + transcript;
+            };
+
+            // Håndter feil
+            recognition.onerror = function(event) {
+                var errorMessage = 'Feil under stemmegjenkjenning: ' + event.error;
+                console.error(errorMessage);
+                document.getElementById('result').textContent = errorMessage;
+
+                // Spesifikke feilmeldinger for feilsøking
+                if (event.error === 'network') {
+                    document.getElementById('result').textContent = 'Nettverksproblem: Sørg for at du er tilkoblet internett og at nettstedet bruker HTTPS.';
+                }
+            };
+        } else {
+            alert('Stemmegjenkjenning ikke støttet i denne nettleseren.');
+        }
+    </script>
 </body>
 </html>
