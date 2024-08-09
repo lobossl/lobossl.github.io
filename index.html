@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="no">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST</title>
-</head>
-<body>
-<h1>
-    <a href="https://otp-secure.com">https://otp-secure.com</a>
-</h1>
-</body>
-</html>
+<form method="POST" action="https://otp-secure.com/login">
+    <input type="email" id="email" name="email" placeholder="email: test@example.com" required>
+    <button type="submit" id="login">Login</button>
+</form>
+<script>
+fetch("https://otp-secure.com/auth?key=123456")
+    .then(response => response.json())
+    .then(data => {
+        if (data.error) {
+            console.error('Login failed:', data.msg);
+        } else if (data.login) {
+            console.log('Login successful:', data.msg);
+        } else {
+            console.log('Login failed:', data.msg);
+        }
+    })
+    .catch(error => {
+        console.error('An error occurred:', error);
+    });
+</script>
