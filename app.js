@@ -72,7 +72,7 @@ function getMessages(channel,username,message){
 
     chatBoxes.id = "chatBoxes"
     chatBoxes.className = 
-    chatBoxes.innerText = "[#" + channel + "] " + username + ": " + message
+    chatBoxes.innerText = "[" + channel + "] " + username + ": " + message
 
     chatWindow.append(chatBoxes)
 
