@@ -88,7 +88,7 @@ function addMessage(){
 
     newMessage.id = "newMessage"
     newMessage.type = "text"
-    newMessage.placeholder = "Message:"
+    newMessage.placeholder = "Message.. [Enter]"
 
     chatTools.append(newMessage)
 
