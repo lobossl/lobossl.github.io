@@ -85,6 +85,11 @@ function appendMessage(channel, username, message) {
 
     chatWindow.append(messageDiv);
 
+    if(message.includes(document.getElementById("newStreamer").value)){
+        msgDiv.style.color = "#ff0000"
+        msgDiv.style.opacity = "1.0"
+    }
+
     if(!pause){
         chatWindow.scrollTop = chatWindow.scrollHeight
     }
