@@ -122,7 +122,7 @@ body {
  
  #username{
      color:#4d9c32;
-     font-size: 1.4em;
+     font-size: 1.2em;
  }
 
  #timer{
@@ -132,13 +132,6 @@ body {
 
  #message{
      color:#ffffff;
+     padding:5px;
      font-size: 1.1em;
- }
-
- #copyr{
-     position: absolute;
-     text-align: center;
-     bottom:15px;
-     color:#333333;
-     font-size:12px;
  }
