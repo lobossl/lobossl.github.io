@@ -1,0 +1,40 @@
+body{
+     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+     font-size: 1.0em;
+     background-color: #000000;
+     padding: 0;
+     margin: 0;
+     text-align: center;
+}
+#chatWindow{
+     position: absolute;
+     top:0px;
+     left:0px;
+     bottom:0px;
+     width:50%;
+     overflow:auto;
+     word-break: break-all;
+     background-color: #000000;
+     color:#00b000;
+     border:none;
+}
+#chatTools{
+     position: absolute;
+     top:0px;
+     right:0px;
+     bottom:0px;
+     width:50%;
+     overflow:auto;
+     word-break: break-all;
+     background-color: #444444;
+     color:#00b000;
+     border:none;
+}
+#chatBoxes:hover{
+     background-color: #351602;
+}
+#chatBoxes{
+     cursor:pointer;
+     padding:15px;
+     text-align: left;
+}
