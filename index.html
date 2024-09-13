@@ -4,26 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twitch Chat Client</title>
-    <link rel="stylesheet" href="styles.css?v=1.1">
+    <link rel="stylesheet" href="styles.css?v=1.2">
 </head>
 <body>
-    <div id="container">
         <div id="login">
             <h1 style="color:#007bff;">X Twitch Client</h1>
-            <input type="text" id="newStreamer" placeholder="Streamer: (Example: Ninja)" title="Streamer: (Example: Ninja)">
-            <input type="text" id="newAuth" placeholder="OAuth Token: (Example: oauth:k34j5)" title="OAuth Token: (Example: oauth:k34j5)">
-            <button id="connect">Connect</button>
+            <p><input type="text" id="newStreamer" placeholder="Streamer: (Example: Ninja)" title="Streamer: (Example: Ninja)" value="nmplol"></p>
+            <p><input type="text" id="newAuth" placeholder="OAuth Token: (Example: oauth:k34j5)" title="OAuth Token: (Example: oauth:k34j5)" value="oauth:beusk8mvxow8vxsth38pbuacdlu24r"></p>
+            <p><button id="connect">Connect</button></p>
         </div>
         <div id="chatWindow"></div>
-    </div>
-    <div id="modToolsPopup" class="popup">
-        <div class="popup-content">
-            <span class="close" id="closeModToolsPopup">&times;</span>
-            <p><button id="banUser">Ban User</button></p>
-            <p><button id="timeoutUser">Timeout User</button></p>
-            <p><input type="text" id="chatInput" placeholder="Type your message here..."></p>
-        </div>
-    </div>
-    <script src="app.js?v=1.1"></script>
+        <div id="subWindow"></div>
+    <script src="app.js?v=1.2"></script>
 </body>
 </html>

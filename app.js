@@ -1,136 +1,197 @@
+/*
+    TODO:
+    - Trenger en liste over subs, tror det beste er design, 50/50, altså over og under ikke side ved side, pga telefoner passer ikke.
+    - Fikse at den viser sub,vip,Prime,Turbo,mod osv, nå er det bare enten eller..
+    - Rydde i koden, gjør alt litt finere,bedre, masse som ikke blir brukt. (THE END FINAL JOB)
+*/
 let connect = document.getElementById("connect");
 let chatWindow = document.getElementById("chatWindow");
-let modToolsPopup = document.getElementById("modToolsPopup");
-let closeModToolsPopup = document.getElementById("closeModToolsPopup");
 let chatInput = document.getElementById("chatInput");
-let openModTools = document.getElementById("openModTools");
-let banUser = document.getElementById("banUser");
-let timeoutUser = document.getElementById("timeoutUser");
+let subWindow = document.getElementById("subWindow")
+
+chatWindow.style.display = "none"
+subWindow.style.display = "none"
 
 let server = "wss://irc-ws.chat.twitch.tv:443";
 let socket;
 let pause = false;
-let setUsername = false;
+let showPopupBox = false;
 
-connect.addEventListener("click", () => {
+//pause
+chatWindow.addEventListener("mouseover",() =>{
+    pause = true
+})
+chatWindow.addEventListener("mouseleave",() =>{
+    pause = false
+})
+
+connect.addEventListener("click",() =>{
     let streamer = document.getElementById("newStreamer").value;
     let auth = document.getElementById("newAuth").value;
     connectWebSocket(streamer, auth);
     document.getElementById("login").style.display = "none"
+    chatWindow.style.display = "flex"
+    subWindow.style.display = "flex"
 });
 
-function connectWebSocket(streamer, auth) {
+function connectWebSocket(streamer,auth){
     socket = new WebSocket(server);
     
-    socket.addEventListener("open", () => {
+    socket.addEventListener("open",() =>{
         console.log("Connected");
-        socket.send(`PASS ${auth}\r\n`);
-        socket.send(`NICK ${streamer}\r\n`);
-        socket.send(`JOIN #${streamer}\r\n`);
+        socket.send(`PASS ${auth}`);
+        socket.send(`NICK ${streamer}`);
+        socket.send(`CAP REQ :twitch.tv/tags`);
+        socket.send(`CAP REQ :twitch.tv/membership`);
+        socket.send(`CAP REQ :twitch.tv/commands`);
+        socket.send(`JOIN #${streamer}`);
     });
 
-    socket.addEventListener("message", (e) => {
+    socket.addEventListener("message",(e) =>{
         let data = e.data;
-    
-        // Split the data by spaces and handle different parts of the message!
-        let parts = data.split(" ");
-    
-        // Check if the message type is PRIVMSG!
-        if (parts[1] === "PRIVMSG") {
-            // Extract the username, channel, and message content!
-            let username = parts[0].split(":")[1].split("!")[0];
-            let channel = parts[2];
-            
-            // Join the remaining parts of the message (from the 4th part onward) to handle spaces and URLs properly!
-            let message = parts.slice(3).join(" ").replace(/^:/, '');
-    
-            // Append the message to the chat window!
-            appendMessage(channel, username, message);
+
+        //https://dev.twitch.tv/docs/chat/irc/#privmsg-tags
+
+        if(data[0] === "@"){
+                if(data.includes("PRIVMSG")){
+                    /*
+                        @badge-info=<badge-info>;badges=<badges>;bits=<bits>client-nonce=<nonce>;color=<color>;display-name=<display-name>;emotes=<emotes>;first-msg=<first-msg>;flags=<flags>;id=<msg-id>;mod=<mod>;room-id=<room-id>;subscriber=<subscriber>;tmi-sent-ts=<timestamp>;turbo=<turbo>;user-id=<user-id>;user-type=<user-type>;reply-parent-msg-id=<reply-parent-msg-id>;reply-parent-user-id=<reply-parent-user-id>;reply-parent-user-login=<reply-parent-user-login>;reply-parent-display-name=<reply-parent-display-name>;reply-parent-msg-body=<reply-parent-msg-body>;reply-thread-parent-msg-id=<reply-thread-parent-msg-id>;reply-thread-parent-user-login=<reply-thread-parent-user-login>;vip=<vip>
+
+                        - Sent when a user sends a chat message to a chatroom your bot has joined.
+                    */
+                    if(data.includes("subscriber=1")){
+                        readyUpMessage(data,"subscriber")
+                    }
+                    else if(data.includes("subscriber=0")){
+                        readyUpMessage(data,"non-subscriber")
+                    }
+                    else if(data.includes("mod=1")){
+                        readyUpMessage(data,"mod")
+                    }
+                    else if(data.includes("vip=1")){
+                        readyUpMessage(data,"mod")
+                    }
+                    else{
+                        return null
+                    }
+                }
+                else if(data.includes("USERNOTICE")){
+                    /*
+                        @badge-info=<badge-info>;badges=<badges>;color=<color>;display-name=<display-name>;emotes=<emotes>;id=<id-of-msg>;login=<user>;mod=<mod>;msg-id=<msg-id>;room-id=<room-id>;subscriber=<subscriber>;system-msg=<system-msg>;tmi-sent-ts=<timestamp>;turbo=<turbo>;user-id=<user-id>;user-type=<user-type>
+
+                        - A user subscribes to the channel, re-subscribes to the channel. or gifts a subscription to another user.
+                        - Another broadcaster raids the channel.
+                        - A viewer milestone is celebrated, such as a new viewer chatting for the first time.
+
+                    */
+                    if(data.includes("msg-id=")){
+                        userNotice(data,"id")
+                    }
+                    else if(data.includes("msg-param-cumulative-months=")){
+                        userNotice(data,"months")
+                    }
+                    else{
+                        return null
+                    }
+                }
+                else{
+                    return null
+                }
+        }
+
+        if(data.includes("PING")){
+            socket.send("PONG");
         }
     });
 
-    socket.addEventListener("close", () => {
-        console.log("Connection closed");
+    socket.addEventListener("close",() =>{
+        console.log("Connection closed!");
         setTimeout(() => connectWebSocket(streamer, auth), 5000);
     });
 
-    socket.addEventListener("error", () => {
-        console.log("Connection error");
+    socket.addEventListener("error",() =>{
+        console.log("Connection error!!!");
         setTimeout(() => connectWebSocket(streamer, auth), 5000);
     });
 }
 
-function appendMessage(channel, username, message) {
+function userNotice(data,info){
+    let username = data.split("display-name=")[1].split(";")[0]
+    let type = data.split("msg-id=")[1].split(";")[0]
+    let months = data.split("msg-param-cumulative-months=")[1].split(";")[0]
+
+    appendSubs(username,type,months)
+}
+
+function readyUpMessage(data,info){
+    let username = data.split("display-name=")[1].split(";")[0]
+    let color = data.split("color=")[1].split(";")[0]
+    let channel = "#" + document.getElementById("newStreamer").value
+    let message = data.split("PRIVMSG")[1];
+    message = message.substring(message.indexOf(":") + 1);
+
+    if(message.length > 0){
+        appendMessage(channel, username, message, color, info)
+    }
+}
+
+function appendSubs(username,type,months){
     let messageDiv = document.createElement("div");
 
+    messageDiv.innerText = username + " " + type + " " + months
+
+    subWindow.append(messageDiv)
+}
+
+function appendMessage(channel, username, message, color, info) {
+    if(color === "#FFFFFF"){
+        color = "#000000"
+    }
+
+    let messageDiv = document.createElement("div");
+
+    let infoDiv = document.createElement("div");
+    let channelDiv = document.createElement("div");
     let timerDiv = document.createElement("div");
     let userDiv = document.createElement("div");
     let msgDiv = document.createElement("div");
 
     let now = new Date();
     let datetime = now.toLocaleString();
+
+    infoDiv.innerText = `${info}`;
+    infoDiv.id = "info"
+
+    channelDiv.innerText = `${channel}`;
+    channelDiv.id = "channel"
     
-    timerDiv.innerText = `[${channel}] - ${datetime}`;
+    timerDiv.innerText = `${datetime}`;
     timerDiv.id = "timer"
 
     userDiv.innerText = username.toUpperCase();
     userDiv.id = "username"
+    userDiv.style.color = color
 
-    msgDiv.innerText = "\n" + message;
+    msgDiv.innerText = message;
     msgDiv.id = "message"
 
+    messageDiv.append(infoDiv);
+    messageDiv.append(channelDiv);
     messageDiv.append(timerDiv);
     messageDiv.append(userDiv);
     messageDiv.append(msgDiv);
 
     chatWindow.append(messageDiv);
 
-    if(message.includes(document.getElementById("newStreamer").value)){
-        msgDiv.style.color = "#ff0000"
-        msgDiv.style.opacity = "1.0"
-    }
-
     if(!pause){
         chatWindow.scrollTop = chatWindow.scrollHeight
     }
 
-    messageDiv.addEventListener("click",() =>{
-        setUsername = username
-        modToolsPopup.style.display = "flex";
+    if(message.includes(document.getElementById("newStreamer").value)){
+        msgDiv.style.color = "#FF0000"
+    }
+
+    messageDiv.addEventListener("click",(e) =>{
+        console.log(username)
     })
 }
-
-chatWindow.addEventListener("dblclick",() =>{
-    if(pause){
-        pause = false
-    }
-    else{
-        pause = true
-    }
-})
-
-closeModToolsPopup.addEventListener("click", () => {
-    modToolsPopup.style.display = "none";
-});
-
-chatInput.addEventListener("keyup", (e) => {
-    if(setUsername){
-        if (e.key === "Enter") {
-            let message = chatInput.value;
-            socket.send(`PRIVMSG #${document.getElementById("newStreamer").value} :@${setUsername} ${message}\r\n`);
-            chatInput.value = "";
-        }
-    }
-});
-
-banUser.addEventListener("click", (e) => {
-    if(setUsername){
-        socket.send(`PRIVMSG #${document.getElementById("newStreamer").value} :/ban ${setUsername} banned\r\n`);
-    }
-});
-
-timeoutUser.addEventListener("click", (e) => {
-    if(setUsername){
-        socket.send(`PRIVMSG #${document.getElementById("newStreamer").value} :/timeout ${setUsername} 600 timeout\r\n`);
-    }
-});
