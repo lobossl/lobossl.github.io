@@ -1,8 +1,5 @@
 /*
-    TODO:
-    - Trenger en liste over subs, tror det beste er design, 50/50, altså over og under ikke side ved side, pga telefoner passer ikke.
-    - Fikse at den viser sub,vip,Prime,Turbo,mod osv, nå er det bare enten eller..
-    - Rydde i koden, gjør alt litt finere,bedre, masse som ikke blir brukt. (THE END FINAL JOB)
+    Copyrights LoboSSL 2024
 */
 let connect = document.getElementById("connect");
 let chatWindow = document.getElementById("chatWindow");
@@ -151,6 +148,8 @@ function appendSubs(username,type,months){
     messageDiv.innerText = username + " " + type + " " + months
 
     subWindow.append(messageDiv)
+
+    subWindow.scrollTop = subWindow.scrollHeight
 }
 
 function appendMessage(channel, username, message, color, info) {
