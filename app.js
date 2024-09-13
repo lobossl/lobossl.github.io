@@ -116,22 +116,32 @@ function connectWebSocket(streamer,auth){
 }
 
 function userNotice(data,info){
-    let username = data.split("display-name=")[1].split(";")[0]
-    let type = data.split("msg-id=")[1].split(";")[0]
-    let months = data.split("msg-param-cumulative-months=")[1].split(";")[0]
-
-    appendSubs(username,type,months)
+    try{
+        let username = data.split("display-name=")[1].split(";")[0]
+        let type = data.split("msg-id=")[1].split(";")[0]
+        let months = data.split("msg-param-cumulative-months=")[1].split(";")[0]
+    
+        appendSubs(username,type,months) 
+    }
+    catch(err){
+        return null
+    }
 }
 
 function readyUpMessage(data,info){
-    let username = data.split("display-name=")[1].split(";")[0]
-    let color = data.split("color=")[1].split(";")[0]
-    let channel = "#" + document.getElementById("newStreamer").value
-    let message = data.split("PRIVMSG")[1];
-    message = message.substring(message.indexOf(":") + 1);
-
-    if(message.length > 0){
-        appendMessage(channel, username, message, color, info)
+    try{
+        let username = data.split("display-name=")[1].split(";")[0]
+        let color = data.split("color=")[1].split(";")[0]
+        let channel = "#" + document.getElementById("newStreamer").value
+        let message = data.split("PRIVMSG")[1];
+        message = message.substring(message.indexOf(":") + 1);
+    
+        if(message.length > 0){
+            appendMessage(channel, username, message, color, info)
+        }
+    }
+    catch(err){
+        return null
     }
 }
 
