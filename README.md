@@ -2,4 +2,4 @@
 - Fast Live Chat.
 - sub,resub,subgift
 
-![image](https://github.com/user-attachments/assets/bbe4e6dc-a642-42e2-90eb-3b72ce5a056f)
+![image](https://github.com/user-attachments/assets/ecc928a2-00c1-4e44-8ed6-4a694c1cda30)
