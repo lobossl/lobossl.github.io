@@ -73,6 +73,7 @@ function connectWebSocket(streamer,auth){
                     }
                 }
                 else if(data.includes("USERNOTICE")){
+                    console.log(data)
                     /*
                         @badge-info=<badge-info>;badges=<badges>;color=<color>;display-name=<display-name>;emotes=<emotes>;id=<id-of-msg>;login=<user>;mod=<mod>;msg-id=<msg-id>;room-id=<room-id>;subscriber=<subscriber>;system-msg=<system-msg>;tmi-sent-ts=<timestamp>;turbo=<turbo>;user-id=<user-id>;user-type=<user-type>
 
