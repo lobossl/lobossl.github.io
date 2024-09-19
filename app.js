@@ -88,7 +88,7 @@ function connectWebSocket(streamer,auth){
                         userNotice(data,"months")
                     }
                     else{
-                        return null
+                        console.log(data)
                     }
                 }
                 else{
