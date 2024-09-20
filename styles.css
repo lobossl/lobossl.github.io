@@ -24,6 +24,7 @@ body{
     color:#cccccc;
     border-radius: 10px;
     word-break: break-all;
+    cursor: pointer;
 }
 #subWindow{
     display: flex;
@@ -44,6 +45,7 @@ body{
     color:#000000;
     border-radius: 10px;
     word-break: break-all;
+    display: inline-block;
 }
 
 /*
@@ -58,7 +60,7 @@ body{
     color:#cccccc;
 }
 #username{
-    font-weight: 900;
+    font-weight: bold;
     font-size:1.3em;
     margin:5px;
 }

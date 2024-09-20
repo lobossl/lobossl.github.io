@@ -86,7 +86,6 @@ function connectWebSocket(streamer,auth){
 
                     */
                     if(data.includes("msg-id=")){
-                        console.log("DEBUG:",data) //gjør denne syk bra
                         userNotice(data,"id")
                     }
                     else{
@@ -118,8 +117,6 @@ function userNotice(data,info){
     try{
         let username = data.split("display-name=")[1].split(";")[0]
         let type = data.split("msg-id=")[1].split(";")[0]
-        //info=subscriber/12
-        let test = "8;badges=subscriber"
         let months = data.split("info=")[1].split("/")[1].split(";")[0]
     
         appendSubs(username,type,months)
@@ -150,7 +147,12 @@ function readyUpMessage(data,info){
 function appendSubs(username,type,months){
     let messageDiv = document.createElement("div");
 
-    messageDiv.innerText = username + " " + type + " " + months
+    if(months){
+        messageDiv.innerText = username + " " + type + " " + months
+    }
+    else{
+        messageDiv.innerText = username + " " + type
+    }
 
     subWindow.append(messageDiv)
 
