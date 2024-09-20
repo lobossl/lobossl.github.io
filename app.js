@@ -56,24 +56,27 @@ function connectWebSocket(streamer,auth){
 
                         - Sent when a user sends a chat message to a chatroom your bot has joined.
                     */
-                    if(data.includes("subscriber=1")){
-                        readyUpMessage(data,"subscriber")
-                    }
-                    else if(data.includes("subscriber=0")){
-                        readyUpMessage(data,"non-subscriber")
-                    }
-                    else if(data.includes("mod=1")){
-                        readyUpMessage(data,"mod")
+                    let badges = []
+
+                    if(data.includes("mod=1")){
+                        badges.push("MOD")
                     }
                     else if(data.includes("vip=1")){
-                        readyUpMessage(data,"mod")
+                        badges.push("VIP")
+                    }
+                    if(data.includes("subscriber=1")){
+                        badges.push("SUB")
+                    }
+                    else if(data.includes("subscriber=0")){
+                        badges.push("PLEB")
                     }
                     else{
                         return null
                     }
+
+                    readyUpMessage(data,badges)
                 }
                 else if(data.includes("USERNOTICE")){
-                    console.log(data)
                     /*
                         @badge-info=<badge-info>;badges=<badges>;color=<color>;display-name=<display-name>;emotes=<emotes>;id=<id-of-msg>;login=<user>;mod=<mod>;msg-id=<msg-id>;room-id=<room-id>;subscriber=<subscriber>;system-msg=<system-msg>;tmi-sent-ts=<timestamp>;turbo=<turbo>;user-id=<user-id>;user-type=<user-type>
 
@@ -83,13 +86,11 @@ function connectWebSocket(streamer,auth){
 
                     */
                     if(data.includes("msg-id=")){
+                        console.log("DEBUG:",data) //gjør denne syk bra
                         userNotice(data,"id")
                     }
-                    else if(data.includes("msg-param-cumulative-months=")){
-                        userNotice(data,"months")
-                    }
                     else{
-                        console.log(data)
+                        return null
                     }
                 }
                 else{
@@ -117,9 +118,11 @@ function userNotice(data,info){
     try{
         let username = data.split("display-name=")[1].split(";")[0]
         let type = data.split("msg-id=")[1].split(";")[0]
-        let months = data.split("msg-param-cumulative-months=")[1].split(";")[0]
+        //info=subscriber/12
+        let test = "8;badges=subscriber"
+        let months = data.split("info=")[1].split("/")[1].split(";")[0]
     
-        appendSubs(username,type,months) 
+        appendSubs(username,type,months)
     }
     catch(err){
         return null
@@ -131,8 +134,9 @@ function readyUpMessage(data,info){
         let username = data.split("display-name=")[1].split(";")[0]
         let color = data.split("color=")[1].split(";")[0]
         let channel = "#" + document.getElementById("newStreamer").value
-        let message = data.split("PRIVMSG")[1];
-        message = message.substring(message.indexOf(":") + 1);
+        let message = data.split("PRIVMSG")[1]
+
+        message = message.substring(message.indexOf(":") + 1)
     
         if(message.length > 0){
             appendMessage(channel, username, message, color, info)
@@ -169,7 +173,7 @@ function appendMessage(channel, username, message, color, info) {
     let now = new Date();
     let datetime = now.toLocaleString();
 
-    infoDiv.innerText = `${info}`;
+    infoDiv.innerText += `${info}`;
     infoDiv.id = "info"
 
     channelDiv.innerText = `${channel}`;
