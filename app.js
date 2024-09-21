@@ -1,7 +1,8 @@
 /*
     Copyrights LoboSSL 2024
 */
-let now = new Date(); //TEST
+
+let currentTime = Date.now()
 
 let connect = document.getElementById("connect");
 let chatWindow = document.getElementById("chatWindow");
@@ -174,8 +175,9 @@ function appendMessage(channel, username, message, color, info) {
     let userDiv = document.createElement("div");
     let msgDiv = document.createElement("div");
 
-    //vil at det skal være, det er 1 sekund siden han snakket..
-    let datetime = (new Date() - now) / 60;
+    let dateTime = Math.floor((Date.now() - currentTime) / 1000)
+
+    currentTime = Date.now()
 
     infoDiv.innerText += `${info}`;
     infoDiv.id = "info"
@@ -183,7 +185,7 @@ function appendMessage(channel, username, message, color, info) {
     channelDiv.innerText = `Streamer: ${channel}`;
     channelDiv.id = "channel"
     
-    timerDiv.innerText = `${datetime}`;
+    timerDiv.innerText = `${dateTime} second(s) ago..`;
     timerDiv.id = "timer"
 
     userDiv.innerText = username.toUpperCase();
