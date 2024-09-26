@@ -20,6 +20,7 @@ body{
      grid-template-columns: 1fr 2fr 1fr;
      grid-template-rows: auto;
      height: 100vh;
+     border:none;
 }
 
 #top {
@@ -30,6 +31,7 @@ body{
      color:rgb(151, 15, 163);
      font-size: 64px;
      font-weight: 900;
+     border:none;
 }
 
 #left {
@@ -37,6 +39,7 @@ body{
      text-align: center;
      padding:15px;
      background-color: rgb(41, 40, 43);
+     border:none;
 }
 
 #middle-top {
@@ -46,6 +49,7 @@ body{
      margin:6px;
      grid-area: middle-top;
      border-radius: 6px;
+     border:none;
 }
 
 #middle-bottom {
@@ -55,6 +59,7 @@ body{
      margin:6px;
      grid-area: middle-bottom;
      border-radius: 6px;
+     border:none;
 }
 
 #right {
@@ -64,6 +69,7 @@ body{
      margin-top:6px;
      grid-area: right;
      border-top-left-radius: 6px;
+     border:none;
 }
 
 #textArea{
