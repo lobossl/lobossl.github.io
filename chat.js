@@ -1,7 +1,7 @@
 /*
      chat.js
 */
-let adr = "ws://127.0.0.1"
+let adr = "wss://otp-secure.com"
 let ws = new WebSocket(adr)
 
 ws.onopen = (e) =>{
