@@ -26,10 +26,25 @@ ws.onmessage = (e) =>{
 
                newDiv.addEventListener("click",() =>{
                     ws.send(JSON.stringify({
-                         action: "joinRoom",
+                         action: "request",
                          id: client
                     }))
                })
+          })
+     }
+     else if(parseData.action === "requestChat"){
+          let newDiv = document.createElement("div")
+
+          newDiv.innerText = parseData.id
+          newDiv.id = "requestChat"
+
+          document.getElementById("requestChat").append(newDiv)
+
+          newDiv.addEventListener("click",() =>{
+               ws.send(JSON.stringify({
+                    action: "joinRoom",
+                    id: parseData.id
+               }))
           })
      }
      else if(parseData.action === "chatMessage"){

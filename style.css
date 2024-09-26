@@ -112,3 +112,10 @@ body{
 #help{
      color:#666;
 }
+#requestChat{
+     cursor: pointer;
+     padding:5px;
+}
+#requestChat:hover{
+     background-color: rgb(65, 63, 68);
+}
