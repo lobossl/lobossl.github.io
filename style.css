@@ -2,8 +2,8 @@ body{
      padding:0;
      margin:0;
      border:none;
-     background-color: #333;
-     font-family:monospace;
+     background-color: #000000;
+     font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
      letter-spacing: 1px;
      font-size: 1.0em;
      font-weight: 600;
@@ -11,111 +11,56 @@ body{
      color:#EEE;
      user-select: none;
 }
-#container {
-     display: grid;
-     grid-template-areas:
-     "left top top"
-     "left middle-top right";
-     grid-template-columns: 1fr 2fr 2fr;
-     grid-template-rows: auto;
-     height: 100vh;
-     border:none;
-     gap: 3px;
+
+#container{
+     display: flex;
+     height:100vh;
 }
 
-#top {
-     grid-area: top;
-     text-align: center;
-     padding:15px;
-     background-color: rgb(41, 40, 43);
-     color:#EEE;
-     font-size: 1.5em;
-     font-weight: 900;
-     border-radius: 5px;
-     border:none;
-}
-
-#left {
-     grid-area: left;
-     text-align: center;
-     padding:15px;
-     background-color: rgb(41, 40, 43);
-     border-radius: 5px;
-     border:none;
-}
-
-#middle-top {
-     background-color: rgb(41, 40, 43);
-     text-align: center;
-     padding:15px;
-     grid-area: middle-top;
-     border-radius: 5px;
-     border:none;
-}
-
-#right {
-     background-color: rgb(41, 40, 43);
-     text-align: center;
-     padding:15px;
-     grid-area: right;
-     border-radius: 5px;
-}
-
-#textArea{
-     outline: none;
-     resize: none;
+#left{
      padding:5px;
-     width:85%;
-     background-color: #333;
-     border:1px solid #222;
-     color:#fff;
-     border-radius: 5px;
+     flex:1;
+     text-align: center;
+     background-color: #130404;
+}
+
+#right{
+     flex:2;
+     text-align: center;
+     background-color: #290909;
 }
 
 #chat{
-     width:85%;
-     padding:5px;
+     height:80vh;
      text-align: left;
-     margin:0 auto;
-     overflow: hidden;
+     padding:3px;
      word-break: break-all;
-     height: 50vh;
+     overflow:hidden;
+     overflow-y:auto;
 }
 
-#buttonChat{
+#box{
+     height:20vh;
+     padding:10px;
+}
+
+#textArea{
      outline:none;
      border:none;
-     background-color: rgb(151, 15, 163);
-     color:#FFF;
+     margin:0;
      padding:15px;
-     text-align: center;
-     font-size: 1.0em;
-     font-weight: 700;
-     border-radius: 10px;
-     cursor: pointer;
+     width:75%;
+     border-radius: 13px;
 }
 
 #theMessage{
-     padding:5px;
+     margin:10px;
 }
 
 #onlineUsers{
+     margin:10px;
      cursor: pointer;
-     padding:5px;
 }
 #onlineUsers:hover{
-     background-color: rgb(65, 63, 68);
-}
-#users{
-     overflow:auto;
-}
-#help{
-     color:#666;
-}
-#requestChat{
-     cursor: pointer;
-     padding:5px;
-}
-#requestChat:hover{
-     background-color: rgb(65, 63, 68);
+     color:#CCCCCC;
 }

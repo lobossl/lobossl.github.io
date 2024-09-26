@@ -32,26 +32,11 @@ ws.onmessage = (e) =>{
                })
           })
      }
-     else if(parseData.action === "requestChat"){
-          let newDiv = document.createElement("div")
-
-          newDiv.innerText = parseData.id
-          newDiv.id = "requestChat"
-
-          document.getElementById("requestChat").append(newDiv)
-
-          newDiv.addEventListener("click",() =>{
-               ws.send(JSON.stringify({
-                    action: "joinRoom",
-                    id: parseData.id
-               }))
-          })
-     }
      else if(parseData.action === "chatMessage"){
           let newDiv = document.createElement("div")
 
           if(parseData.id === "Server"){
-               newDiv.style.color = "#FF0000"
+               newDiv.style.color = "#CCCCCC"
           }
 
           newDiv.innerText = parseData.id + ":" + parseData.message
@@ -70,15 +55,6 @@ ws.onerror = (e) =>{
 ws.onclose = (e) =>{
 	location.reload()
 }
-
-document.getElementById("buttonChat").addEventListener("click",() =>{
-     ws.send(JSON.stringify({
-          action: "message",
-          message: document.getElementById("textArea").value
-     }))
-
-     document.getElementById("textArea").value = ""
-})
 
 document.getElementById("textArea").addEventListener("keyup",(e) =>{
      if(e.key === "Enter"){
