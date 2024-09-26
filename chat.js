@@ -32,6 +32,10 @@ ws.onmessage = (e) =>{
      else if(parseData.action === "chatMessage"){
           let newDiv = document.createElement("div")
 
+          if(parseData.id === "Server"){
+               newDiv.style.color = "#FF0000"
+          }
+
           newDiv.innerText = parseData.id + ":" + parseData.message
           newDiv.id = "theMessage"
      
