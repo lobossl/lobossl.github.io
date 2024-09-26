@@ -1,0 +1,119 @@
+body{
+     padding:0;
+     margin:0;
+     border:none;
+     background-color: #333;
+     font-family:monospace;
+     letter-spacing: 1px;
+     font-size: 1.0em;
+     font-weight: 600;
+     overflow: hidden;
+     color:#EEE;
+     user-select: none;
+}
+#container {
+     display: grid;
+     grid-template-areas:
+     "left top top"
+     "left middle-top right"
+     "left middle-bottom right";
+     grid-template-columns: 1fr 2fr 1fr;
+     grid-template-rows: auto;
+     height: 100vh;
+}
+
+#top {
+     grid-area: top;
+     text-align: left;
+     padding:15px;
+     background-color: rgb(41, 40, 43);
+     color:rgb(151, 15, 163);
+     font-size: 64px;
+     font-weight: 900;
+}
+
+#left {
+     grid-area: left;
+     text-align: center;
+     padding:15px;
+     background-color: rgb(41, 40, 43);
+}
+
+#middle-top {
+     background-color: rgb(41, 40, 43);
+     text-align: center;
+     padding:15px;
+     margin:6px;
+     grid-area: middle-top;
+     border-radius: 6px;
+}
+
+#middle-bottom {
+     background-color: rgb(41, 40, 43);
+     text-align: center;
+     padding:15px;
+     margin:6px;
+     grid-area: middle-bottom;
+     border-radius: 6px;
+}
+
+#right {
+     background-color: rgb(41, 40, 43);
+     text-align: center;
+     padding:15px;
+     margin-top:6px;
+     grid-area: right;
+     border-top-left-radius: 6px;
+}
+
+#textArea{
+     outline: none;
+     resize: none;
+     padding:5px;
+     width:85%;
+     background-color: rgb(41, 40, 43);
+     border:2px solid #333;
+     color:#fff;
+}
+
+#chat{
+     width:85%;
+     padding:5px;
+     text-align: left;
+     margin:0 auto;
+     overflow: hidden;
+     word-break: break-all;
+     height:250px;
+     border:2px solid #333;
+}
+
+#buttonChat{
+     outline:none;
+     border:none;
+     background-color: rgb(151, 15, 163);
+     color:#FFF;
+     padding:15px;
+     text-align: center;
+     font-size: 1.0em;
+     font-weight: 700;
+     border-radius: 10px;
+     cursor: pointer;
+}
+
+#theMessage{
+     padding:5px;
+}
+
+#onlineUsers{
+     cursor: pointer;
+     padding:5px;
+}
+#onlineUsers:hover{
+     color:#aa2a2a;
+}
+#users{
+     overflow:auto;
+}
+#help{
+     color:#666;
+}
