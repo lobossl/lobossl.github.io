@@ -25,7 +25,10 @@ ws.onmessage = (e) =>{
                document.getElementById("users").append(newDiv)
 
                newDiv.addEventListener("click",() =>{
-                    console.log(client)
+                    ws.send(JSON.stringify({
+                         action: "joinRoom",
+                         id: client
+                    }))
                })
           })
      }
@@ -55,6 +58,7 @@ ws.onclose = (e) =>{
 
 document.getElementById("buttonChat").addEventListener("click",() =>{
      ws.send(JSON.stringify({
+          action: "message",
           message: document.getElementById("textArea").value
      }))
 
@@ -64,6 +68,7 @@ document.getElementById("buttonChat").addEventListener("click",() =>{
 document.getElementById("textArea").addEventListener("keyup",(e) =>{
      if(e.key === "Enter"){
           ws.send(JSON.stringify({
+               action: "message",
                message: document.getElementById("textArea").value
           }))
      
