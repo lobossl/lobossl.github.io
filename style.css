@@ -15,12 +15,12 @@ body{
      display: grid;
      grid-template-areas:
      "left top top"
-     "left middle-top right"
-     "left middle-bottom right";
+     "left middle-top right";
      grid-template-columns: 1fr 2fr 1fr;
      grid-template-rows: auto;
      height: 100vh;
      border:none;
+     gap: 5px;
 }
 
 #top {
@@ -28,9 +28,10 @@ body{
      text-align: left;
      padding:15px;
      background-color: rgb(41, 40, 43);
-     color:rgb(151, 15, 163);
-     font-size: 1.3em;
+     color:#EEE;
+     font-size: 1.5em;
      font-weight: 900;
+     border-radius: 5px;
      border:none;
 }
 
@@ -39,6 +40,7 @@ body{
      text-align: center;
      padding:15px;
      background-color: rgb(41, 40, 43);
+     border-radius: 5px;
      border:none;
 }
 
@@ -46,19 +48,8 @@ body{
      background-color: rgb(41, 40, 43);
      text-align: center;
      padding:15px;
-     margin:6px;
      grid-area: middle-top;
-     border-radius: 6px;
-     border:none;
-}
-
-#middle-bottom {
-     background-color: rgb(41, 40, 43);
-     text-align: center;
-     padding:15px;
-     margin:6px;
-     grid-area: middle-bottom;
-     border-radius: 6px;
+     border-radius: 5px;
      border:none;
 }
 
@@ -66,10 +57,8 @@ body{
      background-color: rgb(41, 40, 43);
      text-align: center;
      padding:15px;
-     margin-top:6px;
      grid-area: right;
-     border-top-left-radius: 6px;
-     border:none;
+     border-radius: 5px;
 }
 
 #textArea{
@@ -77,8 +66,8 @@ body{
      resize: none;
      padding:5px;
      width:85%;
-     background-color: rgb(41, 40, 43);
-     border:2px solid #333;
+     background-color: #333;
+     border:1px solid #222;
      color:#fff;
 }
 
@@ -89,8 +78,9 @@ body{
      margin:0 auto;
      overflow: hidden;
      word-break: break-all;
-     height:250px;
-     border:2px solid #333;
+     background-color: #333;
+     border:1px solid #222;
+     height: 50vh;
 }
 
 #buttonChat{
@@ -115,7 +105,7 @@ body{
      padding:5px;
 }
 #onlineUsers:hover{
-     color:#aa2a2a;
+     background-color: rgb(65, 63, 68);
 }
 #users{
      overflow:auto;

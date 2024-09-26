@@ -17,10 +17,10 @@ ws.onmessage = (e) =>{
           parseData.list.forEach((client) =>{
                let newDiv = document.createElement("div")
 
-               newDiv.innerText = "id: " + client
+               newDiv.innerText = client
                newDiv.id = "onlineUsers"
 
-               document.getElementById("clients").innerText = "Klienter: (" + parseData.clients + ")"
+               document.getElementById("clients").innerText = "Online: (" + parseData.clients + ")"
 
                document.getElementById("users").append(newDiv)
 
