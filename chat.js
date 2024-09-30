@@ -5,7 +5,7 @@ let adr = "wss://ws.chatlinkup.com"
 let ws = new WebSocket(adr)
 
 ws.onopen = (e) =>{
-     //
+     return null
 }
 
 ws.onmessage = (e) =>{
@@ -36,10 +36,16 @@ ws.onmessage = (e) =>{
           let newDiv = document.createElement("div")
 
           if(parseData.id === "Server"){
-               newDiv.style.color = "#CCCCCC"
+               newDiv.style.color = "#FF0000"
           }
 
-          newDiv.innerText = `${parseData.id} ${parseData.message}`
+          if(parseData.admin === true){
+               newDiv.innerText = `@${parseData.id} ${parseData.message}`
+          }
+          else{
+               newDiv.innerText = `${parseData.id} ${parseData.message}`
+          }
+
           newDiv.id = "theMessage"
      
           document.getElementById("chat").append(newDiv)
