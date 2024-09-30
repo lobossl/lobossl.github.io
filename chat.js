@@ -1,65 +1,73 @@
 /*
-     chat.js
+     chat.js 1.13
 */
 let adr = "wss://ws.chatlinkup.com"
-let ws = new WebSocket(adr)
+let ws = new WebSocket(adr) || null
 
-ws.onopen = (e) =>{
-     return null
+ws.onopen = () =>{
+     console.log("Connection ready..")
 }
 
 ws.onmessage = (e) =>{
-	let parseData = JSON.parse(e.data)
+     try{
+          let parseData = JSON.parse(e.data)
 
-     if(parseData.action === "users"){
-          document.getElementById("users").innerText = ""
-
-          parseData.list.forEach((client) =>{
-               let newDiv = document.createElement("div")
-
-               newDiv.innerText = client
-               newDiv.id = "onlineUsers"
-
-               document.getElementById("clients").innerText = "Online: (" + parseData.clients + ")"
-
-               document.getElementById("users").append(newDiv)
-
-               newDiv.addEventListener("click",() =>{
-                    ws.send(JSON.stringify({
-                         action: "request",
-                         id: client
-                    }))
+          if(parseData.action === "users"){
+               document.getElementById("users").innerText = ""
+     
+               parseData.list.forEach((client) =>{
+                    let newDiv = document.createElement("div")
+     
+                    newDiv.innerText = client
+                    newDiv.id = "onlineUsers"
+     
+                    document.getElementById("clients").innerText = "Online: (" + parseData.clients + ")"
+     
+                    document.getElementById("users").append(newDiv)
+     
+                    newDiv.addEventListener("click",() =>{
+                         ws.send(JSON.stringify({
+                              action: "request",
+                              id: client
+                         }))
+                    })
                })
-          })
+          }
+          else if(parseData.action === "ping"){
+               console.log("PING PONG!")
+          }
+          else if(parseData.action === "chatMessage"){
+               let newDiv = document.createElement("div")
+     
+               if(parseData.id === "Server"){
+                    newDiv.style.color = "#FF0000"
+               }
+     
+               if(parseData.admin === true){
+                    newDiv.innerText = `@${parseData.id} ${parseData.message}`
+               }
+               else{
+                    newDiv.innerText = `${parseData.id} ${parseData.message}`
+               }
+     
+               newDiv.id = "theMessage"
+          
+               document.getElementById("chat").append(newDiv)
+          
+               document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight 
+          }
      }
-     else if(parseData.action === "chatMessage"){
-          let newDiv = document.createElement("div")
-
-          if(parseData.id === "Server"){
-               newDiv.style.color = "#FF0000"
-          }
-
-          if(parseData.admin === true){
-               newDiv.innerText = `@${parseData.id} ${parseData.message}`
-          }
-          else{
-               newDiv.innerText = `${parseData.id} ${parseData.message}`
-          }
-
-          newDiv.id = "theMessage"
-     
-          document.getElementById("chat").append(newDiv)
-     
-          document.getElementById("chat").scrollTop = document.getElementById("chat").scrollHeight 
+     catch(err){
+          return null
      }
 }
 
-ws.onerror = (e) =>{
-	location.reload()
+ws.onerror = () =>{
+	document.getElementById("theMessage").innerText = "ERROR"
 }
 
-ws.onclose = (e) =>{
-	location.reload()
+ws.onclose = () =>{
+	document.getElementById("theMessage").innerText = "CONNECTION CLOSED"
 }
 
 document.getElementById("textArea").addEventListener("keyup",(e) =>{
@@ -72,3 +80,14 @@ document.getElementById("textArea").addEventListener("keyup",(e) =>{
           document.getElementById("textArea").value = ""
      }
 })
+
+try{
+     setInterval(() =>{
+          ws.send(JSON.stringify({
+               action: "pong"
+          }))
+     },10000) 
+}
+catch(err){
+     document.getElementById("theMessage").innerText = "WEBSOCKET ERROR"
+}
