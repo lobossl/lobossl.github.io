@@ -39,7 +39,7 @@ ws.onmessage = (e) =>{
                newDiv.style.color = "#CCCCCC"
           }
 
-          newDiv.innerText = parseData.id + ":" + parseData.message
+          newDiv.innerText = `${parseData.id} ${parseData.message}`
           newDiv.id = "theMessage"
      
           document.getElementById("chat").append(newDiv)
