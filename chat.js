@@ -1,5 +1,5 @@
 /*
-     chat.js 1.13
+     chat.js 1.15
 */
 let adr = "wss://ws.chatlinkup.com"
 let ws = new WebSocket(adr) || null
@@ -32,9 +32,6 @@ ws.onmessage = (e) =>{
                          }))
                     })
                })
-          }
-          else if(parseData.action === "ping"){
-               console.log("PING PONG!")
           }
           else if(parseData.action === "chatMessage"){
                let newDiv = document.createElement("div")
@@ -80,14 +77,3 @@ document.getElementById("textArea").addEventListener("keyup",(e) =>{
           document.getElementById("textArea").value = ""
      }
 })
-
-try{
-     setInterval(() =>{
-          ws.send(JSON.stringify({
-               action: "pong"
-          }))
-     },10000) 
-}
-catch(err){
-     document.getElementById("theMessage").innerText = "WEBSOCKET ERROR"
-}
