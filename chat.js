@@ -1,5 +1,5 @@
 /*
-     chat.js 1.15
+     chat.js
 */
 let adr = "wss://ws.chatlinkup.com"
 let ws = new WebSocket(adr) || null
