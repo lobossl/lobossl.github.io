@@ -66,5 +66,6 @@ body{
      cursor: pointer;
 }
 #onlineUsers:hover{
-     color:#CCCCCC;
+     color:orange;
+     background-color: #444;
 }
