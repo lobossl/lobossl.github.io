@@ -77,3 +77,7 @@ document.getElementById("textArea").addEventListener("keyup",(e) =>{
           document.getElementById("textArea").value = ""
      }
 })
+
+document.getElementById("close").addEventListener("click",() =>{
+     location.reload()
+})

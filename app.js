@@ -1,5 +1,5 @@
-console.log("(Bart Simpson,LoboSSL)\n\n" +
-"/\\/\\/\\/\\/\\/\\/\\/\\/\\/\\  \n" +
+console.log("-Bart Simpson\n\n" +
+"/\\/\\/\\/\\/\\/\\/\\/\\/\\  \n" +
 "|                |\n" +
 "|                |\n" +
 "|                |\n" +
