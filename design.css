@@ -18,7 +18,7 @@ body{
 
 .mainDiv{
 	word-break: break-all;
-	min-width:100px;
+	flex:1;
 	height:auto;
 	font-size:1.0em;
 	border:none;
