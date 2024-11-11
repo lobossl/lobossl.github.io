@@ -12,16 +12,17 @@ body{
 }
 
 .textareaDiv{
-	padding:15px;
+	padding:0;
 	width:75%;
 	display:inline-block;
 }
 
 .deleteDiv{
-	padding:15px;
+	padding:0;
 	width:25%;
 	display:inline-block;
-	background-color:#999999;
+	text-align:center;
+	color:#ff0000;
 }
 
 .mainDiv{
@@ -34,10 +35,7 @@ body{
 	cursor:pointer;
 	background-color:#ffffff;
 	margin:15px;
-	padding:2px;
-}
-.mainDiv:hover{
-	color:#ff0000;
+	padding:15px;
 }
 
 #form{
