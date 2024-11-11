@@ -63,6 +63,7 @@ function loadResults(){
 
 		DIV_DATE.innerText = e.date
 		DIV_DATE.className = "dateDiv"
+		DIV_DATE.style.fontSize = "0.8em"
 	
 		DIV_TEXTAREA.innerText = e.textarea
 		DIV_TEXTAREA.className = "textareaDiv"
