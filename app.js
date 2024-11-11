@@ -56,14 +56,10 @@ function loadResults(){
 
 	loadDatabase(dbName).forEach((e,index) =>{
 		let DIV_MAIN = document.createElement("div")
-		let DIV_DATE = document.createElement("div")
 		let DIV_TEXTAREA = document.createElement("div")
 		let DIV_DELETE = document.createElement("div")
 	
 		DIV_MAIN.className = "mainDiv"
-
-		DIV_DATE.innerText = "Added " + e.date + "."
-		DIV_DATE.className = "dateDiv"
 	
 		DIV_TEXTAREA.innerText = e.textarea
 		DIV_TEXTAREA.className = "textareaDiv"
@@ -71,7 +67,6 @@ function loadResults(){
 		DIV_DELETE.innerText = "☒"
 		DIV_DELETE.className = "deleteDiv"
 
-		DIV_MAIN.append(DIV_DATE)	
 		DIV_MAIN.append(DIV_TEXTAREA)
 		DIV_MAIN.append(DIV_DELETE)
 	
