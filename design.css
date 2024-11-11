@@ -71,3 +71,8 @@ body{
 	border:2px solid #555;
 	resize: none;
 }
+
+.dateDiv{
+	color:#cccccc;
+	font-size:0.8em;
+}
