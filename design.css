@@ -13,7 +13,12 @@ body{
 
 .textareaDiv{
 	padding:15px;
-	margin:15px;
+	width:75%;
+}
+
+.deleteDiv{
+	padding:15px;
+	width:25%;
 }
 
 .mainDiv{
