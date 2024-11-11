@@ -68,7 +68,6 @@ function loadResults(){
 		DIV_TEXTAREA.innerText = e.textarea
 		DIV_TEXTAREA.className = "textareaDiv"
 
-		DIV_DELETE.innerText = "DELETE"
 		DIV_DELETE.className = "deleteDiv"
 
 		DIV_MAIN.append(DIV_DATE)	
