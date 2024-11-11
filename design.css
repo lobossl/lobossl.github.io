@@ -26,7 +26,8 @@ body{
 	text-align: center;
 	cursor:pointer;
 	background-color:#eeeeee;
-	margin:5px;
+	margin:15px;
+	padding:15px;
 }
 .mainDiv:hover{
 	color:#ff0000;
