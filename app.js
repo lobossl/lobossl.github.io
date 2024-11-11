@@ -56,7 +56,7 @@ function loadResults(){
 
 	loadDatabase(dbName).forEach((e,index) =>{
 		let DIV_MAIN = document.createElement("div")
-		let DIV_DATE = document.createElement("p")
+		let DIV_DATE = document.createElement("div")
 		let DIV_TEXTAREA = document.createElement("p")
 	
 		DIV_MAIN.className = "mainDiv"
