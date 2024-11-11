@@ -71,11 +71,12 @@ body{
 
 .textarea{
 	padding:5px;
-	width:50%;
+	width:75%;
 	height:75px;
 	outline:none;
 	border:2px solid #555;
 	resize: none;
+	font-size:1.3em;
 }
 
 .dateDiv{
