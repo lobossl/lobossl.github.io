@@ -57,7 +57,8 @@ function loadResults(){
 	loadDatabase(dbName).forEach((e,index) =>{
 		let DIV_MAIN = document.createElement("div")
 		let DIV_DATE = document.createElement("div")
-		let DIV_TEXTAREA = document.createElement("p")
+		let DIV_TEXTAREA = document.createElement("div")
+		let DIV_DELETE = document.createElement("div")
 	
 		DIV_MAIN.className = "mainDiv"
 
@@ -67,12 +68,16 @@ function loadResults(){
 		DIV_TEXTAREA.innerText = e.textarea
 		DIV_TEXTAREA.className = "textareaDiv"
 
+		DIV_DELETE.innerText = "DELETE"
+		DIV_DELETE.className = "deleteDiv"
+
 		DIV_MAIN.append(DIV_DATE)	
 		DIV_MAIN.append(DIV_TEXTAREA)
+		DIV_MAIN.append(DIV_DELETE)
 	
 		document.getElementById("result").append(DIV_MAIN)
 
-		DIV_MAIN.addEventListener("click",() =>{
+		DIV_DELETE.addEventListener("click",() =>{
 			deleteDatabase(index,dbName)
 		})
 	})
