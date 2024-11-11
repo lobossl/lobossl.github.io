@@ -61,7 +61,7 @@ function loadResults(){
 	
 		DIV_MAIN.className = "mainDiv"
 
-		DIV_DATE.innerText = e.date
+		DIV_DATE.innerText = "Added " + e.date + "."
 		DIV_DATE.className = "dateDiv"
 	
 		DIV_TEXTAREA.innerText = e.textarea
