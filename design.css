@@ -21,7 +21,7 @@ body{
 	min-width:100px;
 	height:auto;
 	font-size:1.0em;
-	border:1px solid #000000;
+	border:none;
 	border-right:3px solid #1368bd;
 	text-align: center;
 	cursor:pointer;
