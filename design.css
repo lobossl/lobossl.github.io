@@ -1,12 +1,12 @@
 /*
-	design.css test
+	design.css
 */
 body{
 	margin:0;
 	padding:0;
 	border:none;
 	text-align: center;
-	background-color: #ffffff;
+	background-color: #cccccc;
 	font-size:1.0em;
 	font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
@@ -20,7 +20,7 @@ body{
 	word-break: break-all;
 	height:auto;
 	font-size:1.0em;
-	border:3px solid #111111;
+	border:none;
 	border-radius:10px;
 	text-align: left;
 	cursor:pointer;
