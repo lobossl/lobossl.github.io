@@ -14,16 +14,15 @@ body{
 .textareaDiv{
 	padding:0;
 	width:75%;
-	display:inline-block;
 }
 
 .deleteDiv{
+	width:25%;
 	padding:0;
-	display:inline-block;
 	text-align:center;
 	color:#ff0000;
 	cursor:pointer;
-	vertical-align: middle;
+	background-color:#ff0000;
 }
 
 .mainDiv{
