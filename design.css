@@ -30,7 +30,7 @@ body{
 	padding:15px;
 }
 .mainDiv:hover{
-	color:#ff0000;
+	border-color:#ff0000;
 }
 
 #form{
