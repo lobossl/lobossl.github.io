@@ -25,11 +25,10 @@ body{
 	flex:1 10%;
 	padding:0;
 	text-align:center;
-	color:#ffffff;
+	color:#ff0000;
 	border:none;
 	cursor:pointer;
 	font-size:32px;
-	background-color:#ff0000;
 }
 
 .mainDiv{
