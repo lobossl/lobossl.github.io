@@ -1,5 +1,5 @@
 /*
-	TODO LIST
+	TODO LIST!
 */
 
 let dbName = "todolist"
