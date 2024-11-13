@@ -7,6 +7,7 @@ let dbName = "todolist"
 let ADD = document.getElementById("add")
 
 ADD.addEventListener("click",() =>{
+	document.getElementById("form").innerText = ""
 	let INPUT_TEXTAREA = document.createElement("textarea")
 	let SAVE_BUTTON = document.createElement("button")
 
