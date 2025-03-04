@@ -20,6 +20,7 @@ body{
     background-image: url("img/road.webp");
     background-repeat: no-repeat;
     background-size: cover;
+    object-fit: cover;
     width:100%;
     height:100vh;
 }
