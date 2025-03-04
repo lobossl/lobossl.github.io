@@ -16,6 +16,7 @@ body{
 }
 
 #top{
+    background-color: #ffffff;
     background-image: url("img/road.webp");
     background-repeat: no-repeat;
     background-size: cover;
@@ -71,7 +72,7 @@ body{
 }
 
 #bot{
-    background-color: #000000;
+    background-color: #222222;
     padding:75px;
     color:#999999;
     text-align: center;
@@ -80,7 +81,7 @@ body{
 
 #topText{
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size:3em;
+    font-size:2em;
     font-weight: 900;
     color:#ffffff;
     text-align: center;
@@ -90,9 +91,14 @@ body{
 
 nav{
     background-color:#222222;
-    color:#000000;
+    cursor: pointer;
+    display: inline-block;
+    position: fixed;
+    top:0;
+    right:0;
     padding:15px;
     margin:0;
+    color:#999999;
     text-align: center;
 }
 
