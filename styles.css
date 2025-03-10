@@ -1,0 +1,211 @@
+/*
+    CSS by Fliro.org
+*/
+a{
+    color:#000000;
+    text-decoration: none;
+    padding:3px;
+}
+a:hover{
+    border-left:1px solid #555555;
+}
+
+body{
+    font-family:'Courier New', Courier, monospace;
+    font-size:1em;
+    margin:0;
+    padding:0;
+    user-select: none;
+}
+
+#top {
+    background-color: #ffffff;
+    width: 100%;
+    border:none;
+}
+
+#top > div{
+    text-align: center;
+    width:100%;
+}
+
+#logo_text_click{
+    cursor: pointer;
+}
+
+#logo_text{
+    align-content: center;
+    font-size:2em;
+    align-items: center;
+    margin:0;
+    color:#444444;
+}
+
+#logo_img{
+    align-items: center;
+    align-content: center;
+    width:100%;
+    max-width:560px;
+    max-height:160px;
+    outline:none;
+    border:none;
+    margin:0 auto;
+    padding:0;
+}
+
+#green {
+    width: 100%;
+    height: 50vh;
+    background-color: #ffffff;
+    background-image:url('img/road.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 0;
+    margin:0;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#main{
+    background-color: #ffffff;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    word-break: normal;
+    margin:0;
+    padding:0;
+}
+
+#main > div{
+    text-align: center;
+    flex:50%;
+    min-height:300px;
+}
+
+#bot{
+    background-color: #eeeeee;
+    color:#999999;
+    text-align: center;
+    padding:32px;
+    border:none;
+    margin:0 auto;
+}
+
+ul{
+    text-align: left;
+    list-style-type:decimal;
+    padding:0;
+    margin:0;
+}
+
+section{
+    border:none;
+    display: inline-block;
+    padding:0;
+    margin:0;
+    text-align: center;
+    color:#000000;
+    font-size: 1.2em;
+    min-height:100px;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#velkommen{
+    text-align: center;
+    margin:0 auto;
+    padding:15px;
+    width:75%;
+}
+
+h3{
+    font-family: fantasy;
+    color:#999999;
+}
+
+#taxi{
+    width: 100%;
+    height: 100vh;
+    background-color: #ffffff;
+    background-image:url('img/taxi.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 0;
+    margin:0;
+    text-align: center;
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#greencar{
+    width:100%;
+    border:none;
+    margin:0 auto;
+    padding:0;
+    text-align: center;
+    outline:none;
+}
+
+#icons{
+    width:32px;
+    height:32px;
+    padding:10px;
+    border-radius:50%;
+    border:1px solid #cccccc;
+}
+
+#menuCreate{
+    padding:15px;
+    text-align: center;
+    border:none;
+    color:#000000;
+    background-color: #eeeeee;
+}
+
+button{
+    padding:15px;
+    border-radius:15px;
+    outline:none;
+    background-color: green;
+    color:#ffffff;
+    border:none;
+    margin:0 auto;
+    font-size:1.2em;
+    color:#ffffff;
+    font-family: fantasy;
+    letter-spacing: 3px;
+    cursor: pointer;
+    box-shadow: 5px 5px #000000;
+}
+
+#form{
+    padding:15px;
+    background-color: #eeeeee;
+    color: #555555;
+    margin:15px;
+    text-align: center;
+    border:1px solid #cccccc;
+    display: inline-block;
+    margin:32px;
+    border-radius: 15px;
+}
+
+#formDiv{
+    text-align: center;
+    margin:0 auto;
+}
+
+@media(max-width:800px) {
+    #main > div{
+        flex:100%;
+    }
+}
