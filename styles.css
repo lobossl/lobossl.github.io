@@ -132,6 +132,7 @@ img{
     }
     #top{
         background-size:contain;
+        height:300px;
     }
 }
 @media only screen and (max-width: 356px) {
