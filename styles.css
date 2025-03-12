@@ -133,6 +133,9 @@ img{
     #top{
         height:50vh;
     }
+    #top_text{
+        height:50vh;
+    }
 }
 @media only screen and (max-width: 356px) {
     #top_ali{
