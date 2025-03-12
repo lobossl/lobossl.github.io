@@ -11,18 +11,17 @@ a{
     text-decoration: none;
     padding:15px;
     margin:0 auto;
-    color:#fafcf4;
+    color:#ffffff;
     background-color: #bd0211;
     font-weight: 900;
-    font-size: 1.3em;
+    font-size: 1.1em;
     outline:none;
-    border-bottom-right-radius: 32px;
-    border-top-right-radius: 32px;
     border:1px solid #000000;
+    cursor: pointer;
 }
 
 #top{
-    background-image: url("img/ny.webp");
+    background-image: url("img/ny.webp?v=1.1.2");
     background-repeat: no-repeat;
     background-position: top center;
     background-size:cover;
@@ -59,11 +58,10 @@ a{
     width:100%;
     text-align: center;
     border:none;
-    color:#333333;
+    color:#33333396;
     word-break: break-word;
-    background-color: #fafcf4;
+    background-color: #ffffff;
     border-radius: 12px;
-    font-size:1.2em;
 }
 
 #bot{
@@ -71,12 +69,12 @@ a{
     align-content: center;
     text-align: center;
     border:none;
-    color:#999999;
+    color:#c9c9c9;
     padding:0;
     margin:0;
     padding-top:32px;
     padding-bottom:32px;
-    background-color: #fafcf4;
+    background-color: #ffffff;
 }
 
 h3{
@@ -87,7 +85,7 @@ h3{
     border:none;
     background-color: #e82532;
     font-weight: 900;
-    font-size: 1.3em;
+    font-size: 1.1em;
     display: inline-block;
     outline:none;
     box-shadow: 5px 5px #333333;
@@ -95,6 +93,7 @@ h3{
 
 p{
     padding:5px;
+    font-size:1.2em;
 }
 
 span{
@@ -127,10 +126,6 @@ img{
     overflow: hidden;
     display: block;
     margin-bottom: 0;
-}
-
-#left_side{
-    text-align: left;
 }
 
 @media only screen and (max-width: 574px) {
