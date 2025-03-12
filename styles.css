@@ -4,23 +4,24 @@ body{
     padding:0;
     margin:0;
     border:none;
-    background-color: #ffffff;
+    background-color: #bd0211;
 }
 
 a{
     text-decoration: none;
     padding:15px;
     margin:0 auto;
-    color:#24c108;
-    background-color: #00000077;
+    color:#fafcf4;
+    background-color: #bd0211;
     font-weight: 900;
     font-size: 1.3em;
     outline:none;
-    border-radius: 12px;
+    border-bottom-right-radius: 32px;
+    border-top-right-radius: 32px;
+    border:1px solid #000000;
 }
 
 #top{
-    opacity: 1;
     background-image: url("img/ny.webp");
     background-repeat: no-repeat;
     background-position: top center;
@@ -43,7 +44,7 @@ a{
     word-break: break-all;
     font-weight: 900;
     color:#ffffff;
-    text-shadow: 1px 2px #333333;
+    text-shadow: 2px 2px #333333;
 }
 
 #main{
@@ -58,8 +59,11 @@ a{
     width:100%;
     text-align: center;
     border:none;
-    color:#666666;
+    color:#333333;
     word-break: break-word;
+    background-color: #fafcf4;
+    border-radius: 12px;
+    font-size:1.2em;
 }
 
 #bot{
@@ -72,7 +76,7 @@ a{
     margin:0;
     padding-top:32px;
     padding-bottom:32px;
-    background-color: #eeeeee;
+    background-color: #fafcf4;
 }
 
 h3{
@@ -81,7 +85,7 @@ h3{
     color:#ffffff;
     border-radius:0px;
     border:none;
-    background-color: #50c7008a;
+    background-color: #e82532;
     font-weight: 900;
     font-size: 1.3em;
     display: inline-block;
@@ -102,14 +106,17 @@ span{
 }
 
 .mandag{
+    text-align: center;
     object-position: center;
-    object-fit: fill;
-    width:100%;
+    object-fit: contain;
     overflow: hidden;
     padding:0;
-    margin: 0;
-    border:0;
+    margin: 0 auto;
+    border:none;
     outline: none;
+    
+    width:400px;
+    height:250px;
 }
 
 img{
