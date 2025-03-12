@@ -130,6 +130,9 @@ img{
     #top_ali{
         font-size:2.5em;
     }
+    #top{
+        background-size:contain;
+    }
 }
 @media only screen and (max-width: 356px) {
     #top_ali{
