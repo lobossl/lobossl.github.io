@@ -3,82 +3,89 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="design.css?v=644a21eda12751316f7f17b2bbd5df4fc11f1471">
-    <title>Ali-Trafikkskole - ali-trafikkskole.org - post@ali-trafikkskole.org - Ali Trafikkskole - OSLO 2025</title>
+    <link rel="stylesheet" href="design.css?v=098f6bcd4621d373cade4e832627b4f6">
+    <title>Ali-Trafikkskole - ali-trafikkskole.org - post@ali-trafikkskole.org - Ali Trafikkskole - OSLO</title>
 </head>
 <body>
-    <div class="center" id="meny"></div>
-    <div class="body">
-        <div class="box center">
-            <div class="top">
-                <div class="logo center">ALI-TRAFIKKSKOLE.ORG</div>
-                <div class="menu center"><span id="menu">=</span></div>
+    <div class="container">
+        <div class="menu center flex">
+            <div class="logo child"><img src="img/logo.png" /></div>
+            <div class="links child right">
+                <span><a href="index.html">Hjem</a></span>
+                <span><a href="#kontakt">Kontakt</a></span>
             </div>
         </div>
-        <div class="box center">
-            <img src="img/bg.webp?v=644a21eda12751316f7f17b2bbd5df4fc11f1471" class="banner" style="display:block;border:none;outline:none;margin:0;padding:0;" />
-        </div>
-        <div class="box">
-            <div class="main">
-                <div class="main-box">
-                    <div class="main-box-inner">
-                        <h3>Velkommen til Ali-Trafikkskole</h3>
-                        <p>
-                            Vi er en dedikert trafikkskole midt i Oslo som skal hjelpe deg med å få førekortet på 1-2-3.
-                            Ring oss i dag eller send oss en e-post hvis du har noen spørsmål.
-                            Vi er her får å hjelpe deg med å bestå føreprøven på en sikker måte.
-                        </p>
-                    </div>
-                </div>
-                <div class="main-box">
-                    <div class="main-box-inner left">
-                        <h3>Vi Tilbyr</h3>
-                        <p>- Mørkeskjøring</p>
-                        <p>- Glattkjøring</p>
-                        <p>- Landveikjøring</p>
-                        <p>- Kjøretimer</p>
-                        <p>- Gunstige priser</p>
-                        <p>- Opplæring</p>
-                        <p>- Kurs</p>
-                        <p>- Regler</p>
-                        <p>- Teori</p>
-                    </div>
-                </div>
-                <div class="main-box" id="kontakt">
-                    <div class="main-box-inner center">
-                        <h3>Bestill Time</h3>
-                        <p>91 92 94 12</p>
-                        <p><a href="mailto:post@ali-trafikkskole.org">Send Epost</a></p>
-                        <p><img src="img/visitkort.png?v=644a21eda12751316f7f17b2bbd5df4fc11f1471" width="300px" height="175px" /></p>
-                        <p><input type="text" placeholder="Ola Nordmann" id="name" disabled></p>
-                        <p><input type="text" placeholder="epost@epost.no" id="email" disabled></p>
-                        <p>
-                            <select id="package" disabled>
-                                <option value="pakke-1">pakke-1</option>
-                                <option value="pakke-2">pakke-2</option>
-                                <option value="pakke-3">pakke-3</option>
+        <section class="banner"></section>
+        <section class="flex">
+            <div class="child center">
+                <h3 class="padding">Bestill</h3>
+                <section class="padding margin radius child_bg">
+                    <form action="https://fliro.org/a94a8fe5ccb19ba61c4c0873d391e987982fbbd3" method="post">
+                        <p><input type="text" id="name" placeholder="Ola Nordmann" name="name"  class="input padding radius" required></p>
+                        <p><input type="text" id="email" placeholder="ola@nordmann.no" name="email" class="input padding radius" required></p>
+                        <div>
+                            <select name="radio" class="padding margin" required>
+                                <option value="kurs">Kurs / Opplæring</option>
+                                <option value="kjøretime">kjøretime (1 time)</option>
+                                <option value="kjøretime">kjøretime (2 timer)</option>
                             </select>
-                        </p>
-                        <p><button disabled>Bestill</button></p>
-                    </div>
-                </div>
-                <div class="main-box center">
-                    <div class="main-box-inner center">
-                        <h3>Skilter</h3>
-                        <p><img src="img/skilter.webp?v=644a21eda12751316f7f17b2bbd5df4fc11f1471" style="width:75%;height:auto;border:none;padding:0;margin:0 auto;outline:none;display: block;" /></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="box center">
-            <div class="bot">
+                        </div>
+                        <p><button class="padding radius margin" id="btn">SEND INN</button></p>
+                    </form>
+                </section>
                 <div>
-                    <p>www.ali-trafikkskole.org</p>
-                    <p>Nettsiden ble utviklet av <a href="https://fliro.org/?v=644a21eda12751316f7f17b2bbd5df4fc11f1471">Fliro.org</a></p>
+                    <img src="img/taxi.jpg" class="images" />
+                </div>
+                <div>
+                    <img src="img/greencar.webp" class="images" />
                 </div>
             </div>
-        </div>
+            <div class="child center">
+                <h3 class="padding">ALI-TRAFIKKSKOLE</h3>
+                <div class="padding margin radius child_bg left">
+                    <p>Velkommen til vår trafikkskole i hjertet av Oslo!</p> <p>Vi er en dedikert trafikkskole som har som mål å hjelpe deg med å få førerkortet raskt, effektivt og på en trygg måte. Med våre erfarne instruktører og moderne undervisningsmetoder sørger vi for at du er godt forberedt både til teoriprøven og den praktiske førerprøven.</p> <p><strong>Hvorfor velge oss?</strong></p> <p>1. Erfarne og sertifiserte kjørelærere: Vårt team består av erfarne instruktører som har mange års erfaring med trafikkopplæring. Vi legger stor vekt på individuell tilpasning, slik at alle elever får en læringsopplevelse som passer deres behov og ferdighetsnivå.</p> <p>2. Moderne og trygge kjøretøy: Vi har en moderne bilpark som oppfyller alle sikkerhetskrav, slik at du kan føle deg trygg når du øvelseskjører med oss.</p> <p>3. Fleksible kjøretimer: Vi vet at hverdagen kan være hektisk, derfor tilbyr vi fleksible kjøretider som passer din timeplan. Enten du trenger opplæring tidlig om morgenen, på ettermiddagen eller i helgene, finner vi en tid som passer for deg.</p> <p>4. Skreddersydd opplæring: Uansett om du er nybegynner eller bare trenger oppfriskning før førerprøven, tilpasser vi opplæringen til ditt nivå og tempo.</p> <p><strong>Våre kurs og opplæringstilbud</strong></p> <p>Vi tilbyr kurs og opplæringsprogrammer for bil førekort klasse-B, inkludert:</p> <ul> <li>Grunnkurs trafikalt grunnkurs</li> <li>Teorikurs med erfarne instruktører</li> <li>Oppfriskningskurs for deg som ønsker å bli tryggere bak rattet</li> <li>Pakketilbud for intensiv opplæring</li> <li>Spesialtilbud for ungdom og studenter</li> </ul> <p><strong>Hvordan fungerer opplæringen?</strong></p> <p>Når du melder deg på hos oss, vil vi først gjennomføre en vurderingstime for å kartlegge ditt ferdighetsnivå. Deretter legger vi opp en plan som passer dine mål og ønsker. Du vil få tilgang til moderne digitale læremidler som gjør det lettere å forberede seg til teoriprøven. Våre kjøretimer er bygget opp rundt praktiske øvelser og realistiske trafikksituasjoner, slik at du er godt rustet til førerprøven.</p> <p><strong>Vi følger deg hele veien</strong></p> <p>Vårt mål er ikke bare at du skal bestå førerprøven, men også at du skal bli en trygg og ansvarsfull sjåfør. Våre instruktører gir deg kontinuerlig tilbakemelding og tips om hvordan du kan forbedre dine ferdigheter bak rattet. Vi er tilgjengelige for spørsmål og veiledning både før, under og etter kjøretimene.</p> <p><strong>Kontakt oss i dag!</strong></p> <p>Har du spørsmål eller ønsker å melde deg på et kurs? Ikke nøl med å ta kontakt. Du kan ringe oss eller sende en e-post, så hjelper vi deg i gang på veien mot førerkortet.</p>
+                </div>
+            </div>
+            <div class="child center">
+                <h3 class="padding" id="kontakt">KONTAKT</h3>
+                <div class="padding margin radius child_bg center">
+                    <p>&#9742;</p>
+                    <p>91 92 94 12</p>
+                    <p>&#9993;</p>
+                    <p>post@ali-trafikkskole.org</p>
+                </div>
+            </div>
+            <div class="child center">
+                <h3 class="padding">VI TILBYR</h3>
+                <div class="padding margin radius child_bg left">
+                    <ul>
+                        <li>Mørkeskjøring</li>
+                        <li>Glattkjøring</li>
+                        <li>Landveikjøring</li>
+                        <li>Kjøretimer</li>
+                        <li>Gunstige priser</li>
+                        <li>Opplæring</li>
+                        <li>Kurs</li>
+                        <li>Regler</li>
+                        <li>Teori</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="child center">
+                <h3 class="padding">SKILTER</h3>
+                <div class="padding margin radius child_bg left">
+                    <a href="img/skilter.webp"><img src="img/skilter.webp" class="images" /></a>
+                </div>
+            </div>
+            <div class="child center">
+                <h3 class="padding">VISITKORT</h3>
+                <div class="padding margin radius child_bg left">
+                    <a href="img/visitkort.png"><img src="img/visitkort.png" class="images" /></a>
+                </div>
+            </div>
+        </section>
+        <section class="bottom center" id="bottom"></section>
     </div>
-    <script src="app.js?v=644a21eda12751316f7f17b2bbd5df4fc11f1471"></script>
+    <script src="app.js?v=098f6bcd4621d373cade4e832627b4f6"></script>
 </body>
 </html>
