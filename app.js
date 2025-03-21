@@ -1,5 +1,5 @@
 /*
-    JS BY FLIRO.ORG 2025 - T.H
+    JS BY FLIRO.ORG
 */
 
 let test = new Date().getFullYear()

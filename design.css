@@ -1,5 +1,5 @@
 /*
-    CSS BY FLIRO.ORG 2025 - T.H
+    CSS BY FLIRO.ORG
 */
 body{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -54,15 +54,6 @@ img{
     border:none;
     outline:none;
     max-width:75%;
-}
-
-.banner{
-    background-image: url(img/bg.webp) !important;
-    background-position: center top;
-    background-repeat: no-repeat;
-    background-size: cover;
-    height:100vh;
-    width:100%;
 }
 
 .radius{
@@ -124,6 +115,17 @@ button{
     height:auto;
     margin:15px auto;
     border-radius:15px;
+}
+
+.banner{
+    width: 100%;
+    height:auto;
+    object-fit: cover;
+}
+
+.banner_container{
+    width: 100%;
+    height:auto;
 }
 
 /*
