@@ -1,1 +1,1 @@
-ali-trafikkskole
+ali-trafikkskole.org
